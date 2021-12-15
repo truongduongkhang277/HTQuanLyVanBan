@@ -1,13 +1,13 @@
-@extends('layouts.admin')
+@extends('master')
 
-@section('title', 'Danh sách chức danh')
+@section('title', 'Danh sách lĩnh vực')
 @section('main')
 
     
     <form action="" class="form-inline" >
     
         <div class="form-group">
-            <input class="form-control" name="key" placeholder="Tìm kiếm bằng tên quyền">
+            <input class="form-control" name="key" placeholder="Tìm kiếm bằng tên lĩnh vực">
         </div>       
 
         <button type="submit" class="btn btn-primary">
@@ -16,7 +16,7 @@
 
         <!-- Dựa vào chức năng toàn màn hình, sửa thành chức năng thêm -->
         <ul class="navbar-nav ml-auto">
-            <a href="{{route('chucDanh.create')}}" class="btn btn-sm btn-primary">
+            <a href="{{route('linhVuc.create')}}" class="btn btn-sm btn-primary">
                 <i class="fas fa-plus"></i>
             </a>
         </ul>
@@ -27,20 +27,20 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Mã quyền</th>
-                <th>Tên quyền</th>
+                <th>Mã lĩnh vực</th>
+                <th>Tên lĩnh vực</th>
                 <th>Ngày tạo</th>
                 <th class="text-right">Thao tác</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($data as $chucdanh)
+            @foreach($data as $linhvuc)
             <tr>
-                <td>{{$chucdanh->id}}</td>
-                <td>{{$chucdanh->ten_quyen}}</td>
-                <td>{{$chucdanh->created_at->format('d-m-Y')}}</td>
+                <td>{{$linhvuc->id}}</td>
+                <td>{{$linhvuc->linh_vuc}}</td>
+                <td>{{$linhvuc->created_at->format('d-m-Y')}}</td>
                 <td class="text-right">
-                    <form method="POST" action="{{route('chucDanh.destroy', $chucdanh->id)}}">
+                    <form method="POST" action="{{route('linhVuc.destroy', $linhvuc->id)}}">
                         @csrf @method('DELETE')
                         <a class="btn btn-sm btn-success">
                             <i class="fas fa-edit"></i>

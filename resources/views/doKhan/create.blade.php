@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('master')
 
 @section('title', 'Thêm độ khẩn mới')
 @section('main')

@@ -1,13 +1,13 @@
-@extends('layouts.admin')
+@extends('master')
 
-@section('title', 'Danh sách chức danh')
+@section('title', 'Danh sách bộ phận')
 @section('main')
 
     
     <form action="" class="form-inline" >
     
         <div class="form-group">
-            <input class="form-control" name="key" placeholder="Tìm kiếm bằng tên quyền">
+            <input class="form-control" name="key" placeholder="Tìm kiếm bằng tên bộ phận">
         </div>       
 
         <button type="submit" class="btn btn-primary">
@@ -16,7 +16,7 @@
 
         <!-- Dựa vào chức năng toàn màn hình, sửa thành chức năng thêm -->
         <ul class="navbar-nav ml-auto">
-            <a href="{{route('chucDanh.create')}}" class="btn btn-sm btn-primary">
+            <a href="{{route('bophan.create')}}" class="btn btn-sm btn-primary">
                 <i class="fas fa-plus"></i>
             </a>
         </ul>
@@ -27,20 +27,20 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Mã quyền</th>
-                <th>Tên quyền</th>
+                <th>Mã bộ phận</th>
+                <th>Tên bộ phận</th>
                 <th>Ngày tạo</th>
                 <th class="text-right">Thao tác</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($data as $chucdanh)
+            @foreach($data as $bophan)
             <tr>
-                <td>{{$chucdanh->id}}</td>
-                <td>{{$chucdanh->ten_quyen}}</td>
-                <td>{{$chucdanh->created_at->format('d-m-Y')}}</td>
+                <td>{{$bophan->id}}</td>
+                <td>{{$bophan->bo_phan}}</td>
+                <td>{{$bophan->created_at->format('d-m-Y')}}</td>
                 <td class="text-right">
-                    <form method="POST" action="{{route('chucDanh.destroy', $chucdanh->id)}}">
+                    <form method="POST" action="{{route('bophan.destroy', $bophan->id)}}">
                         @csrf @method('DELETE')
                         <a class="btn btn-sm btn-success">
                             <i class="fas fa-edit"></i>

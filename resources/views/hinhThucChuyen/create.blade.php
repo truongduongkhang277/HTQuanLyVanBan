@@ -1,15 +1,15 @@
-@extends('layouts.admin')
+@extends('master')
 
-@section('title', 'Thêm chức danh mới')
+@section('title', 'Thêm hình thức chuyển mới')
 @section('main')
 
     
-    <form action="{{route('chucDanh.store')}}" method="POST" role="form">
-        @csrf 
+    <form action="{{route('hinhThucChuyen.store')}}" method="POST" role="form">
+        @csrf
         <div class="form-group">
-            <label for="">Tên quyền</label>
-            <input type="text" class="form-control" name="ten_quyen" placeholder="Nhập tên quyền">
-            @error('ten_quyen')
+            <label for="">Tên hình thức chuyển</label>
+            <input type="text" class="form-control" name="hinh_thuc_chuyen" placeholder="Nhập tên hình thức chuyển">
+            @error('hinh_thuc_chuyen')
             <small class="help-block">{{$message}}</small>
             @enderror
         </div>

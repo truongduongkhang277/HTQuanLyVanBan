@@ -1,4 +1,4 @@
-@extends('master.main')
+@extends('master')
 
 @section('title', 'Thêm cơ quan mới')
 @section('main')
