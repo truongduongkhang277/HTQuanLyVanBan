@@ -1,6 +1,6 @@
 @extends('master')
 
-@section('title', 'Thêm chức bộ phận')
+@section('title', 'Thêm mới bộ phận')
 @section('main')
 
     

@@ -3,7 +3,6 @@
 @section('title', 'Thêm mới văn bản đi')
 @section('main')
 
-    
     <form action="{{route('vanBanDi.store')}}" method="POST" enctype="multipart/form-data">       
     @csrf
         <div class="row">

@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HT QUẢN LÝ VĂN BẢN</title>
+  <title>@yield('title')</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -142,12 +142,14 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        @yield('main')
+      <div class="container-fluid">        
+        @yield('dashboard')
+        @yield('main')                  
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
+  
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong> <a href="#">Hệ thống Quản Lý Văn Bản</a>.</strong>Thiết kế bởi: Trương Dương Khang - 1811546141 - NTTU
@@ -199,5 +201,6 @@
 <script src="dist/js/demo.js"></script>-->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+@yield('js')
 </body>
 </html>

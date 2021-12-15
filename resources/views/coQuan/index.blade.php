@@ -57,9 +57,12 @@
    
 
     <hr>
-    <div>
-        {{$data->appends(request()->all())->links()}}
-    </div>    
+    <div class="row">
+            <div class="col-3"></div>
+            <div>
+                {{$data->appends(request()->all())->links()}}
+            </div>  
+        </div>    
 
 @stop();
 

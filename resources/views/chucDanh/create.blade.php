@@ -23,7 +23,6 @@
         
     
         <button type="submit" class="btn btn-primary">Lưu</button>
-    </form>
-    
+    </form>   
     
 @stop();

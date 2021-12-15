@@ -44,8 +44,9 @@
                 <td>{{$vanbandi->trich_yeu}}</td>
                 <td>{{$vanbandi->nguoi_ky}}</td>
                 <td>{{$vanbandi->ds_file}}</td>
-                <td>{{$vanbandi->ngay_gui->format('d-m-Y')}}</td>
-                <td>{{$vanbandi->trang_thai}}</td>
+                <td>{{$vanbandi->created_at->format('d-m-Y')}}</td>
+                <td>{{$vanbandi->trich_yeu}}</td>
+                <td>{{$vanbandi->trich_yeu}}</td>
                 <td class="text-right">
                     <form method="POST" action="{{route('vanBanDi.destroy', $vanbandi->id)}}">
                         @csrf @method('DELETE')
@@ -63,8 +64,11 @@
     </table>   
 
     <hr>
-    <div>
-        {{$data->appends(request()->all())->links()}}
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-6">
+            {{$data->appends(request()->all())->links()}}
+        </div>  
     </div>    
 
 @stop();

@@ -10,7 +10,7 @@ class TrangThai extends Model
     use HasFactory;
     protected $table = 'tbl_trangthai';
 
-    protected $fillable = ['trang_thai', 'status' 'ghi_chu'];
+    protected $fillable = ['trang_thai', 'status', 'ghi_chu'];
 
     //thêm local scope
 

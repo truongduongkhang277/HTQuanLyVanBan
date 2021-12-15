@@ -1,6 +1,6 @@
 @extends('master')
 @section('title', 'Trang chủ')
-@section('main')
+@section('dashboard')
 
     <!-- Small boxes (Stat box) -->
     <div class="row">
