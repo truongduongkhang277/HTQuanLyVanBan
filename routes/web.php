@@ -63,3 +63,7 @@ Route::group(['prefix' => 'admin'], function(){
         'vanBanDi'             => VanBanDiController::class,
     ]);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

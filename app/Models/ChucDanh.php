@@ -11,7 +11,7 @@ class ChucDanh extends Model
 
     protected $table = 'tbl_chucdanh';
 
-    protected $fillable = ['ten_quyen', 'trang_thai', 'ghi_chu'];
+    protected $fillable = ['ten_quyen', 'quyen_truy_cap', 'trang_thai', 'ghi_chu'];
 
     //thêm local scope
 
