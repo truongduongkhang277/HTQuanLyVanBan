@@ -3,7 +3,7 @@
 @section('title', 'Thêm mới văn bản đến')
 @section('main')
 
-    
+    <div></div>
     <form action="{{route('vanBanDen.store')}}" method="POST" enctype="multipart/form-data">       
     @csrf
         <div class="row">
@@ -136,6 +136,6 @@
             <button type="submit" class="btn btn-primary">Đóng</button>
         </div>
     </form>
-    
+</div>
     
 @stop();
