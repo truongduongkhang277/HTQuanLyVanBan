@@ -64,47 +64,47 @@ return [
         'items' => [
             [
                 'label' => 'Danh sách bộ phận',
-                'route' => 'theLoai.index',
+                'route' => 'boPhan.index',
             ], 
             [
                 'label' => 'Danh sách chức danh',
-                'route' => 'hinhThuc.index',
-            ], 
-            [
-                'label' => 'Danh sách cơ quan',
-                'route' => 'doKhan.index',
-            ], 
-            [
-                'label' => 'Danh sách độ khẩn',
-                'route' => 'doMat.index',
-            ], 
-            [
-                'label' => 'Danh sách độ mật',
-                'route' => 'trangThai.index',
-            ], 
-            [
-                'label' => 'Danh sách hình thức',
                 'route' => 'chucDanh.index',
             ], 
             [
-                'label' => 'Danh sách hình thức chuyển',
+                'label' => 'Danh sách cơ quan',
                 'route' => 'coQuan.index',
             ], 
             [
-                'label' => 'Danh sách hình thức lưu',
+                'label' => 'Danh sách độ khẩn',
+                'route' => 'doKhan.index',
+            ], 
+            [
+                'label' => 'Danh sách độ mật',
+                'route' => 'doMat.index',
+            ], 
+            [
+                'label' => 'Danh sách hình thức',
                 'route' => 'hinhThuc.index',
+            ], 
+            [
+                'label' => 'Danh sách hình thức chuyển',
+                'route' => 'hinhThucChuyen.index',
+            ], 
+            [
+                'label' => 'Danh sách hình thức lưu',
+                'route' => 'hinhThucLuu.index',
             ], 
             [
                 'label' => 'Danh sách lĩnh vực',
-                'route' => 'hinhThuc.index',
+                'route' => 'linhVuc.index',
             ], 
             [
                 'label' => 'Danh sách thể loại',
-                'route' => 'hinhThuc.index',
+                'route' => 'theLoai.index',
             ], 
             [
                 'label' => 'Danh sách trạng thái',
-                'route' => 'hinhThuc.index',
+                'route' => 'trangThai.index',
             ]
         ]
     ],

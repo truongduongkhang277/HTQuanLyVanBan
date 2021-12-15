@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class CoQuan extends Model
 {
     use HasFactory;
+
+    use HasFactory;
+
+    protected $table = 'tbl_coquan';
+
+    protected $fillable = ['ten_co_quan', 'dia_chi', 'trang_thai', 'ghi_chu'];
+
+    //thêm local scope
+
+    public function scopeSearch($query)
+    {
+        if($key = request()->key){
+            $query = $query->where('ten_co_quan', 'like', '%'.$key.'%');
+        }
+
+        return $query;
+    }
+
+    //global scope
 }

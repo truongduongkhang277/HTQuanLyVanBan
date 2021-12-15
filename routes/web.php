@@ -2,6 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BoPhanController;
+use App\Http\Controllers\ChucDanhController;
+use App\Http\Controllers\CoQuanController;
+use App\Http\Controllers\DoKhanController;
+use App\Http\Controllers\DoMatController;
+use App\Http\Controllers\HinhThucChuyenController;
+use App\Http\Controllers\HinhThucController;
+use App\Http\Controllers\HinhThucLuuController;
+use App\Http\Controllers\LinhVucController;
+use App\Http\Controllers\NguoiDungController;
+use App\Http\Controllers\TheLoaiController;
+use App\Http\Controllers\TrangThaiController;
+use App\Http\Controllers\VanBanDenController;
+use App\Http\Controllers\VanBanDiController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +34,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function(){
-    Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     /** VD:
      * GET => chucDanh.index => danh sách
@@ -31,19 +47,19 @@ Route::group(['prefix' => 'admin'], function(){
      */
 
     Route::resources([
-        'bophan'            => 'BoPhanController',
-        'chucDanh'          => 'ChucDanhController',
-        'coQuan'            => 'CoQuanController',
-        'doKhan'            => 'DoKhanController',
-        'doMat'             => 'DoMatController',
-        'hinhThuc'          => 'HinhThucController',
-        'hinhThucChuyen'    => 'HinhThucChuyenController',
-        'hinhThucLuu'       => 'HinhThucLuuController',
-        'linhVuc'           => 'LinhVucController',
-        'nguoiDung'         => 'NguoiDungController',
-        'theLoai'           => 'TheLoaiController',
-        'trangThai'         => 'TrangThaiController',
-        'vanBanDen'         => 'VanBanDenController',
-        'vanBanDi'          => 'VanBanDiController',
+        'bophan'               => BoPhanController::class,
+        'chucDanh'             => ChucDanhController::class,
+        'coQuan'               => CoQuanController::class,
+        'doKhan'               => DoKhanController::class,
+        'doMat'                => DoMatController::class,
+        'hinhThuc'             => HinhThucController::class,
+        'hinhThucChuyen'       => HinhThucChuyenController::class,
+        'hinhThucLuu'          => HinhThucLuuController::class,
+        'linhVuc'              => LinhVucController::class,
+        'nguoiDung'            => NguoiDungController::class,
+        'theLoai'              => TheLoaiController::class,
+        'trangThai'            => TrangThaiController::class,
+        'vanBanDen'            => VanBanDenController::class,
+        'vanBanDi'             => VanBanDiController::class,
     ]);
 });

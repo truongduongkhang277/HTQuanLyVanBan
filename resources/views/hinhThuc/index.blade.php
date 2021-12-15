@@ -3,7 +3,6 @@
 @section('title', 'Danh sách hình thức')
 @section('main')
 
-    
     <form action="" class="form-inline" >
     
         <div class="form-group">
@@ -53,9 +52,7 @@
             </tr>
             @endforeach
         </tbody>
-    </table>
-    
-   
+    </table>     
 
     <hr>
     <div>

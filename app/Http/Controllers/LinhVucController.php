@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LinhVuc;
+use App\Models\Models\LinhVuc;
 use Illuminate\Http\Request;
 
 class LinhVucController extends Controller
@@ -14,7 +14,10 @@ class LinhVucController extends Controller
      */
     public function index()
     {
-        //
+        // trỏ đến hàm scopeSearch trong model LinhVuc để rút gọn code
+        $data = LinhVuc::orderBy('created_at', 'ASC')->search()->paginate(7);
+
+        return view('linhVuc.index', compact('data'));
     }
 
     /**
@@ -24,7 +27,7 @@ class LinhVucController extends Controller
      */
     public function create()
     {
-        //
+        return view('linhVuc.create');
     }
 
     /**
@@ -41,7 +44,7 @@ class LinhVucController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\LinhVuc  $linhVuc
+     * @param  \App\Models\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Http\Response
      */
     public function show(LinhVuc $linhVuc)
@@ -52,7 +55,7 @@ class LinhVucController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\LinhVuc  $linhVuc
+     * @param  \App\Models\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Http\Response
      */
     public function edit(LinhVuc $linhVuc)
@@ -64,7 +67,7 @@ class LinhVucController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LinhVuc  $linhVuc
+     * @param  \App\Models\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, LinhVuc $linhVuc)
@@ -75,7 +78,7 @@ class LinhVucController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\LinhVuc  $linhVuc
+     * @param  \App\Models\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Http\Response
      */
     public function destroy(LinhVuc $linhVuc)

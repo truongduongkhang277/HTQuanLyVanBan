@@ -14,7 +14,10 @@ class BoPhanController extends Controller
      */
     public function index()
     {
-        
+        // trỏ đến hàm scopeSearch trong model BoPhan để rút gọn code
+        $data = BoPhan::orderBy('created_at', 'ASC')->search()->paginate(7);
+
+        return view('boPhan.index', compact('data'));
     }
 
     /**
@@ -24,7 +27,7 @@ class BoPhanController extends Controller
      */
     public function create()
     {
-        //
+        return view('boPhan.create');
     }
 
     /**

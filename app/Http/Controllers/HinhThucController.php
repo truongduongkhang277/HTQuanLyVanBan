@@ -14,7 +14,10 @@ class HinhThucController extends Controller
      */
     public function index()
     {
-        //
+        // trỏ đến hàm scopeSearch trong model HinhThuc để rút gọn code
+        $data = HinhThuc::orderBy('created_at', 'ASC')->search()->paginate(7);
+
+        return view('hinhThuc.index', compact('data'));
     }
 
     /**
@@ -24,7 +27,7 @@ class HinhThucController extends Controller
      */
     public function create()
     {
-        //
+        return view('hinhThuc.create');
     }
 
     /**
@@ -35,7 +38,19 @@ class HinhThucController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        $request->validate([
+            'hinh_thuc' => 'required'
+        ]);
+
+        //store
+        $add = HinhThuc::create($request->all());
+
+        if($add){
+            return redirect()->route('hinhThuc.index')->with('success', 'Thêm mới thành công');
+        }
+
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**

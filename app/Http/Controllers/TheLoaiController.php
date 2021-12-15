@@ -14,7 +14,10 @@ class TheLoaiController extends Controller
      */
     public function index()
     {
-        //
+        // trỏ đến hàm scopeSearch trong model TheLoai để rút gọn code
+        $data = TheLoai::orderBy('created_at', 'ASC')->search()->paginate(7);
+
+        return view('theLoai.index', compact('data'));
     }
 
     /**
@@ -24,7 +27,7 @@ class TheLoaiController extends Controller
      */
     public function create()
     {
-        //
+        return view('theLoai.create');
     }
 
     /**
@@ -35,7 +38,19 @@ class TheLoaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        $request->validate([
+            'ten_loai' => 'required'
+        ]);
+
+        //store
+        $add = TheLoai::create($request->all());
+
+        if($add){
+            return redirect()->route('theLoai.index')->with('success', 'Thêm mới thành công');
+        }
+
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**

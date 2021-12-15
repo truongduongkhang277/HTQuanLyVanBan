@@ -14,7 +14,10 @@ class DoMatController extends Controller
      */
     public function index()
     {
-        //
+        // trỏ đến hàm scopeSearch trong model DoMat để rút gọn code
+        $data = DoMat::orderBy('created_at', 'ASC')->search()->paginate(7);
+
+        return view('doMat.index', compact('data'));
     }
 
     /**
@@ -24,7 +27,7 @@ class DoMatController extends Controller
      */
     public function create()
     {
-        //
+        return view('doMat.create');
     }
 
     /**
@@ -35,7 +38,19 @@ class DoMatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        $request->validate([
+            'do_mat' => 'required'
+        ]);
+
+        //store
+        $add = DoMat::create($request->all());
+
+        if($add){
+            return redirect()->route('doMat.index')->with('success', 'Thêm mới thành công');
+        }
+
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**

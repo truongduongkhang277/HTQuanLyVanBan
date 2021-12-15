@@ -14,10 +14,10 @@ class ChucDanhController extends Controller
      */
     public function index()
     {
-        // trỏ đến hàm scopeSearch trong model ChucDanh để rút gọn code
-        $data = ChucDanh::orderBy('created_at', 'ASC')->search()->paginate(10);
+         // trỏ đến hàm scopeSearch trong model ChucDanh để rút gọn code
+         $data = ChucDanh::orderBy('created_at', 'ASC')->search()->paginate(7);
 
-        return view('chucDanh.index', compact('data'));
+         return view('chucDanh.index', compact('data'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ChucDanhController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {        
         return view('chucDanh.create');
     }
 
@@ -47,7 +47,7 @@ class ChucDanhController extends Controller
         $add = ChucDanh::create($request->all());
 
         if($add){
-            return redirect()->route('admin.chucDanh.index')->with('success', 'Thêm mới thành công');
+            return redirect()->route('chucDanh.index')->with('success', 'Thêm mới thành công');
         }
 
         return redirect()->back()->with('error', 'Thêm mới không thành công');
@@ -95,13 +95,12 @@ class ChucDanhController extends Controller
      */
     public function destroy(ChucDanh $chucDanh)
     {
-        if($chucDanh == null ){
-            //dd($coQuan);
-            //$coQuan->delete();
-            return redirect()->route('admin.chucDanh.index')->with('error','Không thể xóa chức danh này');
+        if($chucDanh!= null ){
+            dd($chucDanh);
+            //return redirect()->route('chucDanh.index')->with('error','Không thể xóa chức danh này');
         } else {
             $chucDanh->delete();
-            return redirect()->route('admin.chucDanh.index')->with('success','Xóa chức danh thành công');
+            return redirect()->route('chucDanh.index')->with('success','Xóa chức danh thành công');
         }
     }
 }

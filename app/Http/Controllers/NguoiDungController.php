@@ -14,7 +14,10 @@ class NguoiDungController extends Controller
      */
     public function index()
     {
-        //
+        // trỏ đến hàm scopeSearch trong model NguoiDung để rút gọn code
+        $data = NguoiDung::orderBy('created_at', 'ASC')->search()->paginate(7);
+
+        return view('dashboard', compact('data'));
     }
 
     /**
@@ -24,7 +27,7 @@ class NguoiDungController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard');
     }
 
     /**

@@ -14,7 +14,10 @@ class DoKhanController extends Controller
      */
     public function index()
     {
-        //
+        // trỏ đến hàm scopeSearch trong model DoKhan để rút gọn code
+        $data = DoKhan::orderBy('created_at', 'ASC')->search()->paginate(7);
+
+        return view('doKhan.index', compact('data'));
     }
 
     /**
@@ -24,7 +27,7 @@ class DoKhanController extends Controller
      */
     public function create()
     {
-        //
+        return view('doKhan.create');
     }
 
     /**
@@ -35,7 +38,19 @@ class DoKhanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        $request->validate([
+            'do_khan' => 'required'
+        ]);
+
+        //store
+        $add = DoKhan::create($request->all());
+
+        if($add){
+            return redirect()->route('doKhan.index')->with('success', 'Thêm mới thành công');
+        }
+
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**

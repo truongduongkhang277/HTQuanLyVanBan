@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HinhThucLuu;
+use App\Models\Models\HinhThucLuu;
 use Illuminate\Http\Request;
 
 class HinhThucLuuController extends Controller
@@ -14,7 +14,10 @@ class HinhThucLuuController extends Controller
      */
     public function index()
     {
-        //
+        // trỏ đến hàm scopeSearch trong model HinhThucLuu để rút gọn code
+        $data = HinhThucLuu::orderBy('created_at', 'ASC')->search()->paginate(7);
+
+        return view('hinhThucLuu.index', compact('data'));
     }
 
     /**
@@ -24,7 +27,7 @@ class HinhThucLuuController extends Controller
      */
     public function create()
     {
-        //
+        return view('hinhThucLuu.create');
     }
 
     /**
@@ -41,7 +44,7 @@ class HinhThucLuuController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\HinhThucLuu  $hinhThucLuu
+     * @param  \App\Models\Models\HinhThucLuu  $hinhThucLuu
      * @return \Illuminate\Http\Response
      */
     public function show(HinhThucLuu $hinhThucLuu)
@@ -52,7 +55,7 @@ class HinhThucLuuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\HinhThucLuu  $hinhThucLuu
+     * @param  \App\Models\Models\HinhThucLuu  $hinhThucLuu
      * @return \Illuminate\Http\Response
      */
     public function edit(HinhThucLuu $hinhThucLuu)
@@ -64,7 +67,7 @@ class HinhThucLuuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\HinhThucLuu  $hinhThucLuu
+     * @param  \App\Models\Models\HinhThucLuu  $hinhThucLuu
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, HinhThucLuu $hinhThucLuu)
@@ -75,7 +78,7 @@ class HinhThucLuuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\HinhThucLuu  $hinhThucLuu
+     * @param  \App\Models\Models\HinhThucLuu  $hinhThucLuu
      * @return \Illuminate\Http\Response
      */
     public function destroy(HinhThucLuu $hinhThucLuu)
