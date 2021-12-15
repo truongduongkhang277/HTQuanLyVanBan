@@ -15,7 +15,7 @@ class LinhVucController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model LinhVuc để rút gọn code
-        $data = LinhVuc::orderBy('created_at', 'ASC')->search()->paginate(7);
+        $data = LinhVuc::orderBy('created_at', 'ASC')->search()->paginate(5);
 
         return view('linhVuc.index', compact('data'));
     }

@@ -24,7 +24,7 @@ class VanBanDiController extends Controller
     public function index()
     {
          // trỏ đến hàm scopeSearch trong model vanBanDi để rút gọn code
-         $data = VanBanDi::orderBy('created_at', 'ASC')->paginate(7);
+         $data = VanBanDi::orderBy('created_at', 'ASC')->paginate(5);
 
          return view('vanBanDi.index', compact('data'));
     }

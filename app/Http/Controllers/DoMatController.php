@@ -15,7 +15,7 @@ class DoMatController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model DoMat để rút gọn code
-        $data = DoMat::orderBy('created_at', 'ASC')->search()->paginate(7);
+        $data = DoMat::orderBy('created_at', 'ASC')->search()->paginate(5);
 
         return view('doMat.index', compact('data'));
     }

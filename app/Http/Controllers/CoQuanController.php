@@ -15,7 +15,7 @@ class CoQuanController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model CoQuan để rút gọn code
-        $data = CoQuan::orderBy('created_at', 'ASC')->search()->paginate(7);
+        $data = CoQuan::orderBy('created_at', 'ASC')->search()->paginate(5);
 
         return view('coQuan.index', compact('data'));
     }

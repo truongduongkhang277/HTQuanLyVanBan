@@ -15,7 +15,7 @@ class HinhThucLuuController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model HinhThucLuu để rút gọn code
-        $data = HinhThucLuu::orderBy('created_at', 'ASC')->search()->paginate(7);
+        $data = HinhThucLuu::orderBy('created_at', 'ASC')->search()->paginate(5);
 
         return view('hinhThucLuu.index', compact('data'));
     }

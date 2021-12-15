@@ -15,7 +15,7 @@ class TheLoaiController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model TheLoai để rút gọn code
-        $data = TheLoai::orderBy('created_at', 'ASC')->search()->paginate(7);
+        $data = TheLoai::orderBy('created_at', 'ASC')->search()->paginate(5);
 
         return view('theLoai.index', compact('data'));
     }

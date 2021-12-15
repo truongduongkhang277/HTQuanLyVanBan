@@ -15,7 +15,7 @@ class DoKhanController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model DoKhan để rút gọn code
-        $data = DoKhan::orderBy('created_at', 'ASC')->search()->paginate(7);
+        $data = DoKhan::orderBy('created_at', 'ASC')->search()->paginate(5);
 
         return view('doKhan.index', compact('data'));
     }

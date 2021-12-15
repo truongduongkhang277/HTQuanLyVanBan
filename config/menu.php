@@ -64,7 +64,7 @@ return [
         'items' => [
             [
                 'label' => 'Danh sách bộ phận',
-                'route' => 'boPhan.index',
+                'route' => 'bophan.index',
             ], 
             [
                 'label' => 'Danh sách chức danh',
