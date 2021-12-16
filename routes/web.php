@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BoPhanController;
 use App\Http\Controllers\ChucDanhController;
@@ -29,40 +31,40 @@ use App\Http\Controllers\VanBanDiController;
 |
 */
 
-Route::get('/', function () {
-    return view('master');
-});
+// Route::group(['prefix' => 'admin'], function(){
+//     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-Route::group(['prefix' => 'admin'], function(){
-    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+//     /** VD:
+//      * GET => chucDanh.index => danh sách
+//      * GET => chucDanh.create => form thêm mới
+//      * POST => chucDanh.store => khi submit form thêm mới
+//      * GET => chucDanh.show => xem chi tiết
+//      * GET => chucDanh.edit => hiển thị form edit
+//      * PUT => chucDanh.update => khi submit form edit
+//      * DELETE => chucDanh.destroy => khi xóa
+//      */
 
-    /** VD:
-     * GET => chucDanh.index => danh sách
-     * GET => chucDanh.create => form thêm mới
-     * POST => chucDanh.store => khi submit form thêm mới
-     * GET => chucDanh.show => xem chi tiết
-     * GET => chucDanh.edit => hiển thị form edit
-     * PUT => chucDanh.update => khi submit form edit
-     * DELETE => chucDanh.destroy => khi xóa
-     */
+//     Route::resources([
+//         'bophan'               => BoPhanController::class,
+//         'chucDanh'             => ChucDanhController::class,
+//         'coQuan'               => CoQuanController::class,
+//         'doKhan'               => DoKhanController::class,
+//         'doMat'                => DoMatController::class,
+//         'hinhThuc'             => HinhThucController::class,
+//         'hinhThucChuyen'       => HinhThucChuyenController::class,
+//         'hinhThucLuu'          => HinhThucLuuController::class,
+//         'linhVuc'              => LinhVucController::class,
+//         'nguoiDung'            => NguoiDungController::class,
+//         'theLoai'              => TheLoaiController::class,
+//         'trangThai'            => TrangThaiController::class,
+//         'vanBanDen'            => VanBanDenController::class,
+//         'vanBanDi'             => VanBanDiController::class,
+//     ]);
+// });
 
-    Route::resources([
-        'bophan'               => BoPhanController::class,
-        'chucDanh'             => ChucDanhController::class,
-        'coQuan'               => CoQuanController::class,
-        'doKhan'               => DoKhanController::class,
-        'doMat'                => DoMatController::class,
-        'hinhThuc'             => HinhThucController::class,
-        'hinhThucChuyen'       => HinhThucChuyenController::class,
-        'hinhThucLuu'          => HinhThucLuuController::class,
-        'linhVuc'              => LinhVucController::class,
-        'nguoiDung'            => NguoiDungController::class,
-        'theLoai'              => TheLoaiController::class,
-        'trangThai'            => TrangThaiController::class,
-        'vanBanDen'            => VanBanDenController::class,
-        'vanBanDi'             => VanBanDiController::class,
-    ]);
-});
+Auth::routes();
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
