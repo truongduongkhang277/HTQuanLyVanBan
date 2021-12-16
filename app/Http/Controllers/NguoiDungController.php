@@ -15,9 +15,9 @@ class NguoiDungController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model NguoiDung để rút gọn code
-        $data = NguoiDung::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $data = NguoiDung::orderBy('ho_ten', 'ASC')->search()->paginate(5);
 
-        return view('dashboard', compact('data'));
+        return view('nguoiDung.index', compact('data'));
     }
 
     /**

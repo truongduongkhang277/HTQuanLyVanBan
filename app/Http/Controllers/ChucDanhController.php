@@ -26,8 +26,9 @@ class ChucDanhController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
-        return view('chucDanh.create');
+    {   
+        $routes = '';     
+        return view('chucDanh.create', compact('routes'));
     }
 
     /**
@@ -41,10 +42,15 @@ class ChucDanhController extends Controller
         //validate
         $request->validate([
             'ten_quyen' => 'required'
-        ]);
+        ],['ten_quyen.required' => 'Tên quyền không được để trống !!']);
+
+        // gán các quyền được chọn thành chuỗi json
+        $routes = json_encode($request->quyen_truy_cap);
 
         //store
-        $add = ChucDanh::create($request->all());
+        $add = ChucDanh::create(['ten_quyen' => $request->ten_quyen, 'quyen_truy_cap' => $routes]);
+
+        //ChucDanh::create($request->all());
 
         if($add){
             return redirect()->route('chucDanh.index')->with('success', 'Thêm mới thành công');
