@@ -63,6 +63,10 @@ return [
         'icon' => 'fa-laptop-code',
         'items' => [
             [
+                'label' => 'Danh sách tài khoản',
+                'route' => 'nguoiDung.index',
+            ],
+            [
                 'label' => 'Danh sách bộ phận',
                 'route' => 'bophan.index',
             ], 

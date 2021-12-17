@@ -27,6 +27,9 @@
                 <tr>
                     <th>Tên đăng nhập</th>
                     <th>Họ và tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Số điện thoại</th>
+                    <th>Ảnh</th>
                     <th>Ngày tạo</th>
                     <th class="text-right">Thao tác</th>
                 </tr>
@@ -34,22 +37,22 @@
             <tbody>
                 @foreach($data as $nguoidung)
                 <tr>
-                    <td>{{$nguoidung->ten_dang_nhap}}</td>
-                    <td>{{$nguoidung->ho_ten}}</td>
+                    <td>{{$nguoidung->email}}</td>
+                    <td>{{$nguoidung->name}}</td>
+                    <td>{{$nguoidung->ngay_sinh}}</td>
+                    <td>{{$nguoidung->so_dt}}</td>
+                    <td>{{$nguoidung->anh}}</td>
                     <td>{{$nguoidung->created_at->format('d-m-Y')}}</td>
-                    <td class="text-right">
-                        <form method="POST" action="{{route('nguoiDung.destroy', $nguoidung->id)}}">
-                            @csrf @method('DELETE')
-                            <a class="btn btn-sm btn-success">
-                                <i class="fas fa-user"></i>
-                            </a>
-                            <a class="btn btn-sm btn-success">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>                        
-                        </form>
+                    <td class="text-right">                        
+                        <a href="{{route('nguoiDung.show', $nguoidung->id)}}" class="btn btn-sm btn-primary">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <a href="{{route('nguoiDung.edit', $nguoidung->id)}}" class="btn btn-sm btn-success">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{{route('nguoiDung.show', $nguoidung->id)}}" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </a>   
                     </td>
                 </tr>
                 @endforeach

@@ -62,9 +62,9 @@ Route::group(['prefix' => 'admin'], function(){
     ]);
 });
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

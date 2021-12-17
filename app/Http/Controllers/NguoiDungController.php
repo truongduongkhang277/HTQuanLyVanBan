@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\ChucDanh;
+use App\Models\BoPhan;
 use App\Models\NguoiDung;
+use App\Models\ChucNangNguoiDung;
 use Illuminate\Http\Request;
 
 class NguoiDungController extends Controller
@@ -15,7 +19,7 @@ class NguoiDungController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model NguoiDung để rút gọn code
-        $data = NguoiDung::orderBy('ho_ten', 'ASC')->search()->paginate(5);
+        $data = User::orderBy('name', 'ASC')->search()->paginate(5);
 
         return view('nguoiDung.index', compact('data'));
     }
@@ -60,7 +64,11 @@ class NguoiDungController extends Controller
      */
     public function edit(NguoiDung $nguoiDung)
     {
-        //
+        // truyền biến nguoiDung đến giao diện edit của người dùng
+        $chucDanh   = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        $boPhan     = BoPhan::orderBy('bo_phan', 'ASC')->get();
+
+        return view('nguoiDung.edit', compact('nguoiDung', 'chucDanh', 'boPhan'));
     }
 
     /**
@@ -72,7 +80,14 @@ class NguoiDungController extends Controller
      */
     public function update(Request $request, NguoiDung $nguoiDung)
     {
-        //
+        // $nguoiDung->update($request->only('name', 'ngay_sinh', 'gioi_tinh', 'dia_chi', 'so_dt', 'anh'));
+        // if(is_array($request->chuc_danh)){
+        //     foreach($request->chuc_danh as $chucdanh_id){
+        //         ChucNangNguoiDung::create(['id_nguoidung' => $nguoiDung->id, 'id_chucdanh' => $chucdanh_id]);
+        //     }
+        // }
+
+        dd($nguoiDung);
     }
 
     /**
