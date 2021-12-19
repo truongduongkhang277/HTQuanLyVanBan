@@ -10,7 +10,7 @@ class LinhVuc extends Model
     use HasFactory;
     protected $table = 'tbl_linhvuc';
 
-    protected $fillable = ['linh_vuc', 'trang_thai' 'ghi_chu'];
+    protected $fillable = ['linh_vuc', 'trang_thai', 'ghi_chu'];
 
     //thêm local scope
 

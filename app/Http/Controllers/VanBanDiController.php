@@ -11,7 +11,7 @@ use App\Models\TheLoai;
 use App\Models\DoKhan;
 use App\Models\DoMat;
 use App\Models\TrangThai;
-use App\Models\NguoiDung;
+use App\Models\User;
 use App\Models\CoQuan;
 
 class VanBanDiController extends Controller
@@ -43,7 +43,7 @@ class VanBanDiController extends Controller
         $trangthai = TrangThai::orderBy('trang_thai', 'ASC')->get();
         $coquan = CoQuan::orderBy('ten_co_quan', 'ASC')->get();
         $chucdanh = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
-        $nguoidung = NguoiDung::orderBy('ten_dang_nhap', 'ASC')->get();
+        $nguoidung = User::orderBy('email', 'ASC')->get();
         return view('vanBanDi.create', compact('domat', 'dokhan', 'hinhthuc', 'theloai', 'trangthai', 'coquan', 'chucdanh', 'nguoidung'));
     }
 

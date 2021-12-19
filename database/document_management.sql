@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Dec 14, 2021 at 05:57 PM
+-- Generation Time: Dec 19, 2021 at 04:30 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -24,6 +24,85 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `failed_jobs`
+--
+
+DROP TABLE IF EXISTS `failed_jobs`;
+CREATE TABLE IF NOT EXISTS `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+DROP TABLE IF EXISTS `personal_access_tokens`;
+CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_bophan`
 --
 
@@ -39,7 +118,21 @@ CREATE TABLE IF NOT EXISTS `tbl_bophan` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_truong_bo_phan` (`truong_bo_phan`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_bophan`
+--
+
+INSERT INTO `tbl_bophan` (`id`, `bo_phan`, `ki_hieu`, `truong_bo_phan`, `trang_thai`, `ghi_chu`, `created_at`, `updated_at`) VALUES
+(1, 'Ban giám đốc', 'BGD', NULL, 1, NULL, '2021-12-17 16:46:56', NULL),
+(2, 'Phòng Chuyên đề', 'PCD', NULL, 1, NULL, '2021-12-17 16:51:27', NULL),
+(3, 'Phòng Chương trình', 'PCT', NULL, 1, NULL, '2021-12-17 16:51:27', NULL),
+(4, 'Phòng DV Quảng cáo', 'PDVQC', NULL, 1, NULL, '2021-12-17 16:51:27', NULL),
+(5, 'Phòng Tổ chức và Hành chính', 'PTCHC', NULL, 1, NULL, '2021-12-17 16:51:27', NULL),
+(6, 'Phòng Thời sự', 'PTS', NULL, 1, NULL, '2021-12-17 16:51:27', NULL),
+(7, 'Phòng Văn nghệ', 'PVN', NULL, 1, NULL, '2021-12-17 16:51:27', NULL),
+(8, 'Phòng Kỹ thuật và Công Nghệ', 'PKT', NULL, 1, NULL, '2021-12-17 16:51:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -51,58 +144,60 @@ DROP TABLE IF EXISTS `tbl_chucdanh`;
 CREATE TABLE IF NOT EXISTS `tbl_chucdanh` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ten_quyen` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `quyen_truy_cap` text COLLATE utf8_unicode_ci,
   `trang_thai` tinyint(1) NOT NULL DEFAULT '1',
   `ghi_chu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_chucdanh`
 --
 
-INSERT INTO `tbl_chucdanh` (`id`, `ten_quyen`, `trang_thai`, `ghi_chu`, `created_at`, `updated_at`) VALUES
-(1, 'Bí thư', 1, 'BT', '2021-12-04 14:43:07', NULL),
-(2, 'Cán bộ', 1, 'CB', '2021-12-04 14:43:07', NULL),
-(3, 'Cán sự', 1, 'CS', '2021-12-04 14:43:07', NULL),
-(4, 'Chánh thanh tra', 1, 'CTTr', '2021-12-04 14:43:07', NULL),
-(5, 'Chánh văn phòng', 1, 'CVP', '2021-12-04 14:43:07', NULL),
-(6, 'Chi cục Trưởng', 1, 'CCTr', '2021-12-04 14:43:07', NULL),
-(7, 'Chỉ huy Trưởng', 1, 'CHTr', '2021-12-04 14:43:07', NULL),
-(8, 'Chuyên viên', 1, 'CV', '2021-12-04 14:43:07', NULL),
-(9, 'Chủ tịch', 1, 'CT', '2021-12-04 14:43:07', NULL),
-(10, 'Công an', 1, 'CA', '2021-12-04 14:43:07', NULL),
-(11, 'Công chức', 1, 'CC', '2021-12-04 14:43:07', NULL),
-(12, 'Đội phó', 1, 'ĐP', '2021-12-04 14:43:07', NULL),
-(13, 'Giám đốc', 1, 'GĐ', '2021-12-04 14:43:07', NULL),
-(14, 'Kế toán', 1, 'KT', '2021-12-04 14:43:07', NULL),
-(15, 'Nhân viên', 1, 'NV', '2021-12-04 14:43:07', NULL),
-(16, 'Phó Chi cục Trưởng', 1, 'P.CCTr', '2021-12-04 14:43:07', NULL),
-(17, 'Phó Ban', 1, 'P.B', '2021-12-04 14:43:07', NULL),
-(18, 'Phó Bí thư', 1, 'P.BT', '2021-12-04 14:43:07', NULL),
-(19, 'Phó Chánh tranh tra', 1, 'P.CTTr', '2021-12-04 14:43:07', NULL),
-(20, 'Phó Chủ tịch', 1, 'P.CT', '2021-12-04 14:43:07', NULL),
-(21, 'Phó Chánh văn phòng', 1, 'P.CVP', '2021-12-04 14:43:07', NULL),
-(22, 'Phó Giám đốc', 1, 'P.GĐ', '2021-12-04 14:43:07', NULL),
-(23, 'Phó Trạm y tế', 1, 'P.TYT', '2021-12-04 14:43:07', NULL),
-(24, 'Phó Trưởng CA xã', 1, 'P.TCAX', '2021-12-04 14:43:07', NULL),
-(25, 'Phó Trưởng đài', 1, 'P.TĐ', '2021-12-04 14:43:07', NULL),
-(26, 'Phó Trưởng phòng', 1, 'P.TP', '2021-12-04 14:43:07', NULL),
-(27, 'Thương bình - Xã hội', 1, 'TBXH', '2021-12-04 14:43:07', NULL),
-(28, 'Tài chính - Kế toán', 1, 'TCKT', '2021-12-04 14:43:07', NULL),
-(29, 'Thanh tra viên', 1, 'TTV', '2021-12-04 14:43:07', NULL),
-(30, 'Tư pháp - Hộ tịch', 1, 'TPHT', '2021-12-04 14:43:07', NULL),
-(31, 'TP_QLDT-Đội trưởng', 1, 'TPQLDT', '2021-12-04 14:43:07', NULL),
-(32, 'Trưởng ban', 1, 'TB', '2021-12-04 14:43:07', NULL),
-(33, 'Trưởng Công an', 1, 'TCA', '2021-12-04 14:43:07', NULL),
-(34, 'Trưởng đài', 1, 'TĐ', '2021-12-04 14:43:07', NULL),
-(35, 'Trưởng phòng', 1, 'TP', '2021-12-04 14:43:07', NULL),
-(36, 'Trưởng trạm', 1, 'TTr', '2021-12-04 14:43:07', NULL),
-(37, 'Văn thư', 1, 'VT', '2021-12-04 14:43:07', NULL),
-(38, 'Văn hóa - Xã hội', 1, 'VHXH', '2021-12-04 14:43:07', NULL),
-(39, 'Viên chức', 1, 'VC', '2021-12-04 14:43:07', NULL),
-(40, 'Địa chính - Xây dựng - Môi trường', 1, 'ĐCXDMT', '2021-12-04 14:43:07', NULL);
+INSERT INTO `tbl_chucdanh` (`id`, `ten_quyen`, `quyen_truy_cap`, `trang_thai`, `ghi_chu`, `created_at`, `updated_at`) VALUES
+(1, 'Bí thư', NULL, 1, 'BT', '2021-12-04 14:43:07', NULL),
+(2, 'Cán bộ', NULL, 1, 'CB', '2021-12-04 14:43:07', NULL),
+(3, 'Cán sự', NULL, 1, 'CS', '2021-12-04 14:43:07', NULL),
+(4, 'Chánh thanh tra', NULL, 1, 'CTTr', '2021-12-04 14:43:07', NULL),
+(5, 'Chánh văn phòng', NULL, 1, 'CVP', '2021-12-04 14:43:07', NULL),
+(6, 'Chi cục Trưởng', NULL, 1, 'CCTr', '2021-12-04 14:43:07', NULL),
+(7, 'Chỉ huy Trưởng', NULL, 1, 'CHTr', '2021-12-04 14:43:07', NULL),
+(8, 'Chuyên viên', NULL, 1, 'CV', '2021-12-04 14:43:07', NULL),
+(9, 'Chủ tịch', NULL, 1, 'CT', '2021-12-04 14:43:07', NULL),
+(10, 'Công an', NULL, 1, 'CA', '2021-12-04 14:43:07', NULL),
+(11, 'Công chức', NULL, 1, 'CC', '2021-12-04 14:43:07', NULL),
+(12, 'Đội phó', NULL, 1, 'ĐP', '2021-12-04 14:43:07', NULL),
+(13, 'Giám đốc', NULL, 1, 'GĐ', '2021-12-04 14:43:07', NULL),
+(14, 'Kế toán', NULL, 1, 'KT', '2021-12-04 14:43:07', NULL),
+(15, 'Nhân viên', NULL, 1, 'NV', '2021-12-04 14:43:07', NULL),
+(16, 'Phó Chi cục Trưởng', NULL, 1, 'P.CCTr', '2021-12-04 14:43:07', NULL),
+(17, 'Phó Ban', NULL, 1, 'P.B', '2021-12-04 14:43:07', NULL),
+(18, 'Phó Bí thư', NULL, 1, 'P.BT', '2021-12-04 14:43:07', NULL),
+(19, 'Phó Chánh tranh tra', NULL, 1, 'P.CTTr', '2021-12-04 14:43:07', NULL),
+(20, 'Phó Chủ tịch', NULL, 1, 'P.CT', '2021-12-04 14:43:07', NULL),
+(21, 'Phó Chánh văn phòng', NULL, 1, 'P.CVP', '2021-12-04 14:43:07', NULL),
+(22, 'Phó Giám đốc', NULL, 1, 'P.GĐ', '2021-12-04 14:43:07', NULL),
+(23, 'Phó Trạm y tế', NULL, 1, 'P.TYT', '2021-12-04 14:43:07', NULL),
+(24, 'Phó Trưởng CA xã', NULL, 1, 'P.TCAX', '2021-12-04 14:43:07', NULL),
+(25, 'Phó Trưởng đài', NULL, 1, 'P.TĐ', '2021-12-04 14:43:07', NULL),
+(26, 'Phó Trưởng phòng', NULL, 1, 'P.TP', '2021-12-04 14:43:07', NULL),
+(27, 'Thương bình - Xã hội', NULL, 1, 'TBXH', '2021-12-04 14:43:07', NULL),
+(28, 'Tài chính - Kế toán', NULL, 1, 'TCKT', '2021-12-04 14:43:07', NULL),
+(29, 'Thanh tra viên', NULL, 1, 'TTV', '2021-12-04 14:43:07', NULL),
+(30, 'Tư pháp - Hộ tịch', NULL, 1, 'TPHT', '2021-12-04 14:43:07', NULL),
+(31, 'TP_QLDT-Đội trưởng', NULL, 1, 'TPQLDT', '2021-12-04 14:43:07', NULL),
+(32, 'Trưởng ban', NULL, 1, 'TB', '2021-12-04 14:43:07', NULL),
+(33, 'Trưởng Công an', NULL, 1, 'TCA', '2021-12-04 14:43:07', NULL),
+(34, 'Trưởng đài', NULL, 1, 'TĐ', '2021-12-04 14:43:07', NULL),
+(35, 'Trưởng phòng', NULL, 1, 'TP', '2021-12-04 14:43:07', NULL),
+(36, 'Trưởng trạm', NULL, 1, 'TTr', '2021-12-04 14:43:07', NULL),
+(37, 'Văn thư', NULL, 1, 'VT', '2021-12-04 14:43:07', NULL),
+(38, 'Văn hóa - Xã hội', NULL, 1, 'VHXH', '2021-12-04 14:43:07', NULL),
+(39, 'Viên chức', NULL, 1, 'VC', '2021-12-04 14:43:07', NULL),
+(40, 'Địa chính - Xây dựng - Môi trường', NULL, 1, 'ĐCXDMT', '2021-12-04 14:43:07', NULL),
+(41, 'Admin', '[\"vanBanDen.index\",\"vanBanDen.create\",\"vanBanDi.index\",\"vanBanDi.create\",\"bophan.index\",\"bophan.create\",\"theLoai.index\",\"theLoai.create\",\"linhVuc.index\",\"linhVuc.create\",\"hinhThuc.index\",\"hinhThuc.create\",\"hinhThucChuyen.index\",\"hinhThucChuyen.create\",\"hinhThucLuu.index\",\"hinhThucLuu.create\",\"doMat.index\",\"doMat.create\",\"doKhan.index\",\"doKhan.create\",\"coQuan.index\",\"coQuan.create\",\"chucDanh.index\",\"chucDanh.create\"]', 1, NULL, '2021-12-17 16:10:22', '2021-12-17 16:10:22');
 
 -- --------------------------------------------------------
 
@@ -366,6 +461,27 @@ CREATE TABLE IF NOT EXISTS `tbl_nguoidung` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_nguoidung_chucdanh`
+--
+
+DROP TABLE IF EXISTS `tbl_nguoidung_chucdanh`;
+CREATE TABLE IF NOT EXISTS `tbl_nguoidung_chucdanh` (
+  `id_nguoidung` int(11) NOT NULL,
+  `id_chucdanh` int(11) NOT NULL,
+  PRIMARY KEY (`id_nguoidung`,`id_chucdanh`),
+  KEY `id_chucdanh` (`id_chucdanh`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_nguoidung_chucdanh`
+--
+
+INSERT INTO `tbl_nguoidung_chucdanh` (`id_nguoidung`, `id_chucdanh`) VALUES
+(1, 13);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_theloai`
 --
 
@@ -539,6 +655,43 @@ CREATE TABLE IF NOT EXISTS `tbl_vanban_di` (
   KEY `FK_nvphathanh_vbdi` (`nv_phathanh`),
   KEY `FK_coquangui_vbdi` (`noi_gui`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ngay_sinh` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gioi_tinh` tinyint(4) DEFAULT NULL,
+  `dia_chi` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `so_dt` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `anh` text COLLATE utf8_unicode_ci,
+  `chuc_danh` int(10) UNSIGNED DEFAULT NULL,
+  `bo_phan` int(10) UNSIGNED DEFAULT NULL,
+  `trang_thai` tinyint(4) DEFAULT '0',
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  KEY `users_chuc_danh_foreign` (`chuc_danh`),
+  KEY `users_bo_phan_foreign` (`bo_phan`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ngay_sinh`, `gioi_tinh`, `dia_chi`, `so_dt`, `anh`, `chuc_danh`, `bo_phan`, `trang_thai`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Trương Dương Khang', 'duonkhangaa@gmail.com', NULL, '$2y$10$m3O98Rhy9J3o33ce4B9rnOraLZLEwb5IG0DjKQBhjF8HOq1IueTv.', '27/07/2000', 1, 'Phường Linh Đông, TP Thủ Đức, Tp Hồ Chí Minh', '0888780807', 'IMG_20200701_115452.jpg', NULL, NULL, NULL, NULL, '2021-12-17 15:54:43', '2021-12-19 03:53:31');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

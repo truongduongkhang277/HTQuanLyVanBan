@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Models\HinhThucChuyen;
+use App\Models\HinhThucChuyen;
 use Illuminate\Http\Request;
 
 class HinhThucChuyenController extends Controller

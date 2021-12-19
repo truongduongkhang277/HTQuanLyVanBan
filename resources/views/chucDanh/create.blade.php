@@ -13,6 +13,7 @@
             <small class="help-block">{{$message}}</small>
             @enderror
         </div>
+        <label for="">Quyền truy cập</label>  
         <div class="row">
             <div class="form-group col-3">
                 <label for="">Văn bản đến</label>            
