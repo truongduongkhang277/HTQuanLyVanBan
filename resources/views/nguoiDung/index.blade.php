@@ -16,7 +16,7 @@
 
             <!-- Dựa vào chức năng toàn màn hình, sửa thành chức năng thêm -->
             <ul class="navbar-nav ml-auto">
-                <a href="{{route('chucDanh.create')}}" class="btn btn-sm btn-primary">
+                <a href="{{ route('register') }}" class="btn btn-sm btn-primary">
                     <i class="fas fa-plus"></i>
                 </a>
             </ul>
