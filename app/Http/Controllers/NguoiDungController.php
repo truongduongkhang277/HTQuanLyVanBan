@@ -18,7 +18,7 @@ class NguoiDungController extends Controller
      */
     public function index()
     {
-        // trỏ đến hàm scopeSearch trong model NguoiDung để rút gọn code
+        // trỏ đến hàm scopeSearch trong model user để rút gọn code
         $data = User::orderBy('name', 'ASC')->search()->paginate(5);
 
         return view('nguoiDung.index', compact('data'));
@@ -78,16 +78,16 @@ class NguoiDungController extends Controller
      * @param  \App\Models\NguoiDung  $nguoiDung
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NguoiDung $nguoiDung)
+    public function update(Request $request, User $nguoiDung)
     {
-        // $nguoiDung->update($request->only('name', 'ngay_sinh', 'gioi_tinh', 'dia_chi', 'so_dt', 'anh'));
+        // $nguoiDung->ngay_sinh = date('d/m/Y');
+        // $nguoiDung->update($request->only('name', 'ngay_sinh', 'so_dt', 'gioi_tinh', 'dia_chi', 'anh', 'trang_thai'));
         // if(is_array($request->chuc_danh)){
         //     foreach($request->chuc_danh as $chucdanh_id){
         //         ChucNangNguoiDung::create(['id_nguoidung' => $nguoiDung->id, 'id_chucdanh' => $chucdanh_id]);
         //     }
         // }
-
-        dd($nguoiDung);
+        dd($request->all());
     }
 
     /**

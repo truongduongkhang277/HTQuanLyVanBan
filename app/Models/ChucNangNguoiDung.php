@@ -9,6 +9,7 @@ class ChucNangNguoiDung extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'tbl_nguoidung_chucdanh';
 
     protected $fillable = ['id_nguoidung', 'id_chucdanh'];

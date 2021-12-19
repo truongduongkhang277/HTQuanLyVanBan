@@ -6,7 +6,7 @@
 <div class="panel panel-primary">
       <div class="panel-body">
             
-            <form action="{{route('nguoiDung.update')}}" method="PUT" role="form">
+            <form action="{{route('nguoiDung.update', $nguoiDung->id)}}" method="POST" role="form">
                 @csrf @method('PUT')
                 <div class="row">
                     <div class="col-md-6">
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label>Ngày sinh</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="ngay_sinh" placeholder= "dd/mm/yyyy">
+                                <input type="text" class="form-control" name="ngay_sinh" placeholder= "dd/mm/yyyy" value="{{$nguoiDung->ngay_sinh}}">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -32,19 +32,13 @@
                             <label for="">Số điện thoại</label>
                             <input type="text" class="form-control" name="so_dt" value="{{$nguoiDung->so_dt}}">
                         </div>                         
-                        <!-- radio 
                         <div class="form-group">
-                            <label for="">Giới tính</label>
-                            <div class="form-check">                                
-                                <input class="form-check-input" type="radio" name="radio1">
-                                <label class="form-check-label">Nam</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio1" checked>
-                                <label class="form-check-label">Nữ</label>
-                            </div>
-                        </div> 
-                        -->                   
+                            <label for="">Giới tính</label>                            
+                            <select class="form-control select2" name="gioi_tinh" id="input"style="width: 100%;">
+                                <option selected="selected" value="1">[M] Nam</option>
+                                <option value="0"> [F] Nữ</option>                               
+                            </select>
+                        </div>               
 
                     </div>
                     <div class="col-md-6">                      
@@ -57,11 +51,8 @@
                             <label for="exampleInputFile">Ảnh đại diện</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="anh" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Upload</span>
+                                    <input type="file" name="anh" class="custom-file-input" id="exampleInputFile" >
+                                    <label class="custom-file-label" for="exampleInputFile" value="{{$nguoiDung->anh}}"></label>
                                 </div>
                             </div>
                         </div>
@@ -81,18 +72,13 @@
                                 @endforeach
                             </select>
                         </div>    
-                        <!-- radio -->
                         <div class="form-group">
-                            <label for="">Trạng thái</label>
-                            <div class="form-check">                                
-                                <input class="form-check-input" type="radio" name="radio1">
-                                <label class="form-check-label">Hoạt động</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="radio1" checked>
-                                <label class="form-check-label">Ngưng hoạt động</label>
-                            </div>
-                        </div>
+                            <label for="">Trạng thái</label>                            
+                            <select class="form-control select2" name="trang_thai" id="input"style="width: 100%;">
+                                <option selected="selected" value="1">Kích hoạt</option>
+                                <option value="0"> Ngừng sử dụng</option>                               
+                            </select>
+                        </div>     
                                                             
                 </div>
             
