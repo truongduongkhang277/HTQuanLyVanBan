@@ -9,21 +9,21 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="my-input">Số văn bản đi</label>
-                    <input class="form-control" type="text" name="">
+                    <input class="form-control" type="text" name="so_vb_di">
                 </div>
                 <div class="form-group">
                     <label for="my-input">Số kí hiệu</label>
-                    <input class="form-control" type="text" name="">
+                    <input class="form-control" type="text" name="ki_hieu">
                 </div>
                 <div class="form-group">
                     <label for="my-input">Ngày ban hành</label>
-                    <input class="form-control" type="text" name="">
+                    <input class="form-control" type="text" name="ngay_gui">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="my-input">Loại văn bản</label>
-                    <select class="form-control" type="text" name="the_loai" required>
+                    <select class="form-control" type="text" name="loai" required>
                         <option value="">Chọn một</option>
                         @foreach($theloai as $the_loai)
                             <option value="{{$the_loai->id}}">{{$the_loai->ten_loai}}</option>
@@ -32,21 +32,31 @@
                 </div>
                 <div class="form-group">
                     <label for="my-input">Hình thức văn bản</label>
-                    <input class="form-control" type="text" name="">
+                    <select class="form-control" type="text" name="hinh_thuc" required>
+                        <option value="">Chọn một</option>
+                        @foreach($hinhthuc as $hinh_thuc)
+                            <option value="{{$hinh_thuc->id}}">{{$hinh_thuc->hinh_thuc}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="my-input">Lĩnh vực</label>
-                    <input class="form-control" type="text" name="">
+                    <select class="form-control" type="text" name="linh_vuc" required>
+                        <option value="">Chọn một</option>
+                        @foreach($linhvuc as $linh_vuc)
+                            <option value="{{$linh_vuc->id}}">{{$linh_vuc->linh_vuc}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="my-input">Số trang</label>
-                    <input class="form-control" type="text" name="">
+                    <input class="form-control" type="text" name="so_trang">
                 </div>
                 <div class="form-group">
                     <label for="my-input">Số lượng bản phát hành</label>
-                    <input class="form-control" type="text" name="">
+                    <input class="form-control" type="text" name="so_luong">
                 </div>
             </div>
             <div class="col-md-12">
@@ -57,11 +67,11 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="my-input">Người kí</label>
-                    <select class="form-control" type="text" name="nguoi_ki" required>
+                    <label for="my-input">Người ký</label>
+                    <select class="form-control" type="text" name="nguoi_ky" required>
                         <option value="">Chọn một</option>
-                        @foreach($nguoidung as $nguoi_ki)
-                            <option value="{{$nguoi_ki->id}}">{{$nguoi_ki->ten_dang_nhap}}</option>
+                        @foreach($nguoidung as $nguoi_ky)
+                            <option value="{{$nguoi_ky->id}}">{{$nguoi_ky->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -70,7 +80,7 @@
                     <select class="form-control" type="text" name="nv_phathanh" required>
                         <option value="">Chọn một</option>
                         @foreach($nguoidung as $nv_phathanh)
-                            <option value="{{$nv_phathanh->id}}">{{$nv_phathanh->ten_dang_nhap}}</option>
+                            <option value="{{$nv_phathanh->id}}">{{$nv_phathanh->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -81,8 +91,8 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="my-input">Chức vụ người kí</label>
-                    <select class="form-control" type="text" name="chuc_danh" required>
+                    <label for="my-input">Chức vụ người ký</label>
+                    <select class="form-control" type="text" name="chuc_vu" required>
                         <option value="">Chọn một</option>
                         @foreach($chucdanh as $chuc_danh)
                             <option value="{{$chuc_danh->id}}">{{$chuc_danh->ten_quyen}}</option>
@@ -91,7 +101,7 @@
                 </div>
                 <div class="form-group">
                     <label for="my-input">Cơ quan gửi</label>
-                    <select class="form-control" type="text" name="co_quan" required>
+                    <select class="form-control" type="text" name="noi_gui" required>
                         <option value="">Chọn một</option>
                         @foreach($coquan as $co_quan)
                             <option value="{{$co_quan->id}}">{{$co_quan->ten_co_quan}}</option>
@@ -111,16 +121,16 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="my-input">Hình thức sao lưu</label>
-                    <select class="form-control" type="text" name="hinh_thuc" required>
+                    <select class="form-control" type="text" name="hinh_thuc_luu" required>
                         <option value="">Chọn một</option>
-                        @foreach($hinhthuc as $hinh_thuc)
-                            <option value="{{$hinh_thuc->id}}">{{$hinh_thuc->hinh_thuc}}</option>
+                        @foreach($hinhthucluu as $hinh_thuc_luu)
+                            <option value="{{$hinh_thuc_luu->id}}">{{$hinh_thuc_luu->hinh_thuc_luu}}</option>
                         @endforeach
                     </select>
                 </div>                   
                 <div class="form-group">
                     <label for="my-input">Cơ quan nhận</label>
-                    <select class="form-control" type="text" name="co_quan" required>
+                    <select class="form-control" type="text" name="noi_nhan" required>
                         <option value="">Chọn một</option>
                         @foreach($coquan as $co_quan)
                             <option value="{{$co_quan->id}}">{{$co_quan->ten_co_quan}}</option>
@@ -129,7 +139,7 @@
                 </div>            
                 <div class="form-group">
                     <label for="my-input">Hạn xử lý</label>
-                    <input class="form-control" type="text" name="">
+                    <input class="form-control" type="text" name="han_xu_ly">
                 </div>
             </div>
         </div>

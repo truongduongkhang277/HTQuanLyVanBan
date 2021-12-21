@@ -13,6 +13,9 @@ use App\Models\DoMat;
 use App\Models\TrangThai;
 use App\Models\User;
 use App\Models\CoQuan;
+use App\Models\HinhThucChuyen;
+use App\Models\HinhThucLuu;
+use App\Models\LinhVuc;
 
 class VanBanDenController extends Controller
 {
@@ -36,15 +39,30 @@ class VanBanDenController extends Controller
      */
     public function create()
     {
-        $domat = DoMat::orderBy('do_mat', 'ASC')->get();
-        $dokhan = DoKhan::orderBy('do_khan', 'ASC')->get();
-        $hinhthuc = HinhThuc::orderBy('hinh_thuc', 'ASC')->get();
-        $theloai = TheLoai::orderBy('ten_loai', 'ASC')->get();
-        $trangthai = TrangThai::orderBy('trang_thai', 'ASC')->get();
-        $coquan = CoQuan::orderBy('ten_co_quan', 'ASC')->get();
-        $nguoidung = User::orderBy('email', 'ASC')->get();
-        $chucdanh = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
-        return view('vanBanDen.create', compact('domat', 'dokhan', 'hinhthuc', 'theloai', 'trangthai', 'coquan', 'nguoidung', 'chucdanh'));
+        $domat          = DoMat::orderBy('do_mat', 'ASC')->get();
+        $dokhan         = DoKhan::orderBy('do_khan', 'ASC')->get();
+        $linhvuc        = LinhVuc::orderBy('linh_vuc', 'ASC')->get();
+        $hinhthuc       = HinhThuc::orderBy('hinh_thuc', 'ASC')->get();
+        $hinhthucchuyen = HinhThucChuyen::orderBy('hinh_thuc_chuyen', 'ASC')->get();
+        $hinhthucluu    = HinhThucLuu::orderBy('hinh_thuc_luu', 'ASC')->get();
+        $theloai        = TheLoai::orderBy('ten_loai', 'ASC')->get();
+        $trangthai      = TrangThai::orderBy('trang_thai', 'ASC')->get();
+        $don_vi_ban_hanh= CoQuan::orderBy('ten_co_quan', 'ASC')->get();
+        $nguoidung      = User::orderBy('email', 'ASC')->get();
+        $chucdanh       = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        return view('vanBanDen.create', compact(
+            'domat', 
+            'dokhan', 
+            'linhvuc',
+            'hinhthuc', 
+            'hinhthucchuyen',
+            'hinhthucluu',
+            'theloai', 
+            'trangthai', 
+            'don_vi_ban_hanh', 
+            'nguoidung', 
+            'chucdanh'
+        ));
     }
 
     /**
@@ -68,13 +86,13 @@ class VanBanDenController extends Controller
         }
 
         //store
-        // $add = TrangThai::create($request->all());
+        $add = VanBanDen::create($request->all());
 
-        // if($add){
-        //     return redirect()->route('trangThai.index')->with('success', 'Thêm mới thành công');
-        // }
+        if($add){
+            return redirect()->route('vanBanDen.index')->with('success', 'Thêm mới thành công');
+        }
 
-        // return redirect()->back()->with('error', 'Thêm mới không thành công');
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**

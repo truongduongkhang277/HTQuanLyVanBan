@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ChucDanh;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,5 +61,29 @@ class User extends Authenticatable
         }
 
         return $query;
+    }
+
+    // lấy các quyền đã gán cho người dùng này
+    public function quyenNguoiDung(){
+        $data = [];
+        foreach($this->getQuyen as $quyen){
+            $ten_quyen = json_decode($quyen->quyen_truy_cap);
+            foreach($ten_quyen as $quyenNguoiDung){
+                if(!in_array($quyenNguoiDung, $data)){
+                    array_push($data, $quyenNguoiDung);
+                }
+            }
+            dd($quyen);
+        }
+        return $data;
+    }
+
+    public function getQuyen(){
+        /*
+            tbl_nguoidung_chucdanh: kết nối giữa bảng user và bảng tbl_chucdanh (bảng trung gian)
+            id_nguoidung: khóa ngoại liên kết đến bảng User
+            id_chucdanh: khóa ngoại đến bảng tbl_chucdanh
+        */
+        return $this->belongsToMany(ChucDanh::class, 'tbl_nguoidung_chucdanh', 'id_nguoidung', 'id_chucdanh');
     }
 }

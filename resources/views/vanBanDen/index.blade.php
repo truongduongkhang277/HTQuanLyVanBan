@@ -40,12 +40,13 @@
         <tbody>
             @foreach($data as $vanbanden)
             <tr>
+                <td>{{$vanbanden->ngay_nhan}}</td>
                 <td>{{$vanbanden->so_vb_den}}</td>
+                <td>{{$vanbanden->don_vi_ban_hanh}}</td>
+                <td>{{$vanbanden->ki_hieu}}</td>
+                <td>{{$vanbanden->ngay_vb}}</td>
                 <td>{{$vanbanden->trich_yeu}}</td>
                 <td>{{$vanbanden->nguoi_ky}}</td>
-                <td>{{$vanbanden->ds_file}}</td>
-                <td>{{$vanbanden->ngay_nhan->format('d-m-Y')}}</td>
-                <td>{{$vanbanden->trang_thai}}</td>
                 <td class="text-right">
                     <form method="POST" action="{{route('vanBanDen.destroy', $vanbanden->id)}}">
                         @csrf @method('DELETE')

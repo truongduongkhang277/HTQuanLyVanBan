@@ -27,26 +27,26 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Ngày nhận</th>
-                <th>Số VB đến</th>
+                <th>Ngày gửi</th>
+                <th>Số VB đi</th>
                 <th>ĐVBH</th>
                 <th>Ký hiệu</th>
-                <th>Ngày VB</th>
                 <th>Trích yếu</th>
                 <th>Người kí</th>
+                <th>NV phát hành</th>
                 <th class="text-right">Thao tác</th>
             </tr>
         </thead>
         <tbody>
             @foreach($data as $vanbandi)
             <tr>
-                <td>{{$vanbandi->so_vb_den}}</td>
+                <td>{{$vanbandi->ngay_gui}}</td>
+                <td>{{$vanbandi->so_vb_di}}</td>
+                <td>{{$vanbandi->noi_gui}}</td>
+                <td>{{$vanbandi->ki_hieu}}</td>
                 <td>{{$vanbandi->trich_yeu}}</td>
                 <td>{{$vanbandi->nguoi_ky}}</td>
-                <td>{{$vanbandi->ds_file}}</td>
-                <td>{{$vanbandi->created_at->format('d-m-Y')}}</td>
-                <td>{{$vanbandi->trich_yeu}}</td>
-                <td>{{$vanbandi->trich_yeu}}</td>
+                <td>{{$vanbandi->nv_phathanh}}</td>
                 <td class="text-right">
                     <form method="POST" action="{{route('vanBanDi.destroy', $vanbandi->id)}}">
                         @csrf @method('DELETE')

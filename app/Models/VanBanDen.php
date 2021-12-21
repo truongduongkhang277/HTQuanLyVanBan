@@ -26,7 +26,7 @@ class VanBanDen extends Model
         'do_khan', 
         'chuc_vu', 
         'hinh_thuc_chuyen', 
-        'hinh_thuc_luu ', 
+        'hinh_thuc_luu', 
         'nv_nhan', 
         'han_xu_ly', 
         'trang_thai'

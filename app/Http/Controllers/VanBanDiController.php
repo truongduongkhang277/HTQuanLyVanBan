@@ -13,6 +13,8 @@ use App\Models\DoMat;
 use App\Models\TrangThai;
 use App\Models\User;
 use App\Models\CoQuan;
+use App\Models\HinhThucLuu;
+use App\Models\LinhVuc;
 
 class VanBanDiController extends Controller
 {
@@ -38,13 +40,26 @@ class VanBanDiController extends Controller
     {
         $domat = DoMat::orderBy('do_mat', 'ASC')->get();
         $dokhan = DoKhan::orderBy('do_khan', 'ASC')->get();
+        $linhvuc = LinhVuc::orderBy('linh_vuc', 'ASC')->get();
         $hinhthuc = HinhThuc::orderBy('hinh_thuc', 'ASC')->get();
+        $hinhthucluu = HinhThucLuu::orderBy('hinh_thuc_luu', 'ASC')->get();
         $theloai = TheLoai::orderBy('ten_loai', 'ASC')->get();
         $trangthai = TrangThai::orderBy('trang_thai', 'ASC')->get();
         $coquan = CoQuan::orderBy('ten_co_quan', 'ASC')->get();
         $chucdanh = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
         $nguoidung = User::orderBy('email', 'ASC')->get();
-        return view('vanBanDi.create', compact('domat', 'dokhan', 'hinhthuc', 'theloai', 'trangthai', 'coquan', 'chucdanh', 'nguoidung'));
+        return view('vanBanDi.create', compact(
+            'domat', 
+            'dokhan', 
+            'hinhthuc', 
+            'linhvuc', 
+            'hinhthucluu', 
+            'theloai', 
+            'trangthai', 
+            'coquan', 
+            'chucdanh', 
+            'nguoidung'
+        ));
     }
 
     /**
@@ -68,13 +83,13 @@ class VanBanDiController extends Controller
         }
 
         //store
-        // $add = TrangThai::create($request->all());
+        $add = VanBanDi::create($request->all());
 
-        // if($add){
-        //     return redirect()->route('trangThai.index')->with('success', 'Thêm mới thành công');
-        // }
+        if($add){
+            return redirect()->route('vanBanDi.index')->with('success', 'Thêm mới thành công');
+        }
 
-        // return redirect()->back()->with('error', 'Thêm mới không thành công');
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**
