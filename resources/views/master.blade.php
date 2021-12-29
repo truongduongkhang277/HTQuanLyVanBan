@@ -1,4 +1,4 @@
-<?php
+﻿<?php
   $menu = config('menu');
 ?>
 
@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <link rel="stylesheet" href="{{asset('css/app.css')}}">
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -47,10 +48,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="index3.html" class="nav-link">Trang chủ</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link">Liên hệ</a>
       </li>
     </ul>
 
@@ -153,7 +154,7 @@
   
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong> <a href="#">Hệ thống Quản Lý Văn Bản</a>.</strong>Thiết kế bởi: Trương Dương Khang - 1811546141 - NTTU
+    <strong> <a href="#">Hệ thống Quản Lý Văn Bản</a>.</strong>Thiết kế bởi: Trương Dương Khang - 1811546141 - NTTU</a>.</strong>
     
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
@@ -202,6 +203,7 @@
 <script src="dist/js/demo.js"></script>-->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+<script src="{{asset('js/app.js')}}"></script>
 @yield('js')
 </body>
 </html>

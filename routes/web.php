@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\HomeController;
 
@@ -33,6 +34,7 @@ use App\Http\Controllers\VanBanDiController;
 
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    
 
     /** VD:
      * GET => chucDanh.index => danh sách
@@ -62,10 +64,11 @@ Route::group(['prefix' => 'admin'], function(){
     ]);
 });
 
-// Auth::routes();
-
-// Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('admin/login', [AdminController::class, 'loginPost'])->name('admin.loginPost');
+Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

@@ -3,7 +3,7 @@
 return [
 
     [
-        'label' => 'Dashboard',
+        'label' => 'Trang chủ',
         'route' => 'admin.dashboard',
         'icon' => 'fa-tachometer-alt'
     ],
@@ -111,6 +111,16 @@ return [
                 'route' => 'trangThai.index',
             ]
         ]
+    ],
+    [
+        'label' => 'Đổi mật khẩu',
+        'route' => 'home',
+        'icon' => 'fa-key'
+    ],
+    [
+        'label' => 'Đăng xuất',
+        'route' => 'home',
+        'icon' => 'fa-sign-out-alt'
     ],
 ]
 
