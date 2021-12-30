@@ -24,5 +24,9 @@ class ChucDanh extends Model
         return $query;
     }
 
-    //global scope
+    public function nguoiDung(){
+        // 1 chức danh có nhiều người dùng
+        return $this->belongsToMany('App\Models\User');
+    }
+
 }

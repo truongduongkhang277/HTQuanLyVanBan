@@ -78,6 +78,34 @@ class User extends Authenticatable
         return $data;
     }
 
+    // chức danh của tài khoản
+    public function chucDanh(){
+        return $this->belongsToMany('App\Models\ChucDanh');
+    }
+    // tài khoản có nhiều chức danh (nhiều quyền sử dụng)
+    public function coCacChucDanh($cacChucDanh){
+        if(is_array($cacChucDanh)){
+            foreach($cacChucDanh as $chucDanh){
+                if($this->coChucDanh($chucDanh)){
+                    return true;
+                }
+            }
+        } else {
+            if($this->coChucDanh($cacChucDanh)){
+                return true;
+            }
+        }
+    }
+    // lấy 1 chức danh (1 quyền) của người dùng
+    public function coChucDanh($chucDanh){
+        if($this->chucDanh()->where('ten_quyen', $chucDanh)->first()){
+            return true;
+        }
+        return false;
+    }
+
+
+    //tương tự như trên nhưng code ngắn gọn
     public function getQuyen(){
         /*
             tbl_nguoidung_chucdanh: kết nối giữa bảng user và bảng tbl_chucdanh (bảng trung gian)

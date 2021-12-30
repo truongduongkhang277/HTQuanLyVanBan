@@ -1,6 +1,22 @@
 @extends('layouts.master')
 @section('title', 'Thêm mới văn bản đến')
 @section('main')
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">@yield('title')</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <section class="content">
+      <div class="container-fluid">   
 <div>
     <form action="{{route('vanBanDen.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -155,4 +171,10 @@
         </div>
     </form>
 </div>
+     
+</div><!-- /.container-fluid -->
+</section>
+</div>
+
+<!-- /.content-wrapper -->
 @stop();

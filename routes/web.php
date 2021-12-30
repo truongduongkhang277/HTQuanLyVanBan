@@ -32,41 +32,45 @@ use App\Http\Controllers\VanBanDiController;
 |
 */
 
-Route::group(['prefix' => 'admin'], function(){
-    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');      
-
-    /** VD:
-     * GET => chucDanh.index => danh sách
-     * GET => chucDanh.create => form thêm mới
-     * POST => chucDanh.store => khi submit form thêm mới
-     * GET => chucDanh.show => xem chi tiết
-     * GET => chucDanh.edit => hiển thị form edit
-     * PUT => chucDanh.update => khi submit form edit
-     * DELETE => chucDanh.destroy => khi xóa
-     */
-
-    Route::resources([
-        'bophan'               => BoPhanController::class,
-        'chucDanh'             => ChucDanhController::class,
-        'coQuan'               => CoQuanController::class,
-        'doKhan'               => DoKhanController::class,
-        'doMat'                => DoMatController::class,
-        'hinhThuc'             => HinhThucController::class,
-        'hinhThucChuyen'       => HinhThucChuyenController::class,
-        'hinhThucLuu'          => HinhThucLuuController::class,
-        'linhVuc'              => LinhVucController::class,
-        'nguoiDung'            => NguoiDungController::class,
-        'theLoai'              => TheLoaiController::class,
-        'trangThai'            => TrangThaiController::class,
-        'vanBanDen'            => VanBanDenController::class,
-        'vanBanDi'             => VanBanDiController::class,
-    ]);
+Route::get('/', function(){
+    return view('welcome');
 });
 
-Route::post('admin/login', [AdminController::class, 'loginPost'])->name('admin.loginPost');
-Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+Route::get('/home', function(){
+    return view('home');
+});
 
-Auth::routes();
+// Route::get('/404', [App\Http\Controllers\HomeController::class, 'error_page']);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::group(['prefix' => 'admin'], function(){
+//     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');      
 
+//     /** VD:
+//      * GET => chucDanh.index => danh sách
+//      * GET => chucDanh.create => form thêm mới
+//      * POST => chucDanh.store => khi submit form thêm mới
+//      * GET => chucDanh.show => xem chi tiết
+//      * GET => chucDanh.edit => hiển thị form edit
+//      * PUT => chucDanh.update => khi submit form edit
+//      * DELETE => chucDanh.destroy => khi xóa
+//      */
+
+//     Route::resources([
+//         'bophan'               => BoPhanController::class,
+//         'chucDanh'             => ChucDanhController::class,
+//         'coQuan'               => CoQuanController::class,
+//         'doKhan'               => DoKhanController::class,
+//         'doMat'                => DoMatController::class,
+//         'hinhThuc'             => HinhThucController::class,
+//         'hinhThucChuyen'       => HinhThucChuyenController::class,
+//         'hinhThucLuu'          => HinhThucLuuController::class,
+//         'linhVuc'              => LinhVucController::class,
+//         'nguoiDung'            => NguoiDungController::class,
+//         'theLoai'              => TheLoaiController::class,
+//         'trangThai'            => TrangThaiController::class,
+//         'vanBanDen'            => VanBanDenController::class,
+//         'vanBanDi'             => VanBanDiController::class,
+//     ]);
+// });
+
+// Auth::routes();
