@@ -38,6 +38,28 @@ Route::get('/', function(){
 
 Route::get('/home', function(){
     return view('home');
+})->name('home');
+
+// khi truy cập các mục liên quan đến cơ quan thì dùng route này
+Route::prefix('coQuan')->group(function(){
+    
+    // danh sách cơ quan, phương thức hiển thị
+    Route::get('/',[CoQuanController::class, 'index'])->name('coQuan.index');
+
+    // thêm mới cơ quan, phương thức thêm
+    Route::get('/create',[CoQuanController::class, 'create'])->name('coQuan.create');
+
+    // lưu trữ cơ quan vừa thêm, phương thức thêm
+    Route::post('/store',[CoQuanController::class, 'store'])->name('coQuan.store');
+
+    // chỉnh sửa cơ quan, phương thức chỉnh sửa
+    Route::get('/edit/{id}',[CoQuanController::class, 'edit'])->name('coQuan.edit');
+    
+    // lưu thông tin cơ quan vừa chỉnh sửa, phương thức chỉnh sửa
+    Route::put('/update/{id}',[CoQuanController::class, 'update'])->name('coQuan.update');
+
+    // xóa cơ quan, phương thức xóa
+    Route::get('/delete/{id}',[CoQuanController::class, 'destroy'])->name('coQuan.delete');
 });
 
 // Route::get('/404', [App\Http\Controllers\HomeController::class, 'error_page']);

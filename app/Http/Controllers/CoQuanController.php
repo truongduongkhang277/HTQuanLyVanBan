@@ -15,7 +15,7 @@ class CoQuanController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model CoQuan để rút gọn code
-        $data = CoQuan::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $data = CoQuan::orderBy('created_at', 'ASC')->search()->paginate(15);
 
         return view('coQuan.index', compact('data'));
     }
@@ -27,7 +27,7 @@ class CoQuanController extends Controller
      */
     public function create()
     {
-        return view('coQuan.create');
+        return view('coQuan.add');
     }
 
     /**
@@ -71,9 +71,10 @@ class CoQuanController extends Controller
      * @param  \App\Models\CoQuan  $coQuan
      * @return \Illuminate\Http\Response
      */
-    public function edit(CoQuan $coQuan)
+    public function edit(CoQuan $coQuan, $id)
     {
-        //
+        $coQuan = CoQuan::find($id);
+        return view('coQuan.edit', compact('coQuan'));
     }
 
     /**
@@ -83,9 +84,10 @@ class CoQuanController extends Controller
      * @param  \App\Models\CoQuan  $coQuan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CoQuan $coQuan)
+    public function update(Request $request, CoQuan $coQuan, $id)
     {
-        //
+        $coQuan->update($request->only('ten_co_quan', 'dia_chi', 'trang_thai', 'ghi_chu'));
+        return redirect()->route('coQuan.index');
     }
 
     /**
@@ -96,14 +98,7 @@ class CoQuanController extends Controller
      */
     public function destroy(CoQuan $coQuan)
     {
-
-        if($coQuan == null ){
-            //dd($coQuan);
-            //$coQuan->delete();
-            return redirect()->route('coQuan.index')->with('error','Không thể xóa cơ quan này');
-        } else {
-            $coQuan->delete();
-            return redirect()->route('coQuan.index')->with('success','Xóa cơ quan thành công');
-        }
+        $coQuan->delete();
+        return redirect()->route('coQuan.index')->with('success','Xóa cơ quan thành công');
     }
 }
