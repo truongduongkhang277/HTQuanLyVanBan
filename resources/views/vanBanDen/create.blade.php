@@ -1,11 +1,9 @@
-@extends('master')
-
+@extends('layouts.master')
 @section('title', 'Thêm mới văn bản đến')
 @section('main')
-
-    <div></div>
-    <form action="{{route('vanBanDen.store')}}" method="POST" enctype="multipart/form-data">       
-    @csrf
+<div>
+    <form action="{{route('vanBanDen.store')}}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
@@ -27,7 +25,7 @@
                     <select class="form-control" type="text" name="don_vi_ban_hanh" required>
                         <option value="">Chọn một</option>
                         @foreach($don_vi_ban_hanh as $co_quan)
-                            <option value="{{$co_quan->id}}">{{$co_quan->ten_co_quan}}</option>
+                        <option value="{{$co_quan->id}}">{{$co_quan->ten_co_quan}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -38,7 +36,7 @@
                     <select class="form-control" type="text" name="hinh_thuc" required>
                         <option value="">Chọn một</option>
                         @foreach($hinhthuc as $hinh_thuc)
-                            <option value="{{$hinh_thuc->id}}">{{$hinh_thuc->hinh_thuc}}</option>
+                        <option value="{{$hinh_thuc->id}}">{{$hinh_thuc->hinh_thuc}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -59,7 +57,7 @@
                     <select class="form-control" type="text" name="loai" required>
                         <option value="">Chọn một</option>
                         @foreach($theloai as $the_loai)
-                            <option value="{{$the_loai->id}}">{{$the_loai->ten_loai}}</option>
+                        <option value="{{$the_loai->id}}">{{$the_loai->ten_loai}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -68,7 +66,7 @@
                     <select class="form-control" type="text" name="linh_vuc" required>
                         <option value="">Chọn một</option>
                         @foreach($linhvuc as $linh_vuc)
-                            <option value="{{$linh_vuc->id}}">{{$linh_vuc->linh_vuc}}</option>
+                        <option value="{{$linh_vuc->id}}">{{$linh_vuc->linh_vuc}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -77,7 +75,7 @@
                     <select class="form-control" type="text" name="nguoi_ky" required>
                         <option value="">Chọn một</option>
                         @foreach($nguoidung as $nguoi_ky)
-                            <option value="{{$nguoi_ky->id}}">{{$nguoi_ky->name}}</option>
+                        <option value="{{$nguoi_ky->id}}">{{$nguoi_ky->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -92,7 +90,7 @@
                     <select class="form-control" type="text" name="do_mat" required>
                         <option value="">Chọn một</option>
                         @foreach($domat as $do_mat)
-                            <option value="{{$do_mat->id}}">{{$do_mat->do_mat}}</option>
+                        <option value="{{$do_mat->id}}">{{$do_mat->do_mat}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -101,7 +99,7 @@
                     <select class="form-control" type="text" name="do_khan" required>
                         <option value="">Chọn một</option>
                         @foreach($dokhan as $do_khan)
-                            <option value="{{$do_khan->id}}">{{$do_khan->do_khan}}</option>
+                        <option value="{{$do_khan->id}}">{{$do_khan->do_khan}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -110,7 +108,7 @@
                     <select class="form-control" type="text" name="chuc_vu" required>
                         <option value="">Chọn một</option>
                         @foreach($chucdanh as $chuc_danh)
-                            <option value="{{$chuc_danh->id}}">{{$chuc_danh->ten_quyen}}</option>
+                        <option value="{{$chuc_danh->id}}">{{$chuc_danh->ten_quyen}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -119,7 +117,7 @@
                     <select class="form-control" type="text" name="hinh_thuc_chuyen" required>
                         <option value="">Chọn một</option>
                         @foreach($hinhthucchuyen as $hinh_thuc_chuyen)
-                            <option value="{{$hinh_thuc_chuyen->id}}">{{$hinh_thuc_chuyen->hinh_thuc_chuyen}}</option>
+                        <option value="{{$hinh_thuc_chuyen->id}}">{{$hinh_thuc_chuyen->hinh_thuc_chuyen}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -130,7 +128,7 @@
                     <select class="form-control" type="text" name="hinh_thuc_luu" required>
                         <option value="">Chọn một</option>
                         @foreach($hinhthucluu as $hinh_thuc_luu)
-                            <option value="{{$hinh_thuc_luu->id}}">{{$hinh_thuc_luu->hinh_thuc_luu}}</option>
+                        <option value="{{$hinh_thuc_luu->id}}">{{$hinh_thuc_luu->hinh_thuc_luu}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -139,7 +137,7 @@
                     <select class="form-control" type="text" name="nv_nhan" required>
                         <option value="">Chọn một</option>
                         @foreach($nguoidung as $nv_nhan)
-                            <option value="{{$nv_nhan->id}}">{{$nv_nhan->name}}</option>
+                        <option value="{{$nv_nhan->id}}">{{$nv_nhan->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -157,5 +155,4 @@
         </div>
     </form>
 </div>
-    
 @stop();

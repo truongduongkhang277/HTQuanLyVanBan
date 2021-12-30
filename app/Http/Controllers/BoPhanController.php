@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BoPhan;
+use App\Models\NguoiDung;
 use Illuminate\Http\Request;
 
 class BoPhanController extends Controller
@@ -60,7 +61,10 @@ class BoPhanController extends Controller
      */
     public function edit(BoPhan $boPhan)
     {
-        //
+         // truyền biến nguoiDung đến giao diện edit của người dùng
+         $nguoidung   = NguoiDung::orderBy('id', 'ASC')->get();
+ 
+         return view('boPhan.edit', compact('boPhan', 'nguoidung'));
     }
 
     /**
@@ -72,7 +76,7 @@ class BoPhanController extends Controller
      */
     public function update(Request $request, BoPhan $boPhan)
     {
-        //
+        $boPhan->update($request->only('bo_phan', 'ki_hieu', 'truong_bo_phan', 'trang_thai', 'ghi_chu'));
     }
 
     /**

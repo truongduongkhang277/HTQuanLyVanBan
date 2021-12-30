@@ -1,9 +1,6 @@
-@extends('master')
-
+@extends('layouts.master')
 @section('title', 'Thêm hình thức chuyển mới')
 @section('main')
-
-    
     <form action="{{route('hinhThucChuyen.store')}}" method="POST" role="form">
         @csrf
         <div class="form-group">
@@ -19,11 +16,7 @@
             @error('ghi_chu')
             <small class="help-block">{{$message}}</small>
             @enderror
-        </div>
-        
-    
+        </div>    
         <button type="submit" class="btn btn-primary">Lưu</button>
-    </form>
-    
-    
+    </form>    
 @stop();

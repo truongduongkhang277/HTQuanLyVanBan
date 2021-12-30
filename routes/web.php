@@ -33,8 +33,7 @@ use App\Http\Controllers\VanBanDiController;
 */
 
 Route::group(['prefix' => 'admin'], function(){
-    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');      
 
     /** VD:
      * GET => chucDanh.index => danh sách
@@ -70,5 +69,4 @@ Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin.logo
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 

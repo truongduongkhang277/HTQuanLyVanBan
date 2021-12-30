@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('dashboard');
+        return view('layouts.dashboard');
     }
 
     public function loginPost(Request $request){

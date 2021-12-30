@@ -1,20 +1,20 @@
 @extends('layouts.master')
-@section('title', 'Thêm mới bộ phận')
+@section('title', 'Sửa thông tin bộ phận')
 @section('main')
 <div class="panel panel-primary">
     <div class="panel-body">
-        <form action="{{route('bophan.store')}}" method="POST" role="form">
-            @csrf
+        <form action="{{route('bophan.update', $boPhan->id)}}" method="POST" role="form">
+            @csrf @method('PUT')
             <div class="form-group">
                 <label for="">Tên bộ phận</label>
-                <input type="text" class="form-control" name="bo_phan" placeholder="Nhập tên bộ phận">
+                <input type="text" class="form-control" name="bo_phan" value="{{$boPhan->bo_phan}}">
                 @error('bo_phan')
                 <small class="help-block">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="">Kí hiệu</label>
-                <input type="text" class="form-control" name="ki_hieu" placeholder="Nhập kí hiệu">
+                <input type="text" class="form-control" name="ki_hieu" value="{{$boPhan->ki_hieu}}">
                 @error('ki_hieu')
                 <small class="help-block">{{$message}}</small>
                 @enderror
@@ -31,19 +31,28 @@
             <div class="form-group">
                 <label for="">Trạng thái</label>
                 <select class="form-control select2" name="trang_thai" id="input" style="width: 100%;">
-                    <option selected="selected" value="1">Đang hoạt động</option>
-                    <option value="0"> Ngừng hoạt động</option>
+                    <option selected="selected" value="1">Kích hoạt</option>
+                    <option value="0"> Ngừng sử dụng</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="">Ghi chú</label>
-                <input type="text" class="form-control" name="ghi_chu" placeholder="Ghi chú">
+                <input type="text" class="form-control" name="ghi_chu" value="{{$boPhan->ghi_chu}}">
                 @error('ghi_chu')
                 <small class="help-block">{{$message}}</small>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
         </form>
     </div>
 </div>
-@stop();
+@stop()
+@section('js')
+<!-- bs-custom-file-input -->
+<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+<script>
+    $(function() {
+        bsCustomFileInput.init();
+    });
+</script>
+@stop()
