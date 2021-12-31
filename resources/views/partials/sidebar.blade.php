@@ -44,6 +44,42 @@
                         <p> Trang chủ </p>
                     </a>
                 </li>
+                <!-- Văn bản đến -->
+                <li class="nav-item">
+                    <a href="{{ route('vanBanDen.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-laptop-code"></i>
+                        <p>
+                            Quản lý văn bản đến
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('vanBanDen.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách văn bản đến</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Văn bản đi -->
+                <li class="nav-item">
+                    <a href="{{ route('vanBanDi.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-laptop-code"></i>
+                        <p>
+                            Quản lý văn bản đi
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('vanBanDi.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách văn bản đi</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- Quản lý hệ thống-->
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link">
@@ -55,9 +91,105 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="{{ route('boPhan.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách bộ phận</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('chucDanh.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách chức danh</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
                             <a href="{{ route('coQuan.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách cơ quan</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('coQuan.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách cơ quan</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('doKhan.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách độ khẩn</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('doMat.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách độ mật</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('hinhThuc.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách hình thức</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('hinhThucChuyen.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách hình thức chuyển</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('hinhThucLuu.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách hình thức lưu</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('linhVuc.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách lĩnh vực</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('nguoiDung.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách người dùng</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('theLoai.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách thể loại</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('trangThai.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách trạng thái</p>
                             </a>
                         </li>
                     </ul>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Chỉnh sửa cơ quan
+    Thêm hình thức mới
 @endsection
 
 @section('content')
@@ -12,12 +12,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Chỉnh sửa cơ quan</h1>
+                        <h1 class="m-0">Thêm hình thức mới</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active">Chỉnh sửa cơ quan</li>
+                            <li class="breadcrumb-item active">Thêm hình thức mới</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -30,20 +30,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 mx-auto">
-                        <form action="{{ route('coQuan.update', $coQuan->id) }}" method="POST" role="form">
-                            @csrf @method('PUT')
+                        <form action="{{ route('hinhThuc.store') }}" method="POST" role="form">
+                            @csrf
                             <div class="form-group">
-                                <label for="">Tên cơ quan</label>
-                                <input type="text" class="form-control" name="ten_co_quan"
-                                    value="{{ $coQuan->ten_co_quan }}">
-                                @error('ten_co_quan')
-                                    <small class="help-block">{{ $message }}</small>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="">Địa chỉ cơ quan</label>
-                                <input type="text" class="form-control" name="dia_chi" value="{{ $coQuan->dia_chi }}">
-                                @error('dia_chi')
+                                <label for="">Hình thức</label>
+                                <input type="text" class="form-control" name="hinh_thuc" placeholder="Nhập hình thức">
+                                @error('hinh_thuc')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -56,14 +48,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>
-                                <input type="text" class="form-control" name="ghi_chu" value="{{ $coQuan->ghi_chu }}">
+                                <input type="text" class="form-control" name="ghi_chu" placeholder="Ghi chú">
                                 @error('ghi_chu')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="d-grid gap-2 col-4 mx-auto">
                                 <div class="col">
-                                    <button type="submit" class="btn btn-success">Cập nhật</button>
+                                    <button type="submit" class="btn btn-success">Lưu</button>
                                     <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                                 </div>
                             </div>

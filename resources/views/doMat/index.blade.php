@@ -1,56 +1,75 @@
-@extends('layouts.master')
-@section('title', 'Danh sách độ mật')
-@section('main')
-<form action="" class="form-inline">
-    <div class="form-group">
-        <input class="form-control" name="key" placeholder="Tìm kiếm bằng độ mật">
+@extends('layouts.admin')
+
+@section('title')
+    Danh sách độ mật
+@endsection
+
+@section('content')
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Danh sách độ mật</h1>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="{{ route('doMat.create') }}" class="btn btn-info float-right m-2">Thêm mới </a>
+                    </div>
+                    <div class="col-md-12">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr style="text-align:center">
+                                    <th>Mã</th>
+                                    <th>Độ mật</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data as $doMat)
+                                    <tr>
+                                        <td style="text-align:center">{{ $doMat->id }}</td>
+                                        <td>{{ $doMat->do_mat }}</td>
+                                        @if ($doMat->trang_thai == 1)
+                                            <td style="text-align: center; color:green"> Kích hoạt</td>
+                                        @else
+                                            <td style="text-align: center; color:red"> Ngừng hoạt động</td>
+                                        @endif
+
+                                        <td style="text-align: center">
+                                            <a href="{{ route('doMat.edit', ['id' => $doMat->id]) }}"
+                                                class="btn btn-success">Chỉnh sửa </a>
+                                            <a href="{{ route('doMat.delete', ['id' => $doMat->id]) }}"
+                                                class="delete btn btn-danger"
+                                                onclick="return confirm('Bạn có muốn xóa độ mật này ?');">Xóa </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="d-grid gap-2 col-4 mx-auto">
+                            <div class="col">
+                                {{ $data->appends(request()->all())->links() }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
     </div>
-    <button type="submit" class="btn btn-primary">
-        <i class="fas fa-search"></i>
-    </button>
-    <!-- Dựa vào chức năng toàn màn hình, sửa thành chức năng thêm -->
-    <ul class="navbar-nav ml-auto">
-        <a href="{{route('doMat.create')}}" class="btn btn-sm btn-primary">
-            <i class="fas fa-plus"></i>
-        </a>
-    </ul>
-</form>
-<hr>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Mã</th>
-            <th>Độ mật</th>
-            <th>Ngày tạo</th>
-            <th class="text-right">Thao tác</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($data as $domat)
-        <tr>
-            <td>{{$domat->id}}</td>
-            <td>{{$domat->do_mat}}</td>
-            <td>{{$domat->created_at->format('d-m-Y')}}</td>
-            <td class="text-right">
-                <form method="POST" action="{{route('doMat.destroy', $domat->id)}}">
-                    @csrf @method('DELETE')
-                    <a class="btn btn-sm btn-success">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <button class="btn btn-sm btn-danger">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-<hr>
-<div class="row">
-    <div class="col-5"></div>
-    <div class="col-6">
-        {{$data->appends(request()->all())->links()}}
-    </div>
-</div>
-@stop();
+    <!-- /.content-wrapper -->
+@endsection

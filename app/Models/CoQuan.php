@@ -10,6 +10,8 @@ class CoQuan extends Model
 {
     use HasFactory;
 
+    use SoftDeletes;
+
     protected $table = 'tbl_coquan';
 
     protected $fillable = ['ten_co_quan', 'dia_chi', 'trang_thai', 'ghi_chu'];

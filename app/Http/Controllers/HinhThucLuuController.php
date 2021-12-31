@@ -15,7 +15,7 @@ class HinhThucLuuController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model HinhThucLuu để rút gọn code
-        $data = HinhThucLuu::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $data = HinhThucLuu::orderBy('created_at', 'ASC')->search()->paginate(15);
 
         return view('hinhThucLuu.index', compact('data'));
     }
@@ -27,7 +27,7 @@ class HinhThucLuuController extends Controller
      */
     public function create()
     {
-        return view('hinhThucLuu.create');
+        return view('hinhThucLuu.add');
     }
 
     /**
@@ -58,9 +58,10 @@ class HinhThucLuuController extends Controller
      * @param  \App\Models\Models\HinhThucLuu  $hinhThucLuu
      * @return \Illuminate\Http\Response
      */
-    public function edit(HinhThucLuu $hinhThucLuu)
+    public function edit(HinhThucLuu $hinhThucLuu, $id)
     {
-        //
+        $hinhThucLuu = hinhThucLuu::find($id);
+        return view('hinhThucLuu.edit', compact('hinhThucLuu'));
     }
 
     /**
@@ -70,9 +71,10 @@ class HinhThucLuuController extends Controller
      * @param  \App\Models\Models\HinhThucLuu  $hinhThucLuu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HinhThucLuu $hinhThucLuu)
+    public function update(Request $request, HinhThucLuu $hinhThucLuu, $id)
     {
-        //
+        $hinhThucLuu->find($id)->update($request->only('hinh_thuc_luu', 'trang_thai', 'ghi_chu', 'updated_at'));
+        return redirect()->route('hinhThucLuu.index');
     }
 
     /**
@@ -81,8 +83,9 @@ class HinhThucLuuController extends Controller
      * @param  \App\Models\Models\HinhThucLuu  $hinhThucLuu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HinhThucLuu $hinhThucLuu)
+    public function destroy(HinhThucLuu $hinhThucLuu, $id)
     {
-        //
+        $hinhThucLuu->find($id)->delete();
+        return redirect()->route('hinhThucLuu.index')->with('success','Xóa hình thức lưu thành công');
     }
 }

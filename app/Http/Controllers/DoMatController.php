@@ -15,7 +15,7 @@ class DoMatController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model DoMat để rút gọn code
-        $data = DoMat::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $data = DoMat::orderBy('created_at', 'ASC')->search()->paginate(15);
 
         return view('doMat.index', compact('data'));
     }
@@ -27,7 +27,7 @@ class DoMatController extends Controller
      */
     public function create()
     {
-        return view('doMat.create');
+        return view('doMat.add');
     }
 
     /**
@@ -70,9 +70,10 @@ class DoMatController extends Controller
      * @param  \App\Models\DoMat  $doMat
      * @return \Illuminate\Http\Response
      */
-    public function edit(DoMat $doMat)
+    public function edit(DoMat $doMat, $id)
     {
-        //
+        $doMat = DoMat::find($id);
+        return view('doMat.edit', compact('doMat'));
     }
 
     /**
@@ -82,9 +83,10 @@ class DoMatController extends Controller
      * @param  \App\Models\DoMat  $doMat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DoMat $doMat)
+    public function update(Request $request, DoMat $doMat, $id)
     {
-        //
+        $doMat->find($id)->update($request->only('do_mat', 'trang_thai', 'ghi_chu', 'updated_at'));
+        return redirect()->route('doMat.index');
     }
 
     /**
@@ -93,8 +95,9 @@ class DoMatController extends Controller
      * @param  \App\Models\DoMat  $doMat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DoMat $doMat)
+    public function destroy(DoMat $doMat, $id)
     {
-        //
+        $doMat->find($id)->delete();
+        return redirect()->route('doMat.index')->with('success','Xóa độ mật thành công');
     }
 }

@@ -15,7 +15,7 @@ class DoKhanController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model DoKhan để rút gọn code
-        $data = DoKhan::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $data = DoKhan::orderBy('created_at', 'ASC')->search()->paginate(15);
 
         return view('doKhan.index', compact('data'));
     }
@@ -27,7 +27,7 @@ class DoKhanController extends Controller
      */
     public function create()
     {
-        return view('doKhan.create');
+        return view('doKhan.add');
     }
 
     /**
@@ -70,10 +70,12 @@ class DoKhanController extends Controller
      * @param  \App\Models\DoKhan  $doKhan
      * @return \Illuminate\Http\Response
      */
-    public function edit(DoKhan $doKhan)
+    public function edit(DoKhan $doKhan, $id)
     {
-        //
+        $doKhan = DoKhan::find($id);
+        return view('doKhan.edit', compact('doKhan'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -82,10 +84,12 @@ class DoKhanController extends Controller
      * @param  \App\Models\DoKhan  $doKhan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DoKhan $doKhan)
+    public function update(Request $request, DoKhan $doKhan, $id)
     {
-        //
+        $doKhan->find($id)->update($request->only('do_khan', 'trang_thai', 'ghi_chu', 'updated_at'));
+        return redirect()->route('doKhan.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -93,8 +97,9 @@ class DoKhanController extends Controller
      * @param  \App\Models\DoKhan  $doKhan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DoKhan $doKhan)
+    public function destroy(DoKhan $doKhan, $id)
     {
-        //
+        $doKhan->find($id)->delete();
+        return redirect()->route('doKhan.index')->with('success','Xóa độ khẩn thành công');
     }
 }

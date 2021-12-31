@@ -15,7 +15,7 @@ class ChucDanhController extends Controller
     public function index()
     {
          // trỏ đến hàm scopeSearch trong model ChucDanh để rút gọn code
-         $data = ChucDanh::orderBy('created_at', 'ASC')->search()->paginate(5);
+         $data = ChucDanh::orderBy('created_at', 'ASC')->search()->paginate(15);
 
          return view('chucDanh.index', compact('data'));
     }
@@ -28,7 +28,7 @@ class ChucDanhController extends Controller
     public function create()
     {   
         $routes = '';     
-        return view('chucDanh.create', compact('routes'));
+        return view('chucDanh.add', compact('routes'));
     }
 
     /**
@@ -76,9 +76,10 @@ class ChucDanhController extends Controller
      * @param  \App\Models\ChucDanh  $chucDanh
      * @return \Illuminate\Http\Response
      */
-    public function edit(ChucDanh $chucDanh)
+    public function edit(ChucDanh $chucDanh, $id)
     {
-        return view('chucDanh.edit');
+        $chucDanh = ChucDanh::find($id);
+        return view('chucDanh.edit', compact('chucDanh'));
     }
 
     /**
@@ -88,9 +89,10 @@ class ChucDanhController extends Controller
      * @param  \App\Models\ChucDanh  $chucDanh
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ChucDanh $chucDanh)
+    public function update(Request $request, ChucDanh $chucDanh, $id)
     {
-        //
+        $chucDanh->find($id)->update($request->only('ten_quyen', 'trang_thai', 'ghi_chu', 'updated_at'));
+        return redirect()->route('chucDanh.index');
     }
 
     /**
@@ -99,14 +101,9 @@ class ChucDanhController extends Controller
      * @param  \App\Models\ChucDanh  $chucDanh
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ChucDanh $chucDanh)
+    public function destroy(ChucDanh $chucDanh, $id)
     {
-        if($chucDanh!= null ){
-            dd($chucDanh);
-            //return redirect()->route('chucDanh.index')->with('error','Không thể xóa chức danh này');
-        } else {
-            $chucDanh->delete();
-            return redirect()->route('chucDanh.index')->with('success','Xóa chức danh thành công');
-        }
+        $chucDanh->find($id)->delete();
+        return redirect()->route('chucDanh.index')->with('success','Xóa chức danh thành công');
     }
 }

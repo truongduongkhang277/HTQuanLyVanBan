@@ -86,7 +86,7 @@ class CoQuanController extends Controller
      */
     public function update(Request $request, CoQuan $coQuan, $id)
     {
-        $coQuan->update($request->only('ten_co_quan', 'dia_chi', 'trang_thai', 'ghi_chu'));
+        $coQuan->find($id)->update($request->only('ten_co_quan', 'dia_chi', 'trang_thai', 'ghi_chu', 'updated_at'));
         return redirect()->route('coQuan.index');
     }
 
@@ -96,9 +96,9 @@ class CoQuanController extends Controller
      * @param  \App\Models\CoQuan  $coQuan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CoQuan $coQuan)
+    public function destroy(CoQuan $coQuan, $id)
     {
-        $coQuan->delete();
+        $coQuan->find($id)->delete();
         return redirect()->route('coQuan.index')->with('success','Xóa cơ quan thành công');
     }
 }

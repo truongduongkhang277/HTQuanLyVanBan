@@ -15,7 +15,7 @@ class TheLoaiController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model TheLoai để rút gọn code
-        $data = TheLoai::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $data = TheLoai::orderBy('created_at', 'ASC')->search()->paginate(15);
 
         return view('theLoai.index', compact('data'));
     }
@@ -27,7 +27,7 @@ class TheLoaiController extends Controller
      */
     public function create()
     {
-        return view('theLoai.create');
+        return view('theLoai.add');
     }
 
     /**
@@ -70,9 +70,10 @@ class TheLoaiController extends Controller
      * @param  \App\Models\TheLoai  $theLoai
      * @return \Illuminate\Http\Response
      */
-    public function edit(TheLoai $theLoai)
+    public function edit(TheLoai $theLoai, $id)
     {
-        //
+        $theLoai = theLoai::find($id);
+        return view('theLoai.edit', compact('theLoai'));
     }
 
     /**
@@ -82,9 +83,10 @@ class TheLoaiController extends Controller
      * @param  \App\Models\TheLoai  $theLoai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TheLoai $theLoai)
+    public function update(Request $request, TheLoai $theLoai, $id)
     {
-        //
+        $theLoai->find($id)->update($request->only('ten_loai', 'trang_thai', 'ghi_chu', 'updated_at'));
+        return redirect()->route('theLoai.index');
     }
 
     /**
@@ -93,8 +95,9 @@ class TheLoaiController extends Controller
      * @param  \App\Models\TheLoai  $theLoai
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TheLoai $theLoai)
+    public function destroy(TheLoai $theLoai, $id)
     {
-        //
+        $theLoai->find($id)->delete();
+        return redirect()->route('theLoai.index')->with('success','Xóa thể loại thành công');
     }
 }

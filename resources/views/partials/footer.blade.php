@@ -1,4 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer" style="margin-top: 10px">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
         <b>Version</b> 1.0.0

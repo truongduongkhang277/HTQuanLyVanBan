@@ -15,7 +15,7 @@ class LinhVucController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model LinhVuc để rút gọn code
-        $data = LinhVuc::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $data = LinhVuc::orderBy('created_at', 'ASC')->search()->paginate(15);
 
         return view('linhVuc.index', compact('data'));
     }
@@ -27,7 +27,7 @@ class LinhVucController extends Controller
      */
     public function create()
     {
-        return view('linhVuc.create');
+        return view('linhVuc.add');
     }
 
     /**
@@ -58,9 +58,10 @@ class LinhVucController extends Controller
      * @param  \App\Models\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Http\Response
      */
-    public function edit(LinhVuc $linhVuc)
+    public function edit(LinhVuc $linhVuc, $id)
     {
-        //
+        $linhVuc = linhVuc::find($id);
+        return view('linhVuc.edit', compact('linhVuc'));
     }
 
     /**
@@ -70,9 +71,10 @@ class LinhVucController extends Controller
      * @param  \App\Models\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LinhVuc $linhVuc)
+    public function update(Request $request, LinhVuc $linhVuc, $id)
     {
-        //
+        $linhVuc->find($id)->update($request->only('linh_vuc', 'trang_thai', 'ghi_chu', 'updated_at'));
+        return redirect()->route('linhVuc.index');
     }
 
     /**
@@ -81,8 +83,9 @@ class LinhVucController extends Controller
      * @param  \App\Models\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LinhVuc $linhVuc)
+    public function destroy(LinhVuc $linhVuc, $id)
     {
-        //
+        $linhVuc->find($id)->delete();
+        return redirect()->route('linhVuc.index')->with('success','Xóa lĩnh vực thành công');
     }
 }

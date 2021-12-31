@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 
 @section('title')
-    Chỉnh sửa cơ quan
+    Thêm bộ phận mới
 @endsection
-
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -12,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Chỉnh sửa cơ quan</h1>
+                        <h1 class="m-0">Thêm bộ phận mới</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active">Chỉnh sửa cơ quan</li>
+                            <li class="breadcrumb-item active">Thêm bộ phận mới</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -30,33 +29,41 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 mx-auto">
-                        <form action="{{ route('coQuan.update', $coQuan->id) }}" method="POST" role="form">
-                            @csrf @method('PUT')
+                        <form action="{{ route('boPhan.store') }}" method="POST" role="form">
+                            @csrf
                             <div class="form-group">
-                                <label for="">Tên cơ quan</label>
-                                <input type="text" class="form-control" name="ten_co_quan"
-                                    value="{{ $coQuan->ten_co_quan }}">
-                                @error('ten_co_quan')
+                                <label for="">Tên bộ phận</label>
+                                <input type="text" class="form-control" name="bo_phan" placeholder="Nhập tên bộ phận">
+                                @error('bo_phan')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="">Địa chỉ cơ quan</label>
-                                <input type="text" class="form-control" name="dia_chi" value="{{ $coQuan->dia_chi }}">
-                                @error('dia_chi')
+                                <label for="">Kí hiệu</label>
+                                <input type="text" class="form-control" name="ki_hieu" placeholder="Nhập kí hiệu">
+                                @error('ki_hieu')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="my-input">Trưởng bộ phận</label>
+                                <select class="form-control" type="text" name="truong_bo_phan" required>
+                                    <option value="">Chọn một</option>
+                                    {{-- @foreach ($nguoidung as $truong_bo_phan)
+                                        <option value="{{ $truong_bo_phan->id }}">{{ $truong_bo_phan->name }}</option>
+                                    @endforeach --}}
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
                                 <select class="form-control select2" name="trang_thai" id="input" style="width: 100%;">
-                                    <option selected="selected" value="1">Kích hoạt</option>
-                                    <option value="0"> Ngừng sử dụng</option>
+                                    <option selected="selected" value="1">Đang hoạt động</option>
+                                    <option value="0"> Ngừng hoạt động</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>
-                                <input type="text" class="form-control" name="ghi_chu" value="{{ $coQuan->ghi_chu }}">
+                                <input type="text" class="form-control" name="ghi_chu" placeholder="Ghi chú">
                                 @error('ghi_chu')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror

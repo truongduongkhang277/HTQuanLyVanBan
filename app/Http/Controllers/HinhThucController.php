@@ -15,7 +15,7 @@ class HinhThucController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model HinhThuc để rút gọn code
-        $data = HinhThuc::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $data = HinhThuc::orderBy('created_at', 'ASC')->search()->paginate(15);
 
         return view('hinhThuc.index', compact('data'));
     }
@@ -27,7 +27,7 @@ class HinhThucController extends Controller
      */
     public function create()
     {
-        return view('hinhThuc.create');
+        return view('hinhThuc.add');
     }
 
     /**
@@ -70,9 +70,10 @@ class HinhThucController extends Controller
      * @param  \App\Models\HinhThuc  $hinhThuc
      * @return \Illuminate\Http\Response
      */
-    public function edit(HinhThuc $hinhThuc)
+    public function edit(HinhThuc $hinhThuc, $id)
     {
-        //
+        $hinhThuc = HinhThuc::find($id);
+        return view('hinhThuc.edit', compact('hinhThuc'));
     }
 
     /**
@@ -82,9 +83,10 @@ class HinhThucController extends Controller
      * @param  \App\Models\HinhThuc  $hinhThuc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HinhThuc $hinhThuc)
+    public function update(Request $request, HinhThuc $hinhThuc, $id)
     {
-        //
+        $hinhThuc->find($id)->update($request->only('hinh_thuc', 'trang_thai', 'ghi_chu', 'updated_at'));
+        return redirect()->route('hinhThuc.index');
     }
 
     /**
@@ -93,8 +95,9 @@ class HinhThucController extends Controller
      * @param  \App\Models\HinhThuc  $hinhThuc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HinhThuc $hinhThuc)
+    public function destroy(HinhThuc $hinhThuc, $id)
     {
-        //
+        $hinhThuc->find($id)->delete();
+        return redirect()->route('hinhThuc.index')->with('success','Xóa hình thức thành công');
     }
 }

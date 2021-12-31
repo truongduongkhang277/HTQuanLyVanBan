@@ -19,7 +19,7 @@ class NguoiDungController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model user để rút gọn code
-        $data = User::orderBy('name', 'ASC')->search()->paginate(5);
+        $data = User::orderBy('name', 'ASC')->search()->paginate(15);
 
         return view('nguoiDung.index', compact('data'));
     }

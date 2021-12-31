@@ -15,7 +15,7 @@ class TrangThaiController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model TrangThai để rút gọn code
-        $data = TrangThai::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $data = TrangThai::orderBy('created_at', 'ASC')->search()->paginate(15);
 
         return view('trangThai.index', compact('data'));
     }
@@ -27,7 +27,7 @@ class TrangThaiController extends Controller
      */
     public function create()
     {
-        return view('trangThai.create');
+        return view('trangThai.add');
     }
 
     /**
@@ -59,8 +59,7 @@ class TrangThaiController extends Controller
      * @param  \App\Models\TrangThai  $trangThai
      * @return \Illuminate\Http\Response
      */
-    public function show(TrangThai $trangThai)
-    {
+    public function show(TrangThai $trangThai) {
         //
     }
 
@@ -70,9 +69,10 @@ class TrangThaiController extends Controller
      * @param  \App\Models\TrangThai  $trangThai
      * @return \Illuminate\Http\Response
      */
-    public function edit(TrangThai $trangThai)
+    public function edit(TrangThai $trangThai, $id)
     {
-        //
+        $trangThai = TrangThai::find($id);
+        return view('trangThai.edit', compact('trangThai'));
     }
 
     /**
@@ -82,9 +82,10 @@ class TrangThaiController extends Controller
      * @param  \App\Models\TrangThai  $trangThai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TrangThai $trangThai)
+    public function update(Request $request, TrangThai $trangThai, $id)
     {
-        //
+        $trangThai->find($id)->update($request->only('trang_thai', 'status', 'ghi_chu', 'updated_at'));
+        return redirect()->route('trangThai.index');
     }
 
     /**
@@ -93,8 +94,9 @@ class TrangThaiController extends Controller
      * @param  \App\Models\TrangThai  $trangThai
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TrangThai $trangThai)
+    public function destroy(TrangThai $trangThai, $id)
     {
-        //
+        $trangThai->find($id)->delete();
+        return redirect()->route('trangThai.index')->with('success','Xóa trạng thái thành công');
     }
 }

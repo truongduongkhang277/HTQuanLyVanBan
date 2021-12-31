@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Trang chủ
+    Danh sách cơ quan
 @endsection
 
 @section('content')
@@ -30,25 +30,31 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr style="text-align:center">
-                                    <th>Mã CQ</th>
+                                    <th>Mã Cơ quan</th>
                                     <th>Tên cơ quan</th>
                                     <th>Địa chỉ</th>
-                                    <th>Trạng thái</th>
+                                    <th style="width: 12%">Trạng thái</th>
                                     <th style="width: 18%">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $coquan)
                                     <tr>
-                                        <td>{{ $coquan->id }}</td>
+                                        <td style="text-align:center">{{ $coquan->id }}</td>
                                         <td>{{ $coquan->ten_co_quan }}</td>
                                         <td>{{ $coquan->dia_chi }}</td>
-                                        <td>{{ $coquan->trang_thai }}</td>
+                                        
+                                        @if($coquan->trang_thai == 1)
+                                            <td style="text-align: center; color:green"> Kích hoạt</td>
+                                        @else
+                                            <td style="text-align: center; color:red"> Ngừng hoạt động</td>
+                                        @endif
+
                                         <td style="text-align: center">
                                             <a href="{{ route('coQuan.edit', ['id' => $coquan->id]) }}"
                                                 class="btn btn-success">Chỉnh sửa </a>
                                             <a href="{{ route('coQuan.delete', ['id' => $coquan->id]) }}"
-                                                class="btn btn-danger">Xóa </a>
+                                                class="delete btn btn-danger" onclick="return confirm('Bạn có muốn xóa cơ quan này ?');">Xóa </a>
                                         </td>
                                     </tr>
                                 @endforeach
