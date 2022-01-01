@@ -50,7 +50,7 @@ class VanBanDenController extends Controller
         $don_vi_ban_hanh= CoQuan::orderBy('ten_co_quan', 'ASC')->get();
         $nguoidung      = User::orderBy('email', 'ASC')->get();
         $chucdanh       = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
-        return view('vanBanDen.create', compact(
+        return view('vanBanDen.add', compact(
             'domat', 
             'dokhan', 
             'linhvuc',
