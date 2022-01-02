@@ -4,6 +4,10 @@
     Thêm văn bản đến mới
 @endsection
 
+@section('css')
+<link href="{{asset('vendors/select2/select2.min.css')}}" rel="stylesheet" />
+@endsection
+
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -114,7 +118,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
-                                        <input class="form-control" type="file" name="ds_file">
+                                        <input class="form-control-file" type="file" name="ds_file">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -185,4 +189,9 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@endsection
+
+@section('js')
+
+<script src="{{asset('vendors/select2/select2.min.js')}}"></script>
 @endsection
