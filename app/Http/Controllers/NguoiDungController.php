@@ -81,7 +81,14 @@ class NguoiDungController extends Controller
     public function update(Request $request, User $nguoiDung)
     {
         $nguoiDung->ngay_sinh = date('d/m/Y');
-        $nguoiDung->update($request->only('name', 'ngay_sinh', 'so_dt', 'gioi_tinh', 'dia_chi', 'anh', 'trang_thai'));
+        
+        $fileUpload = $this->storageTraitUpload($request, 'anh', 'nguoiDung');
+        if(!empty($fileUpload)){
+            $data['anh'] = $fileUpload['file_name'];
+            $data['file_path'] = $fileUpload['file_path'];
+        }
+        $nguoiDung->update($request->only('name', 'ngay_sinh', 'so_dt', 'gioi_tinh', 'dia_chi', 'anh', 'trang_thai')); 
+        
         if(is_array($request->chuc_danh)){
             foreach($request->chuc_danh as $chucdanh_id){
                 ChucNangNguoiDung::create(['id_nguoidung' => $nguoiDung->id, 'id_chucdanh' => $chucdanh_id]);
