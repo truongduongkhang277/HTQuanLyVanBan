@@ -114,4 +114,9 @@ class User extends Authenticatable
         */
         return $this->belongsToMany(ChucDanh::class, 'tbl_nguoidung_chucdanh', 'id_nguoidung', 'id_chucdanh');
     }
+
+    // văn bản đi của tài khoản
+    public function vanBanDi(){
+        return $this->belongsToMany('App\Models\VanBanDi');
+    }
 }

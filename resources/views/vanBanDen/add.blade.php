@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
-                                        <input class="form-control" type="file" name="ds_file">
+                                        <input class="form-control-file" type="file" name="ds_file">
                                     </div>
                                 </div>
                                 <div class="col-md-4">

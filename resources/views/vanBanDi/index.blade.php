@@ -29,27 +29,30 @@
                     <div class="col-md-12">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
+                                <tr style="text-align: center">
                                     <th>Ngày gửi</th>
-                                    <th>Số VB đi</th>
-                                    <th>ĐVBH</th>
+                                    <th style="width: 18%">ĐVBH</th>
                                     <th>Ký hiệu</th>
-                                    <th>Trích yếu</th>
+                                    <th style="width: 20%">Trích yếu</th>
+                                    <th style="width: 10%">Danh sách file</th>
                                     <th>Người kí</th>
-                                    <th>NV phát hành</th>
-                                    <th class="text-right">Thao tác</th>
+                                    <th style="width: 18%">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $vanbandi)
                                     <tr>
                                         <td>{{ $vanbandi->ngay_gui }}</td>
-                                        <td>{{ $vanbandi->so_vb_di }}</td>
-                                        <td>{{ $vanbandi->noi_gui }}</td>
-                                        <td>{{ $vanbandi->ki_hieu }}</td>
+                                        <td>{{ optional($vanbandi->dvBanHanh)->ten_co_quan }}</td>
+                                        <td style="text-align: center">{{ $vanbandi->ki_hieu }}</td>
                                         <td>{{ $vanbandi->trich_yeu }}</td>
-                                        <td>{{ $vanbandi->nguoi_ky }}</td>
-                                        <td>{{ $vanbandi->nv_phathanh }}</td>
+                                        @if (!empty($vanbandi->file_path))
+                                            <td><a class="btn btn-primary" href="{{ $vanbandi->file_path }}">Download về
+                                                    máy</a></td>
+                                        @else
+                                            <td style="text-align: center; color:red">Không có file đính kèm</td>
+                                        @endif
+                                        <td>{{ optional($vanbandi->nguoiKy)->name }}</td>
                                         <td style="text-align: center">
                                             <a href="{{ route('vanBanDi.edit', ['id' => $vanbandi->id]) }}"
                                                 class="btn btn-success">Chỉnh sửa </a>

@@ -1,90 +1,201 @@
-@extends('layouts.master')
-@section('title', 'Sửa thông tin tài khoản')
-@section('main')
-<div class="panel panel-primary">
-    <div class="panel-body">
-        <form action="{{route('nguoiDung.update', $nguoiDung->id)}}" method="POST" role="form">
-            @csrf @method('PUT')
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Họ và tên</label>
-                        <input type="text" class="form-control" name="name" value="{{$nguoiDung->name}}">
-                    </div>
-                    <div class="form-group">
-                        <label>Tên đăng nhập</label>
-                        <input type="text" class="form-control" name="email" value="{{$nguoiDung->email}}" disabled>
-                    </div>
-                    <!-- Date dd/mm/yyyy -->
-                    <div class="form-group">
-                        <label>Ngày sinh</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="ngay_sinh" placeholder="dd/mm/yyyy" value="{{$nguoiDung->ngay_sinh}}">
-                        </div>
-                        <!-- /.input group -->
-                    </div>
-                    <!-- /.form group -->
-                    <div class="form-group">
-                        <label for="">Số điện thoại</label>
-                        <input type="text" class="form-control" name="so_dt" value="{{$nguoiDung->so_dt}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Giới tính</label>
-                        <select class="form-control select2" name="gioi_tinh" id="input" style="width: 100%;">
-                            <option selected="selected" value="1">[M] Nam</option>
-                            <option value="0"> [F] Nữ</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="">Địa chỉ</label>
-                        <input type="text" class="form-control" name="dia_chi" value="{{$nguoiDung->dia_chi}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputFile">Ảnh đại diện</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" name="anh" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile" value="{{$nguoiDung->anh}}"></label>
+@extends('layouts.admin')
+
+@section('title')
+    Chỉnh sửa văn bản đi
+@endsection
+
+@section('css')
+<link href="{{asset('vendors/select2/select2.min.css')}}" rel="stylesheet" />
+@endsection
+
+@section('content')
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Chỉnh sửa văn bản đi</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Chỉnh sửa văn bản đi</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-11 mx-auto">
+                        <form action="{{ route('vanBanDi.update', $vanBanDi->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="my-input">Số văn bản đi</label>
+                                        <input class="form-control" type="text" name="so_vb_di" value="{{ $vanBanDi->so_vb_di }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="my-input">Số kí hiệu</label>
+                                        <input class="form-control" type="text" name="ki_hieu" value="{{ $vanBanDi->ki_hieu }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="my-input">Ngày ban hành</label>
+                                        <input class="form-control" type="text" name="ngay_gui" value="{{ $vanBanDi->ngay_gui }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="my-input">Loại văn bản</label>
+                                        <select class="form-control" type="text" name="loai" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($theloai as $the_loai)
+                                                <option value="{{ $the_loai->id }}">{{ $the_loai->ten_loai }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="my-input">Hình thức văn bản</label>
+                                        <select class="form-control" type="text" name="hinh_thuc" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($hinhthuc as $hinh_thuc)
+                                                <option value="{{ $hinh_thuc->id }}">{{ $hinh_thuc->hinh_thuc }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="my-input">Lĩnh vực</label>
+                                        <select class="form-control" type="text" name="linh_vuc" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($linhvuc as $linh_vuc)
+                                                <option value="{{ $linh_vuc->id }}">{{ $linh_vuc->linh_vuc }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="my-input">Số trang</label>
+                                        <input class="form-control" type="text" name="so_trang" value="{{ $vanBanDi->so_trang }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="my-input">Số lượng bản phát hành</label>
+                                        <input class="form-control" type="text" name="so_luong" value="{{ $vanBanDi->so_luong }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="my-input">Trích yếu</label>
+                                        <textarea class="form-control" type="text" name="trich_yeu" rows="3"
+                                        >{{ $vanBanDi->trich_yeu }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="my-input">Người ký</label>
+                                        <select class="form-control" type="text" name="nguoi_ky" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($nguoidung as $nguoi_ky)
+                                                <option value="{{ $nguoi_ky->id }}">{{ $nguoi_ky->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{-- <div class="form-group">
+                                        <label for="my-input">Nhân viên phát hành</label>
+                                        <input class="form-control" type="text" name="nv_phathanh">
+                                        <select class="form-control" type="text" name="nv_phathanh" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($nguoidung as $nv_phathanh)
+                                                <option value="{{ $nv_phathanh->id }}">{{ $nv_phathanh->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div> --}}
+                                    <div class="form-group">
+                                        <label for="my-input">File đính kèm</label>
+                                        <input class="form-control-file" type="file" name="ds_file" >
+                                        <a>{{ $vanBanDi->ds_file }}</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="my-input">Chức vụ người ký</label>
+                                        <select class="form-control" type="text" name="chuc_vu" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($chucdanh as $chuc_danh)
+                                                <option value="{{ $chuc_danh->id }}">{{ $chuc_danh->ten_quyen }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="my-input">Cơ quan gửi</label>
+                                        <select class="form-control" type="text" name="noi_gui" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($coquan as $co_quan)
+                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="my-input">Độ khẩn</label>
+                                        <select class="form-control" type="text" name="do_khan" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($dokhan as $do_khan)
+                                                <option value="{{ $do_khan->id }}">{{ $do_khan->do_khan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="my-input">Hình thức sao lưu</label>
+                                        <select class="form-control" type="text" name="hinh_thuc_luu" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($hinhthucluu as $hinh_thuc_luu)
+                                                <option value="{{ $hinh_thuc_luu->id }}">
+                                                    {{ $hinh_thuc_luu->hinh_thuc_luu }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="my-input">Cơ quan nhận</label>
+                                        <select class="form-control" type="text" name="noi_nhan" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($coquan as $co_quan)
+                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="my-input">Hạn xử lý</label>
+                                        <input class="form-control" type="text" name="han_xu_ly" value="{{ $vanBanDi->han_xu_ly }}">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Quyền</label>
-                        <select class="form-control select2" name="chuc_danh[]" id="input" style="width: 100%;">
-                            @foreach($chucDanh as $chucdanh)
-                            <option selected="selected" value="{{$chucdanh->id}}">{{$chucdanh->ten_quyen}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Bộ phận</label>
-                        <select class="form-control select2" name="bo_phan[]" id="input" style="width: 100%;">
-                            @foreach($boPhan as $bophan)
-                            <option selected="selected" value="{{$bophan->id}}">{{$bophan->bo_phan}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Trạng thái</label>
-                        <select class="form-control select2" name="trang_thai" id="input" style="width: 100%;">
-                            <option selected="selected" value="1">Kích hoạt</option>
-                            <option value="0"> Ngừng sử dụng</option>
-                        </select>
+                            <div class="d-grid gap-2 col-4 mx-auto">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success">Cập nhật</button>
+                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
     </div>
-</div>
-@stop()
+    <!-- /.content-wrapper -->
+@endsection
+
 @section('js')
-<!-- bs-custom-file-input -->
-<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
-<script>
-    $(function() {
-        bsCustomFileInput.init();
-    });
-</script>
-@stop()
+
+<script src="{{asset('vendors/select2/select2.min.js')}}"></script>
+@endsection

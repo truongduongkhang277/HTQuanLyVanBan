@@ -16,6 +16,8 @@ use App\Models\CoQuan;
 use App\Models\HinhThucChuyen;
 use App\Models\HinhThucLuu;
 use App\Models\LinhVuc;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class VanBanDenController extends Controller
 {
@@ -74,25 +76,52 @@ class VanBanDenController extends Controller
     public function store(Request $request)
     {
         //validate
-        $request->validate([
-            //'trang_thai' => 'required'
-        ]);
-
-        // upload file
-        if($request->has('upload')){
-            $file_name = $request->upload->getClientOrginalName();
-            $request->upload->move(public_path('uploads'), $file_name);
-            $request->merge(['ds_file' => $file_name]);
+        // $request->validate([
+        //     'trang_thai' => 'required',
+        // ]);
+        // tránh commit 1 dữ liệu 2 lần
+        try{
+            DB::beginTransaction();
+            $data = [
+                'so_vb_den'         => $request->so_vb_den, 
+                'ki_hieu'           => $request->ki_hieu,
+                'ngay_nhan'         => $request->ngay_nhan,
+                'don_vi_ban_hanh'   => $request->don_vi_ban_hanh,
+                'hinh_thuc'         => $request->hinh_thuc,
+                'ngay_vb'           => $request->ngay_vb,
+                'trich_yeu'         => $request->trich_yeu,
+                'loai'              => $request->loai,
+                'linh_vuc'          => $request->linh_vuc,
+                'nguoi_ky'          => $request->nguoi_ky,
+                'do_mat'            => $request->do_mat,
+                'do_khan'           => $request->do_khan,
+                'chuc_vu'           => $request->chuc_vu,
+                'hinh_thuc_chuyen'  => $request->hinh_thuc_chuyen,
+                'hinh_thuc_luu'     => $request->hinh_thuc_luu,
+                'nv_nhan'           => auth()->id(),
+                'han_xu_ly'         => $request->han_xu_ly,
+            ];
+    
+            // liên kết với file stotageFileTrait để tối ưu lưu file vào hệ thống
+            $fileUpload = $this->storageTraitUpload($request, 'ds_file', 'vanBanDen');
+            
+            if(!empty($fileUpload)){
+                $data['ds_file'] = $fileUpload['file_name'];
+                $data['file_path'] = $fileUpload['file_path'];
+            }
+    
+            $add = VanBanDen::create($data);
+            DB::commit();
+            if($add){
+                return redirect()->route('vanBanDen.index')->with('success', 'Thêm mới thành công');
+            }
+    
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Thêm mới không thành công');
         }
 
-        //store
-        $add = VanBanDen::create($request->all());
-
-        if($add){
-            return redirect()->route('vanBanDen.index')->with('success', 'Thêm mới thành công');
-        }
-
-        return redirect()->back()->with('error', 'Thêm mới không thành công');
+        
     }
 
     /**
@@ -112,10 +141,36 @@ class VanBanDenController extends Controller
      * @param  \App\Models\VanBanDen  $vanBanDen
      * @return \Illuminate\Http\Response
      */
-    public function edit(VanBanDen $vanBanDen)
+    public function edit(VanBanDen $vanBanDen, $id)
     {
-        //
+        $vanBanDen      = VanBanDen::find($id);
+        $domat          = DoMat::orderBy('do_mat', 'ASC')->get();
+        $dokhan         = DoKhan::orderBy('do_khan', 'ASC')->get();
+        $linhvuc        = LinhVuc::orderBy('linh_vuc', 'ASC')->get();
+        $hinhthuc       = HinhThuc::orderBy('hinh_thuc', 'ASC')->get();
+        $hinhthucchuyen = HinhThucChuyen::orderBy('hinh_thuc_chuyen', 'ASC')->get();
+        $hinhthucluu    = HinhThucLuu::orderBy('hinh_thuc_luu', 'ASC')->get();
+        $theloai        = TheLoai::orderBy('ten_loai', 'ASC')->get();
+        $trangthai      = TrangThai::orderBy('trang_thai', 'ASC')->get();
+        $don_vi_ban_hanh= CoQuan::orderBy('ten_co_quan', 'ASC')->get();
+        $nguoidung      = User::orderBy('email', 'ASC')->get();
+        $chucdanh       = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        return view('vanBanDi.edit', compact(
+            'vanBanDen', 
+            'domat', 
+            'dokhan', 
+            'linhvuc',
+            'hinhthuc', 
+            'hinhthucchuyen',
+            'hinhthucluu',
+            'theloai', 
+            'trangthai', 
+            'don_vi_ban_hanh', 
+            'nguoidung', 
+            'chucdanh'
+        ));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -124,10 +179,30 @@ class VanBanDenController extends Controller
      * @param  \App\Models\VanBanDen  $vanBanDen
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VanBanDen $vanBanDen)
+    public function update(Request $request, VanBanDen $vanBanDen, $id)
     {
-        //
+        $vanBanDen->find($id)->update($request->only(
+                'ki_hieu'           ,
+                'ngay_nhan'         ,
+                'don_vi_ban_hanh'  ,
+                'hinh_thuc'         ,
+                'ngay_vb'          ,
+                'trich_yeu'         ,
+                'loai'              ,
+                'ds_file',
+                'linh_vuc'          ,
+                'nguoi_ky'          ,
+                'do_mat'           ,
+                'do_khan'           ,
+                'chuc_vu'           ,
+                'hinh_thuc_chuyen' ,
+                'hinh_thuc_luu'     ,
+                'han_xu_ly'     ,
+            'updated_at'));
+        
+        return redirect()->route('vanBanDen.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -135,8 +210,9 @@ class VanBanDenController extends Controller
      * @param  \App\Models\VanBanDen  $vanBanDen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VanBanDen $vanBanDen)
+    public function destroy(VanBanDen $vanBanDen, $id)
     {
-        //
+        $vanBanDen->find($id)->delete();
+        return redirect()->route('vanBanDen.index')->with('success','Xóa văn bản đến thành công');
     }
 }

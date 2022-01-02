@@ -17,6 +17,8 @@ use App\Models\CoQuan;
 use App\Models\HinhThucLuu;
 use App\Models\LinhVuc;
 use App\Traits\StorageFileTrait;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class VanBanDiController extends Controller
@@ -36,7 +38,7 @@ class VanBanDiController extends Controller
     public function index()
     {
          // trỏ đến hàm scopeSearch trong model vanBanDi để rút gọn code
-         $data = VanBanDi::orderBy('created_at', 'ASC')->paginate(5);
+         $data = VanBanDi::orderBy('created_at', 'DESC')->paginate(5);
 
          return view('vanBanDi.index', compact('data'));
     }
@@ -85,49 +87,48 @@ class VanBanDiController extends Controller
         // $request->validate([
         //     'trang_thai' => 'required',
         // ]);
-
-
-        //store
-        // $add = VanBanDi::create($request->all());
-
-        $data = [
-            'so_vb_di' => $request->so_vb_di, 
-            'ki_hieu'=> $request->ki_hieu,
-            'ngay_gui'=> $request->ngay_gui,
-            'loai'=> $request->loai,
-            'hinh_thuc'=> $request->hinh_thuc,
-            'linh_vuc'=> $request->linh_vuc,
-            'so_trang'=> $request->so_trang,
-            'so_luong'=> $request->so_luong,
-            'trich_yeu'=> $request->trich_yeu,
-            'nguoi_ky'=> $request->nguoi_ky,
-            'nv_phathanh' => auth()->id(),
-            'chuc_vu'=> $request->chuc_vu,
-            'noi_gui'=> $request->noi_gui,
-            'do_khan'=> $request->do_khan,
-            'hinh_thuc_luu'=> $request->hinh_thuc_luu,
-            'noi_nhan'=> $request->noi_nhan,
-            'han_xu_ly'=> $request->han_xu_ly,
-
-        ];
-
-        // liên kết với file stotageFileTrait để tối ưu lưu file vào hệ thống
-        $fileUpload = $this->storageTraitUpload($request, 'ds_file', 'vanBanDi');
-        dd($fileUpload);
-        if(!empty($fileUpload)){
-            $data['ds_file'] = $fileUpload['file_name'];
-            $data['file_path'] = $fileUpload['file_path'];
+        // tránh commit 1 dữ liệu 2 lần
+        try{
+            DB::beginTransaction();
+            $data = [
+                'so_vb_di' => $request->so_vb_di, 
+                'ki_hieu'=> $request->ki_hieu,
+                'ngay_gui'=> $request->ngay_gui,
+                'loai'=> $request->loai,
+                'hinh_thuc'=> $request->hinh_thuc,
+                'linh_vuc'=> $request->linh_vuc,
+                'so_trang'=> $request->so_trang,
+                'so_luong'=> $request->so_luong,
+                'trich_yeu'=> $request->trich_yeu,
+                'nguoi_ky'=> $request->nguoi_ky,
+                'nv_phathanh' => auth()->id(),
+                'chuc_vu'=> $request->chuc_vu,
+                'noi_gui'=> $request->noi_gui,
+                'do_khan'=> $request->do_khan,
+                'hinh_thuc_luu'=> $request->hinh_thuc_luu,
+                'noi_nhan'=> $request->noi_nhan,
+                'han_xu_ly'=> $request->han_xu_ly,
+            ];
+    
+            // liên kết với file stotageFileTrait để tối ưu lưu file vào hệ thống
+            $fileUpload = $this->storageTraitUpload($request, 'ds_file', 'vanBanDi');
+            
+            if(!empty($fileUpload)){
+                $data['ds_file'] = $fileUpload['file_name'];
+                $data['file_path'] = $fileUpload['file_path'];
+            }
+    
+            $add = VanBanDi::create($data);
+            DB::commit();
+            if($add){
+                return redirect()->route('vanBanDi.index')->with('success', 'Thêm mới thành công');
+            }
+    
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Thêm mới không thành công');
         }
-
-        $vanBanDi = $this->vanBanDi->create($data);
-
-        dd($vanBanDi);
-
-        // if($add){
-        //     return redirect()->route('vanBanDi.index')->with('success', 'Thêm mới thành công');
-        // }
-
-        // return redirect()->back()->with('error', 'Thêm mới không thành công');
+        
     }
 
     /**
@@ -147,9 +148,32 @@ class VanBanDiController extends Controller
      * @param  \App\Models\VanBanDi  $vanBanDi
      * @return \Illuminate\Http\Response
      */
-    public function edit(VanBanDi $vanBanDi)
+    public function edit(VanBanDi $vanBanDi, $id)
     {
-        //
+        $vanBanDi = VanBanDi::find($id);
+        $domat = DoMat::orderBy('do_mat', 'ASC')->get();
+        $dokhan = DoKhan::orderBy('do_khan', 'ASC')->get();
+        $linhvuc = LinhVuc::orderBy('linh_vuc', 'ASC')->get();
+        $hinhthuc = HinhThuc::orderBy('hinh_thuc', 'ASC')->get();
+        $hinhthucluu = HinhThucLuu::orderBy('hinh_thuc_luu', 'ASC')->get();
+        $theloai = TheLoai::orderBy('ten_loai', 'ASC')->get();
+        $trangthai = TrangThai::orderBy('trang_thai', 'ASC')->get();
+        $coquan = CoQuan::orderBy('ten_co_quan', 'ASC')->get();
+        $chucdanh = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        $nguoidung = User::orderBy('email', 'ASC')->get();
+        return view('vanBanDi.edit', compact(
+            'vanBanDi', 
+            'domat', 
+            'dokhan', 
+            'hinhthuc', 
+            'linhvuc', 
+            'hinhthucluu', 
+            'theloai', 
+            'trangthai', 
+            'coquan', 
+            'chucdanh', 
+            'nguoidung'
+        ));
     }
 
     /**
@@ -159,9 +183,26 @@ class VanBanDiController extends Controller
      * @param  \App\Models\VanBanDi  $vanBanDi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VanBanDi $vanBanDi)
+    public function update(Request $request, VanBanDi $vanBanDi, $id)
     {
-        //
+        $vanBanDi->find($id)->update($request->only(
+            'ki_hieu', 
+            'ngay_gui', 
+            'loai', 
+            'hinh_thuc', 
+            'linh_vuc', 
+            'so_trang', 
+            'trich_yeu', 
+            'nguoi_ky',
+            'chuc_vu',
+            'noi_gui',
+            'do_khan',
+            'hinh_thuc_luu',
+            'noi_nhan',
+            'han_xu_ly',
+            'updated_at'));
+        
+        return redirect()->route('vanBanDi.index');
     }
 
     /**
@@ -170,8 +211,9 @@ class VanBanDiController extends Controller
      * @param  \App\Models\VanBanDi  $vanBanDi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VanBanDi $vanBanDi)
+    public function destroy(VanBanDi $vanBanDi, $id)
     {
-        //
+        $vanBanDi->find($id)->delete();
+        return redirect()->route('vanBanDi.index')->with('success','Xóa văn bản đi thành công');
     }
 }

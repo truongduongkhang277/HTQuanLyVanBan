@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Thêm văn bản đến mới
+    Thêm văn bản đi mới
 @endsection
 
 @section('css')
@@ -16,12 +16,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Thêm văn bản đến mới</h1>
+                        <h1 class="m-0">Thêm văn bản đi mới</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active">Thêm văn bản đến mới</li>
+                            <li class="breadcrumb-item active">Thêm văn bản đi mới</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -94,7 +94,7 @@
                                     <div class="form-group">
                                         <label for="my-input">Trích yếu</label>
                                         <textarea class="form-control" type="text" name="trich_yeu" rows="3"
-                                            placeholder="Trích yếu của văn bản đến"></textarea>
+                                            placeholder="Trích yếu của văn bản đi"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">

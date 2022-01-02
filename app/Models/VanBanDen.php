@@ -22,6 +22,7 @@ class VanBanDen extends Model
         'linh_vuc', 
         'nguoi_ky', 
         'ds_file', 
+        'file_path',
         'do_mat', 
         'do_khan', 
         'chuc_vu', 

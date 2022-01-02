@@ -25,7 +25,8 @@ class VanBanDi extends Model
         'trich_yeu', 
         'nguoi_ky',
         'nv_phathanh',  
-        'ds_file', 
+        'ds_file',
+        'file_path', 
         'chuc_vu',
         'noi_gui', 
         'do_khan',  
@@ -46,5 +47,18 @@ class VanBanDi extends Model
         return $query;
     }
 
-    //global scope
+    public function nguoiKy(){
+        // 1 văn bản có 1 người dùng
+        return $this->belongsTo('App\Models\User', 'nguoi_ky');
+    }
+
+    // public function nvPhatHanh(){
+    //      1 văn bản có 1 nhân viên phát hành
+    //     return $this->belongsTo('App\Models\User', 'nv_phathanh');
+    // }
+
+    public function dvBanHanh(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\CoQuan', 'noi_gui');
+    }
 }
