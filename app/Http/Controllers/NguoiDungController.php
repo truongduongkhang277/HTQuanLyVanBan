@@ -82,11 +82,11 @@ class NguoiDungController extends Controller
     {
         $nguoiDung->ngay_sinh = date('d/m/Y');
         
-        $fileUpload = $this->storageTraitUpload($request, 'anh', 'nguoiDung');
-        if(!empty($fileUpload)){
-            $data['anh'] = $fileUpload['file_name'];
-            $data['file_path'] = $fileUpload['file_path'];
-        }
+        // $fileUpload = $this->storageTraitUpload($request, 'anh', 'nguoiDung');
+        // if(!empty($fileUpload)){
+        //     $data['anh'] = $fileUpload['file_name'];
+        //     $data['file_path'] = $fileUpload['file_path'];
+        // }
         $nguoiDung->update($request->only('name', 'ngay_sinh', 'so_dt', 'gioi_tinh', 'dia_chi', 'anh', 'trang_thai')); 
         
         if(is_array($request->chuc_danh)){
