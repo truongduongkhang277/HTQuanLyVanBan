@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChucDanh;
 use App\Models\VanBanDi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Models\HinhThuc;
 use App\Models\TheLoai;
@@ -15,9 +16,18 @@ use App\Models\User;
 use App\Models\CoQuan;
 use App\Models\HinhThucLuu;
 use App\Models\LinhVuc;
+use App\Traits\StorageFileTrait;
+use Illuminate\Support\Facades\Storage;
 
 class VanBanDiController extends Controller
 {
+
+    use StorageFileTrait;
+
+    public function __construct(VanBanDi $vanBanDi){
+        $this->$vanBanDi = $vanBanDi;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -70,26 +80,54 @@ class VanBanDiController extends Controller
      */
     public function store(Request $request)
     {
-        //validate
-        $request->validate([
-            //'trang_thai' => 'required'
-        ]);
 
-        // upload file
-        if($request->has('upload')){
-            $file_name = $request->upload->getClientOrginalName();
-            $request->upload->move(public_path('uploads'), $file_name);
-            $request->merge(['ds_file' => $file_name]);
-        }
+        //validate
+        // $request->validate([
+        //     'trang_thai' => 'required',
+        // ]);
+
 
         //store
-        $add = VanBanDi::create($request->all());
+        // $add = VanBanDi::create($request->all());
 
-        if($add){
-            return redirect()->route('vanBanDi.index')->with('success', 'Thêm mới thành công');
+        $data = [
+            'so_vb_di' => $request->so_vb_di, 
+            'ki_hieu'=> $request->ki_hieu,
+            'ngay_gui'=> $request->ngay_gui,
+            'loai'=> $request->loai,
+            'hinh_thuc'=> $request->hinh_thuc,
+            'linh_vuc'=> $request->linh_vuc,
+            'so_trang'=> $request->so_trang,
+            'so_luong'=> $request->so_luong,
+            'trich_yeu'=> $request->trich_yeu,
+            'nguoi_ky'=> $request->nguoi_ky,
+            'nv_phathanh' => auth()->id(),
+            'chuc_vu'=> $request->chuc_vu,
+            'noi_gui'=> $request->noi_gui,
+            'do_khan'=> $request->do_khan,
+            'hinh_thuc_luu'=> $request->hinh_thuc_luu,
+            'noi_nhan'=> $request->noi_nhan,
+            'han_xu_ly'=> $request->han_xu_ly,
+
+        ];
+
+        // liên kết với file stotageFileTrait để tối ưu lưu file vào hệ thống
+        $fileUpload = $this->storageTraitUpload($request, 'ds_file', 'vanBanDi');
+        dd($fileUpload);
+        if(!empty($fileUpload)){
+            $data['ds_file'] = $fileUpload['file_name'];
+            $data['file_path'] = $fileUpload['file_path'];
         }
 
-        return redirect()->back()->with('error', 'Thêm mới không thành công');
+        $vanBanDi = $this->vanBanDi->create($data);
+
+        dd($vanBanDi);
+
+        // if($add){
+        //     return redirect()->route('vanBanDi.index')->with('success', 'Thêm mới thành công');
+        // }
+
+        // return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**

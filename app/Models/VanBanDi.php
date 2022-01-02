@@ -10,6 +10,8 @@ class VanBanDi extends Model
     use HasFactory;
     protected $table = 'tbl_vanban_di';
 
+    protected $guarded = [];
+
     protected $fillable = 
     [
         'so_vb_di', 

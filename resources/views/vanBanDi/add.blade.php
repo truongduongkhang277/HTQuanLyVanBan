@@ -107,15 +107,16 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="my-input">Nhân viên phát hành</label>
+                                        <input class="form-control" type="text" name="nv_phathanh">
                                         <select class="form-control" type="text" name="nv_phathanh" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($nguoidung as $nv_phathanh)
                                                 <option value="{{ $nv_phathanh->id }}">{{ $nv_phathanh->name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
                                         <input class="form-control-file" type="file" name="ds_file">

@@ -34,6 +34,7 @@ use App\Http\Controllers\VanBanDiController;
 // đăng nhập
 Route::get('/', [AdminController::class, 'loginAdmin'])->name('login');
 Route::post('/', [AdminController::class, 'postLoginAdmin']);
+Route::get('logout', [AdminController::class, 'logout'])->name('logout');
 
 Route::get('/home', function(){
     return view('home');
