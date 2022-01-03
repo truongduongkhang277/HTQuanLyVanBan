@@ -11,9 +11,21 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <h1 class="m-0">Danh sách văn bản đến</h1>
                     </div><!-- /.col -->
+                    <div class="col-sm-4">
+                        <form action="">
+                            <div class="input-group input-group-md">
+                                <input type="search" class="form-control form-control-md" name="key" placeholder="Tìm kiếm văn bản đến bằng trích yếu">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-md btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -29,27 +41,32 @@
                     <div class="col-md-12">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
+                                <tr style="text-align: center">
                                     <th>Ngày nhận</th>
-                                    <th>Số VB đến</th>
                                     <th>ĐVBH</th>
                                     <th>Ký hiệu</th>
                                     <th>Ngày VB</th>
                                     <th>Trích yếu</th>
+                                    <th style="width: 10%">Danh sách file</th>
                                     <th>Người kí</th>
-                                    <th class="text-right">Thao tác</th>
+                                    <th style="width: 16%">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($data as $vanbanden)
                                     <tr>
                                         <td>{{ $vanbanden->ngay_nhan }}</td>
-                                        <td>{{ $vanbanden->so_vb_den }}</td>
-                                        <td>{{ $vanbanden->don_vi_ban_hanh }}</td>
+                                        <td>{{ optional($vanbanden->dvBanHanh)->ten_co_quan }}</td>
                                         <td>{{ $vanbanden->ki_hieu }}</td>
                                         <td>{{ $vanbanden->ngay_vb }}</td>
                                         <td>{{ $vanbanden->trich_yeu }}</td>
-                                        <td>{{ $vanbanden->nguoi_ky }}</td>
+                                        @if (!empty($vanbanden->file_path))
+                                            <td><a class="btn btn-primary" href="{{ $vanbanden->file_path }}">Download về
+                                                    máy</a></td>
+                                        @else
+                                            <td style="text-align: center; color:red">Không có file đính kèm</td>
+                                        @endif
+                                        <td>{{ optional($vanbanden->nguoiKy)->name }}</td>
                                         <td style="text-align: center">
                                             <a href="{{ route('vanBanDen.edit', ['id' => $vanbanden->id]) }}"
                                                 class="btn btn-success">Chỉnh sửa </a>

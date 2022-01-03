@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Danh sách trạng thái
+    Danh sách tài khoản người dùng
 @endsection
 
 @section('content')
@@ -11,9 +11,21 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Danh sách trạng thái</h1>
+                    <div class="col-sm-8">
+                        <h1 class="m-0">Danh sách tài khoản người dùng</h1>
                     </div><!-- /.col -->
+                    <div class="col-sm-4">
+                        <form action="">
+                            <div class="input-group input-group-md">
+                                <input type="search" class="form-control form-control-md" name="key" placeholder="Tìm kiếm tài khoản người dùng bằng tên người dùng">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-md btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>

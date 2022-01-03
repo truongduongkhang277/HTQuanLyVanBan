@@ -10,14 +10,14 @@ class TrangThai extends Model
     use HasFactory;
     protected $table = 'tbl_trangthai';
 
-    protected $fillable = ['trang_thai', 'status', 'ghi_chu'];
+    protected $fillable = ['ten_trang_thai', 'trang_thai', 'ghi_chu'];
 
     //thêm local scope
 
     public function scopeSearch($query)
     {
         if($key = request()->key){
-            $query = $query->where('trang_thai', 'like', '%'.$key.'%');
+            $query = $query->where('ten_trang_thai', 'like', '%'.$key.'%');
         }
 
         return $query;

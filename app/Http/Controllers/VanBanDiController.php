@@ -38,7 +38,7 @@ class VanBanDiController extends Controller
     public function index()
     {
          // trỏ đến hàm scopeSearch trong model vanBanDi để rút gọn code
-         $data = VanBanDi::orderBy('created_at', 'DESC')->paginate(5);
+         $data = VanBanDi::orderBy('created_at', 'DESC')->search()->paginate(5);
 
          return view('vanBanDi.index', compact('data'));
     }
@@ -137,9 +137,32 @@ class VanBanDiController extends Controller
      * @param  \App\Models\VanBanDi  $vanBanDi
      * @return \Illuminate\Http\Response
      */
-    public function show(VanBanDi $vanBanDi)
+    public function show(VanBanDi $vanBanDi, $id)
     {
-        //
+        $vanBanDi = VanBanDi::find($id);
+        $domat = DoMat::orderBy('do_mat', 'ASC')->get();
+        $dokhan = DoKhan::orderBy('do_khan', 'ASC')->get();
+        $linhvuc = LinhVuc::orderBy('linh_vuc', 'ASC')->get();
+        $hinhthuc = HinhThuc::orderBy('hinh_thuc', 'ASC')->get();
+        $hinhthucluu = HinhThucLuu::orderBy('hinh_thuc_luu', 'ASC')->get();
+        $theloai = TheLoai::orderBy('ten_loai', 'ASC')->get();
+        $trangthai = TrangThai::orderBy('trang_thai', 'ASC')->get();
+        $coquan = CoQuan::orderBy('ten_co_quan', 'ASC')->get();
+        $chucdanh = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        $nguoidung = User::orderBy('email', 'ASC')->get();
+        return view('vanBanDi.show', compact(
+            'vanBanDi', 
+            'domat', 
+            'dokhan', 
+            'hinhthuc', 
+            'linhvuc', 
+            'hinhthucluu', 
+            'theloai', 
+            'trangthai', 
+            'coquan', 
+            'chucdanh', 
+            'nguoidung'
+        ));
     }
 
     /**

@@ -14,6 +14,18 @@
                     <div class="col-sm-6">
                         <h1 class="m-0">Danh sách trạng thái</h1>
                     </div><!-- /.col -->
+                    <div class="col-sm-4">
+                        <form action="">
+                            <div class="input-group input-group-md">
+                                <input type="search" class="form-control form-control-md" name="key" placeholder="Tìm kiếm trạng thái bằng tên trạng thái">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-md btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -31,7 +43,7 @@
                             <thead>
                                 <tr style="text-align:center">
                                     <th>Mã</th>
-                                    <th>Trạng thái</th>
+                                    <th>Tên trạng thái</th>
                                     <th>Trạng thái</th>
                                     <th>Thao tác</th>
                                 </tr>
@@ -40,8 +52,8 @@
                                 @foreach ($data as $trangthai)
                                     <tr>
                                         <td style="text-align:center">{{ $trangthai->id }}</td>
-                                        <td>{{ $trangthai->trang_thai }}</td>
-                                        @if ($trangthai->status == 1)
+                                        <td>{{ $trangthai->ten_trang_thai }}</td>
+                                        @if ($trangthai->trang_thai == 1)
                                             <td style="text-align: center; color:green"> Kích hoạt</td>
                                         @else
                                             <td style="text-align: center; color:red"> Ngừng hoạt động</td>

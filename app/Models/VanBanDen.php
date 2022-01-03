@@ -44,5 +44,13 @@ class VanBanDen extends Model
         return $query;
     }
 
-    //global scope
+    public function nguoiKy(){
+        // 1 văn bản có 1 người dùng
+        return $this->belongsTo('App\Models\User', 'nguoi_ky');
+    }
+
+    public function dvBanHanh(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\CoQuan', 'don_vi_ban_hanh');
+    }
 }

@@ -10,7 +10,7 @@ class AdminController extends Controller
 
     public function loginAdmin()
     {
-        if (!auth()->check()) {
+        if (auth()->check()) {
             return redirect()->route('login');
         }
         return view('login');

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Danh sách văn bản đến
+    Danh sách văn bản đi
 @endsection
 
 @section('content')
@@ -11,9 +11,21 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Danh sách trạng thái</h1>
+                    <div class="col-sm-8">
+                        <h1 class="m-0">Danh sách văn bản đi</h1>
                     </div><!-- /.col -->
+                    <div class="col-sm-4">
+                        <form action="">
+                            <div class="input-group input-group-md">
+                                <input type="search" class="form-control form-control-md" name="key" placeholder="Tìm kiếm văn bản đi bằng trích dẫn">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-md btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -31,10 +43,10 @@
                             <thead>
                                 <tr style="text-align: center">
                                     <th>Ngày gửi</th>
-                                    <th style="width: 18%">ĐVBH</th>
+                                    <th style="width: 18%">Nơi nhận</th>
                                     <th>Ký hiệu</th>
                                     <th style="width: 20%">Trích yếu</th>
-                                    <th style="width: 10%">Danh sách file</th>
+                                    <th style="width: 12%">Danh sách file</th>
                                     <th>Người kí</th>
                                     <th style="width: 18%">Thao tác</th>
                                 </tr>
@@ -43,19 +55,20 @@
                                 @foreach ($data as $vanbandi)
                                     <tr>
                                         <td>{{ $vanbandi->ngay_gui }}</td>
-                                        <td>{{ optional($vanbandi->dvBanHanh)->ten_co_quan }}</td>
+                                        <td>{{ optional($vanbandi->noiNhan)->ten_co_quan }}</td>
                                         <td style="text-align: center">{{ $vanbandi->ki_hieu }}</td>
                                         <td>{{ $vanbandi->trich_yeu }}</td>
                                         @if (!empty($vanbandi->file_path))
-                                            <td><a class="btn btn-primary" href="{{ $vanbandi->file_path }}">Download về
-                                                    máy</a></td>
+                                            <td style=" word-break: keep-all;"><a href="{{ $vanbandi->file_path }}">{{ $vanbandi->ds_file }}</a></td>
                                         @else
                                             <td style="text-align: center; color:red">Không có file đính kèm</td>
                                         @endif
                                         <td>{{ optional($vanbandi->nguoiKy)->name }}</td>
                                         <td style="text-align: center">
+                                            <a href="{{ route('vanBanDi.show', ['id' => $vanbandi->id]) }}"
+                                                class="btn btn-info">Xem </a>
                                             <a href="{{ route('vanBanDi.edit', ['id' => $vanbandi->id]) }}"
-                                                class="btn btn-success">Chỉnh sửa </a>
+                                                class="btn btn-success">Sửa </a>
                                             <a href="{{ route('vanBanDi.delete', ['id' => $vanbandi->id]) }}"
                                                 class="delete btn btn-danger"
                                                 onclick="return confirm('Bạn có muốn xóa trạng thái này ?');">Xóa </a>
@@ -65,7 +78,7 @@
                             </tbody>
                         </table>
                         <hr>
-                        <div class="d-grid gap-2 col-4 mx-auto">
+                        <div class="d-grid gap-2 col-3 mx-auto">
                             <div class="col">
                                 {{ $data->appends(request()->all())->links() }}
                             </div>

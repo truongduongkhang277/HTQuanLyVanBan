@@ -52,13 +52,48 @@ class VanBanDi extends Model
         return $this->belongsTo('App\Models\User', 'nguoi_ky');
     }
 
-    // public function nvPhatHanh(){
-    //      1 văn bản có 1 nhân viên phát hành
-    //     return $this->belongsTo('App\Models\User', 'nv_phathanh');
-    // }
+    public function nvPhatHanh(){
+        // 1 văn bản có 1 nhân viên phát hành
+        return $this->belongsTo('App\Models\User', 'nv_phathanh');
+    }
 
-    public function dvBanHanh(){
+    public function noiNhan(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\CoQuan', 'noi_nhan');
+    }
+
+    public function loaiVB(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\TheLoai', 'loai');
+    }
+
+    public function hinhThuc(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\HinhThuc', 'hinh_thuc');
+    }
+
+    public function linhVuc(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\LinhVuc', 'linh_vuc');
+    }
+
+    public function chucVu(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\ChucDanh', 'chuc_vu');
+    }
+
+    public function noiGui(){
         // 1 văn bản có 1 đơn vị ban hành
         return $this->belongsTo('App\Models\CoQuan', 'noi_gui');
+    }
+
+    public function hinhThucLuu(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\HinhThucLuu', 'hinh_thuc_luu');
+    }
+
+    public function doKhan(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\DoKhan', 'do_khan');
     }
 }
