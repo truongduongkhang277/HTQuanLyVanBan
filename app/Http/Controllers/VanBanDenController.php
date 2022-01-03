@@ -122,7 +122,6 @@ class VanBanDenController extends Controller
         
             return redirect()->back()->with('error', 'Thêm mới không thành công');
         }
-
         
     }
 

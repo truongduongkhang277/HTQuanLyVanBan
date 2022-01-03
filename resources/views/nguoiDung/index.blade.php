@@ -47,7 +47,7 @@
                                     <th>Họ và tên</th>
                                     <th>Ngày sinh</th>
                                     <th>Số điện thoại</th>
-                                    <th>Ảnh</th>
+                                    <th style="width: 10%">Ảnh</th>
                                     <th>Ngày tạo</th>
                                     <th style="width: 18%">Thao tác</th>
                                 </tr>
@@ -59,7 +59,14 @@
                                         <td>{{ $nguoidung->name }}</td>
                                         <td>{{ $nguoidung->ngay_sinh }}</td>
                                         <td>{{ $nguoidung->so_dt }}</td>
-                                        <td>{{ $nguoidung->anh }}</td>
+                                        @if (!empty($nguoidung->file_path))
+                                        <td>
+                                            <img style="width: 80px; height= 80px; object-fit:cover" src="{{$nguoidung->file_path }}" alt="{{$nguoidung->anh}}">
+                                        </td>
+                                        @else
+                                            <td style="text-align: center; color:red">Không có ảnh hiển thị</td>
+                                        @endif
+                                        
                                         <td>{{ $nguoidung->created_at->format('d-m-Y') }}</td>
                                         <td style="text-align: center">
                                             <a href="{{ route('nguoiDung.show', ['id' => $nguoidung->id]) }}"

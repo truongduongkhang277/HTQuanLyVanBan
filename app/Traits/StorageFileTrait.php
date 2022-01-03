@@ -25,7 +25,5 @@ trait StorageFileTrait{
             return $dataUploadTrait;
         }      
         return null;   
-
-
     }
 }

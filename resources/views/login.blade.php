@@ -62,7 +62,6 @@
                 <hr/>
                 <p class="mb-1">
                     <a href="forgot-password.html" class="btn btn-info">Quên mật khẩu</a>
-                    <a href="register.html" class="btn btn-info text-center float-right">Đăng kí</a>
                 </p>
             </div>
             <!-- /.card-body -->

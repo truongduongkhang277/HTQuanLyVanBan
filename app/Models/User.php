@@ -27,9 +27,11 @@ class User extends Authenticatable
         'gioi_tinh',
         'dia_chi',
         'anh',
+        'file_path',
         'bo_phan',
         'chuc_danh',
-        'trang_thai'
+        'trang_thai',
+        'created_by',
     ];
 
     /**

@@ -12,11 +12,17 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
+                @if (!empty(auth()->user()->file_path))
+                <img src="{{ auth()->user()->file_path }}" class="img-circle elevation-2"
+                alt="User Image">
+                @else
                 <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                    alt="User Image">
+                alt="User Image">
+                @endif
+                
             </div>
             <div class="info">
-                <a href="{{ route('home') }}" class="d-block">Alexander Pierce</a>
+                <a href="{{ route('home') }}" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 

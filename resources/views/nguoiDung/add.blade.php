@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Thêm lĩnh vực mới
+    Thêm tài khoản mới
 @endsection
 
 @section('content')
@@ -12,12 +12,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Thêm lĩnh vực mới</h1>
+                        <h1 class="m-0">Thêm tài khoản mới</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active">Thêm lĩnh vực mới</li>
+                            <li class="breadcrumb-item active">Thêm tài khoản mới</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -30,7 +30,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-10 mx-auto">
-                        <form action="{{ route('nguoiDung.store') }}" method="POST" role="form">
+                        <form action="{{ route('nguoiDung.store') }}" method="POST" role="form" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-5">
@@ -40,7 +40,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Tên đăng nhập</label>
-                                        <input type="text" class="form-control" name="email">
+                                        <input type="email" class="form-control" name="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mật khẩu</label>
+                                        <input type="password" class="form-control" name="password">
                                     </div>
                                     <!-- Date dd/mm/yyyy -->
                                     <div class="form-group">
