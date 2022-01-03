@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-<link href="{{asset('vendors/select2/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -66,7 +66,8 @@
                                         <select class="form-control" type="text" name="hinh_thuc" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($hinhthuc as $hinh_thuc)
-                                                <option value="{{ $hinh_thuc->id }}">{{ $hinh_thuc->hinh_thuc }}</option>
+                                                <option value="{{ $hinh_thuc->id }}">{{ $hinh_thuc->hinh_thuc }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -128,7 +129,8 @@
                                         <select class="form-control" type="text" name="chuc_vu" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($chucdanh as $chuc_danh)
-                                                <option value="{{ $chuc_danh->id }}">{{ $chuc_danh->ten_quyen }}</option>
+                                                <option value="{{ $chuc_danh->id }}">{{ $chuc_danh->ten_quyen }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -137,7 +139,8 @@
                                         <select class="form-control" type="text" name="noi_gui" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($coquan as $co_quan)
-                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}</option>
+                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -167,7 +170,8 @@
                                         <select class="form-control" type="text" name="noi_nhan" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($coquan as $co_quan)
-                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}</option>
+                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -194,5 +198,5 @@
 
 @section('js')
 
-<script src="{{asset('vendors/select2/select2.min.js')}}"></script>
+    <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
 @endsection

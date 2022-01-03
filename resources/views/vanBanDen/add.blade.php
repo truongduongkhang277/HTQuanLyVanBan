@@ -64,7 +64,8 @@
                                         <select class="form-control" type="text" name="hinh_thuc" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($hinhthuc as $hinh_thuc)
-                                                <option value="{{ $hinh_thuc->id }}">{{ $hinh_thuc->hinh_thuc }}</option>
+                                                <option value="{{ $hinh_thuc->id }}">{{ $hinh_thuc->hinh_thuc }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -137,7 +138,8 @@
                                         <select class="form-control" type="text" name="chuc_vu" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($chucdanh as $chuc_danh)
-                                                <option value="{{ $chuc_danh->id }}">{{ $chuc_danh->ten_quyen }}</option>
+                                                <option value="{{ $chuc_danh->id }}">{{ $chuc_danh->ten_quyen }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>

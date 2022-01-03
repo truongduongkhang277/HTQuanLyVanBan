@@ -38,7 +38,19 @@ class LinhVucController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        $request->validate([
+            'linh_vuc' => 'required'
+        ]);
+
+        //store
+        $add = LinhVuc::create($request->all());
+
+        if($add){
+            return redirect()->route('linhVuc.index')->with('success', 'Thêm mới thành công');
+        }
+
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**
@@ -47,9 +59,10 @@ class LinhVucController extends Controller
      * @param  \App\Models\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Http\Response
      */
-    public function show(LinhVuc $linhVuc)
+    public function show(LinhVuc $linhVuc, $id)
     {
-        //
+        $linhVuc = LinhVuc::find($id);
+        return view('linhVuc.show', compact('linhVuc'));
     }
 
     /**

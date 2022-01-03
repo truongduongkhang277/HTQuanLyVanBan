@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-<link href="{{asset('vendors/select2/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -34,21 +34,25 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-11 mx-auto">
-                        <form action="{{ route('vanBanDi.update', $vanBanDi->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('vanBanDi.update', $vanBanDi->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Số văn bản đi</label>
-                                        <input class="form-control" type="text" name="so_vb_di" value="{{ $vanBanDi->so_vb_di }}">
+                                        <input class="form-control" type="text" name="so_vb_di"
+                                            value="{{ $vanBanDi->so_vb_di }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Số kí hiệu</label>
-                                        <input class="form-control" type="text" name="ki_hieu" value="{{ $vanBanDi->ki_hieu }}">
+                                        <input class="form-control" type="text" name="ki_hieu"
+                                            value="{{ $vanBanDi->ki_hieu }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Ngày ban hành</label>
-                                        <input class="form-control" type="text" name="ngay_gui" value="{{ $vanBanDi->ngay_gui }}">
+                                        <input class="form-control" type="text" name="ngay_gui"
+                                            value="{{ $vanBanDi->ngay_gui }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -66,7 +70,8 @@
                                         <select class="form-control" type="text" name="hinh_thuc" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($hinhthuc as $hinh_thuc)
-                                                <option value="{{ $hinh_thuc->id }}">{{ $hinh_thuc->hinh_thuc }}</option>
+                                                <option value="{{ $hinh_thuc->id }}">{{ $hinh_thuc->hinh_thuc }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -83,18 +88,20 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Số trang</label>
-                                        <input class="form-control" type="text" name="so_trang" value="{{ $vanBanDi->so_trang }}">
+                                        <input class="form-control" type="text" name="so_trang"
+                                            value="{{ $vanBanDi->so_trang }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Số lượng bản phát hành</label>
-                                        <input class="form-control" type="text" name="so_luong" value="{{ $vanBanDi->so_luong }}">
+                                        <input class="form-control" type="text" name="so_luong"
+                                            value="{{ $vanBanDi->so_luong }}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="my-input">Trích yếu</label>
-                                        <textarea class="form-control" type="text" name="trich_yeu" rows="3"
-                                        >{{ $vanBanDi->trich_yeu }}</textarea>
+                                        <textarea class="form-control" type="text" name="trich_yeu"
+                                            rows="3">{{ $vanBanDi->trich_yeu }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -119,7 +126,7 @@
                                     </div> --}}
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
-                                        <input class="form-control-file" type="file" name="ds_file" >
+                                        <input class="form-control-file" type="file" name="ds_file">
                                         <a>{{ $vanBanDi->ds_file }}</a>
                                     </div>
                                 </div>
@@ -129,7 +136,8 @@
                                         <select class="form-control" type="text" name="chuc_vu" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($chucdanh as $chuc_danh)
-                                                <option value="{{ $chuc_danh->id }}">{{ $chuc_danh->ten_quyen }}</option>
+                                                <option value="{{ $chuc_danh->id }}">{{ $chuc_danh->ten_quyen }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -138,7 +146,8 @@
                                         <select class="form-control" type="text" name="noi_gui" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($coquan as $co_quan)
-                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}</option>
+                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -168,13 +177,15 @@
                                         <select class="form-control" type="text" name="noi_nhan" required>
                                             <option value="">Chọn một</option>
                                             @foreach ($coquan as $co_quan)
-                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}</option>
+                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Hạn xử lý</label>
-                                        <input class="form-control" type="text" name="han_xu_ly" value="{{ $vanBanDi->han_xu_ly }}">
+                                        <input class="form-control" type="text" name="han_xu_ly"
+                                            value="{{ $vanBanDi->han_xu_ly }}">
                                     </div>
                                 </div>
                             </div>
@@ -197,5 +208,5 @@
 
 @section('js')
 
-<script src="{{asset('vendors/select2/select2.min.js')}}"></script>
+    <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
 @endsection

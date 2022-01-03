@@ -60,9 +60,10 @@ class CoQuanController extends Controller
      * @param  \App\Models\CoQuan  $coQuan
      * @return \Illuminate\Http\Response
      */
-    public function show(CoQuan $coQuan)
+    public function show(CoQuan $coQuan, $id)
     {
-        //
+        $coQuan = CoQuan::find($id);
+        return view('coQuan.show', compact('coQuan'));
     }
 
     /**

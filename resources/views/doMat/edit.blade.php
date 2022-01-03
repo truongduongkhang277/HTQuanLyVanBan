@@ -34,8 +34,7 @@
                             @csrf @method('PUT')
                             <div class="form-group">
                                 <label for="">Độ mật</label>
-                                <input type="text" class="form-control" name="do_mat"
-                                    value="{{ $doMat->do_mat }}">
+                                <input type="text" class="form-control" name="do_mat" value="{{ $doMat->do_mat }}">
                                 @error('do_mat')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror

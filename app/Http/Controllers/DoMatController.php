@@ -59,9 +59,10 @@ class DoMatController extends Controller
      * @param  \App\Models\DoMat  $doMat
      * @return \Illuminate\Http\Response
      */
-    public function show(DoMat $doMat)
+    public function show(DoMat $doMat, $id)
     {
-        //
+        $doMat = DoMat::find($id);
+        return view('doMat.show', compact('doMat'));
     }
 
     /**

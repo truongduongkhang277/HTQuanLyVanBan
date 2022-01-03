@@ -17,7 +17,8 @@
                     <div class="col-sm-4">
                         <form action="">
                             <div class="input-group input-group-md">
-                                <input type="search" class="form-control form-control-md" name="key" placeholder="Tìm kiếm hình thức lưu bằng tên hình thức lưu">
+                                <input type="search" class="form-control form-control-md" name="key"
+                                    placeholder="Tìm kiếm hình thức lưu bằng tên hình thức lưu">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-md btn-default">
                                         <i class="fa fa-search"></i>
@@ -52,7 +53,7 @@
                                 @foreach ($data as $hinhThucLuu)
                                     <tr>
                                         <td style="text-align:center">{{ $hinhThucLuu->id }}</td>
-                                        <td>{{ $hinhThucLuu->hinh_thuc_luu}}</td>
+                                        <td>{{ $hinhThucLuu->hinh_thuc_luu }}</td>
                                         @if ($hinhThucLuu->trang_thai == 1)
                                             <td style="text-align: center; color:green"> Kích hoạt</td>
                                         @else

@@ -48,6 +48,8 @@ Route::prefix('boPhan')->group(function(){
     Route::get('/create',[BoPhanController::class, 'create'])->name('boPhan.create');
     // lưu trữ bộ phận vừa thêm, phương thức thêm
     Route::post('/store',[BoPhanController::class, 'store'])->name('boPhan.store');
+    // hiển thị bộ phận, phương thức hiển thị
+    Route::get('/show/{id}',[BoPhanController::class, 'show'])->name('boPhan.show'); 
     // chỉnh sửa bộ phận, phương thức chỉnh sửa
     Route::get('/edit/{id}',[BoPhanController::class, 'edit'])->name('boPhan.edit');    
     // lưu thông tin bộ phận vừa chỉnh sửa, phương thức chỉnh sửa
@@ -64,6 +66,8 @@ Route::prefix('chucDanh')->group(function(){
     Route::get('/create',[ChucDanhController::class, 'create'])->name('chucDanh.create');
     // lưu trữ chức danh vừa thêm, phương thức thêm
     Route::post('/store',[ChucDanhController::class, 'store'])->name('chucDanh.store');
+    // hiển thị chức danh, phương thức hiển thị
+    Route::get('/show/{id}',[ChucDanhController::class, 'show'])->name('chucDanh.show'); 
     // chỉnh sửa chức danh, phương thức chỉnh sửa
     Route::get('/edit/{id}',[ChucDanhController::class, 'edit'])->name('chucDanh.edit');    
     // lưu thông tin chức danh vừa chỉnh sửa, phương thức chỉnh sửa
@@ -80,6 +84,8 @@ Route::prefix('coQuan')->group(function(){
     Route::get('/create',[CoQuanController::class, 'create'])->name('coQuan.create');
     // lưu trữ cơ quan vừa thêm, phương thức thêm
     Route::post('/store',[CoQuanController::class, 'store'])->name('coQuan.store');
+    // hiển thị cơ quan, phương thức hiển thị
+    Route::get('/show/{id}',[CoQuanController::class, 'show'])->name('coQuan.show'); 
     // chỉnh sửa cơ quan, phương thức chỉnh sửa
     Route::get('/edit/{id}',[CoQuanController::class, 'edit'])->name('coQuan.edit');    
     // lưu thông tin cơ quan vừa chỉnh sửa, phương thức chỉnh sửa
@@ -96,6 +102,8 @@ Route::prefix('doKhan')->group(function(){
     Route::get('/create',[DoKhanController::class, 'create'])->name('doKhan.create');
     // lưu trữ độ khẩn vừa thêm, phương thức thêm
     Route::post('/store',[DoKhanController::class, 'store'])->name('doKhan.store');
+    // hiển thị độ khẩn, phương thức hiển thị
+    Route::get('/show/{id}',[DoKhanController::class, 'show'])->name('doKhan.show'); 
     // chỉnh sửa độ khẩn, phương thức chỉnh sửa
     Route::get('/edit/{id}',[DoKhanController::class, 'edit'])->name('doKhan.edit');    
     // lưu thông tin độ khẩn vừa chỉnh sửa, phương thức chỉnh sửa
@@ -112,6 +120,8 @@ Route::prefix('doMat')->group(function(){
     Route::get('/create',[DoMatController::class, 'create'])->name('doMat.create');
     // lưu trữ độ mật vừa thêm, phương thức thêm
     Route::post('/store',[DoMatController::class, 'store'])->name('doMat.store');
+    // hiển thị độ mật, phương thức hiển thị
+    Route::get('/show/{id}',[DoMatController::class, 'show'])->name('doMat.show'); 
     // chỉnh sửa độ mật, phương thức chỉnh sửa
     Route::get('/edit/{id}',[DoMatController::class, 'edit'])->name('doMat.edit');    
     // lưu thông tin độ mật vừa chỉnh sửa, phương thức chỉnh sửa
@@ -128,6 +138,8 @@ Route::prefix('hinhThuc')->group(function(){
     Route::get('/create',[HinhThucController::class, 'create'])->name('hinhThuc.create');
     // lưu trữ hình thức vừa thêm, phương thức thêm
     Route::post('/store',[HinhThucController::class, 'store'])->name('hinhThuc.store');
+    // hiển thị hình thức, phương thức hiển thị
+    Route::get('/show/{id}',[HinhThucController::class, 'show'])->name('hinhThuc.show'); 
     // chỉnh sửa hình thức, phương thức chỉnh sửa
     Route::get('/edit/{id}',[HinhThucController::class, 'edit'])->name('hinhThuc.edit');    
     // lưu thông tin hình thức vừa chỉnh sửa, phương thức chỉnh sửa
@@ -144,6 +156,8 @@ Route::prefix('hinhThucChuyen')->group(function(){
     Route::get('/create',[HinhThucChuyenController::class, 'create'])->name('hinhThucChuyen.create');
     // lưu trữ hình thức chuyển vừa thêm, phương thức thêm
     Route::post('/store',[HinhThucChuyenController::class, 'store'])->name('hinhThucChuyen.store');
+    // hiển thị hình thức chuyển, phương thức hiển thị
+    Route::get('/show/{id}',[HinhThucChuyenController::class, 'show'])->name('hinhThucChuyen.show'); 
     // chỉnh sửa hình thức chuyển, phương thức chỉnh sửa
     Route::get('/edit/{id}',[HinhThucChuyenController::class, 'edit'])->name('hinhThucChuyen.edit');    
     // lưu thông tin hình thức chuyển vừa chỉnh sửa, phương thức chỉnh sửa
@@ -160,6 +174,8 @@ Route::prefix('hinhThucLuu')->group(function(){
     Route::get('/create',[HinhThucLuuController::class, 'create'])->name('hinhThucLuu.create');
     // lưu trữ hình thức lưu vừa thêm, phương thức thêm
     Route::post('/store',[HinhThucLuuController::class, 'store'])->name('hinhThucLuu.store');
+    // hiển thị hình thức lưu, phương thức hiển thị
+    Route::get('/show/{id}',[HinhThucLuuController::class, 'show'])->name('hinhThucLuu.show'); 
     // chỉnh sửa hình thức lưu, phương thức chỉnh sửa
     Route::get('/edit/{id}',[HinhThucLuuController::class, 'edit'])->name('hinhThucLuu.edit');    
     // lưu thông tin hình thức lưu vừa chỉnh sửa, phương thức chỉnh sửa
@@ -176,6 +192,8 @@ Route::prefix('linhVuc')->group(function(){
     Route::get('/create',[LinhVucController::class, 'create'])->name('linhVuc.create');
     // lưu trữ lĩnh vực vừa thêm, phương thức thêm
     Route::post('/store',[LinhVucController::class, 'store'])->name('linhVuc.store');
+    // hiển thị lĩnh vực, phương thức hiển thị
+    Route::get('/show/{id}',[LinhVucController::class, 'show'])->name('linhVuc.show'); 
     // chỉnh sửa lĩnh vực, phương thức chỉnh sửa
     Route::get('/edit/{id}',[LinhVucController::class, 'edit'])->name('linhVuc.edit');    
     // lưu thông tin lĩnh vực vừa chỉnh sửa, phương thức chỉnh sửa
@@ -192,6 +210,8 @@ Route::prefix('nguoiDung')->group(function(){
     Route::get('/create',[NguoiDungController::class, 'create'])->name('nguoiDung.create');
     // lưu trữ tài khoản người dùng vừa thêm, phương thức thêm
     Route::post('/store',[NguoiDungController::class, 'store'])->name('nguoiDung.store');
+    // hiển thị tài khoản người dùng, phương thức hiển thị
+    Route::get('/show/{id}',[NguoiDungController::class, 'show'])->name('nguoiDung.show'); 
     // chỉnh sửa tài khoản người dùng, phương thức chỉnh sửa
     Route::get('/edit/{id}',[NguoiDungController::class, 'edit'])->name('nguoiDung.edit');    
     // lưu thông tin tài khoản người dùng vừa chỉnh sửa, phương thức chỉnh sửa
@@ -208,6 +228,8 @@ Route::prefix('theLoai')->group(function(){
     Route::get('/create',[TheLoaiController::class, 'create'])->name('theLoai.create');
     // lưu trữ thể loại vừa thêm, phương thức thêm
     Route::post('/store',[TheLoaiController::class, 'store'])->name('theLoai.store');
+    // hiển thị thể loại, phương thức hiển thị
+    Route::get('/show/{id}',[TheLoaiController::class, 'show'])->name('theLoai.show'); 
     // chỉnh sửa thể loại, phương thức chỉnh sửa
     Route::get('/edit/{id}',[TheLoaiController::class, 'edit'])->name('theLoai.edit');    
     // lưu thông tin thể loại vừa chỉnh sửa, phương thức chỉnh sửa
@@ -224,6 +246,8 @@ Route::prefix('trangThai')->group(function(){
     Route::get('/create',[TrangThaiController::class, 'create'])->name('trangThai.create');
     // lưu trữ trạng thái vừa thêm, phương thức thêm
     Route::post('/store',[TrangThaiController::class, 'store'])->name('trangThai.store');
+    // hiển thị trạng thái, phương thức hiển thị
+    Route::get('/show/{id}',[TrangThaiController::class, 'show'])->name('trangThai.show'); 
     // chỉnh sửa trạng thái, phương thức chỉnh sửa
     Route::get('/edit/{id}',[TrangThaiController::class, 'edit'])->name('trangThai.edit');    
     // lưu thông tin trạng thái vừa chỉnh sửa, phương thức chỉnh sửa
@@ -240,6 +264,8 @@ Route::prefix('vanBanDen')->group(function(){
     Route::get('/create',[VanBanDenController::class, 'create'])->name('vanBanDen.create');
     // lưu trữ văn bản đến vừa thêm, phương thức thêm
     Route::post('/store',[VanBanDenController::class, 'store'])->name('vanBanDen.store');
+    // hiển thị văn bản đến, phương thức hiển thị
+    Route::get('/show/{id}',[VanBanDenController::class, 'show'])->name('vanBanDen.show'); 
     // chỉnh sửa văn bản đến, phương thức chỉnh sửa
     Route::get('/edit/{id}',[VanBanDenController::class, 'edit'])->name('vanBanDen.edit');    
     // lưu thông tin văn bản đến vừa chỉnh sửa, phương thức chỉnh sửa

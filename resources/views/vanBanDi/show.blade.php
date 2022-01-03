@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-<link href="{{asset('vendors/select2/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -40,88 +40,105 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Số văn bản đi</label>
-                                        <input class="form-control" type="text" name="so_vb_di" value="{{ $vanBanDi->so_vb_di }}" disabled>
+                                        <input class="form-control" type="text" name="so_vb_di"
+                                            value="{{ $vanBanDi->so_vb_di }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Số kí hiệu</label>
-                                        <input class="form-control" type="text" name="ki_hieu" value="{{ $vanBanDi->ki_hieu }}" disabled>
+                                        <input class="form-control" type="text" name="ki_hieu"
+                                            value="{{ $vanBanDi->ki_hieu }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Ngày ban hành</label>
-                                        <input class="form-control" type="text" name="ngay_gui" value="{{ $vanBanDi->ngay_gui }}" disabled>
+                                        <input class="form-control" type="text" name="ngay_gui"
+                                            value="{{ $vanBanDi->ngay_gui }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Loại văn bản</label>
-                                        <input class="form-control" type="text" name="loai" value="{{ optional($vanBanDi->loaiVB)->ten_loai }}" disabled>
+                                        <input class="form-control" type="text" name="loai"
+                                            value="{{ optional($vanBanDi->loaiVB)->ten_loai }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Hình thức văn bản</label>
-                                        <input class="form-control" type="text" name="hinh_thuc" value="{{ optional($vanBanDi->hinhThuc)->hinh_thuc }}" disabled>
+                                        <input class="form-control" type="text" name="hinh_thuc"
+                                            value="{{ optional($vanBanDi->hinhThuc)->hinh_thuc }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Lĩnh vực</label>
-                                        <input class="form-control" type="text" name="linh_vuc" value="{{ optional($vanBanDi->linhVuc)->linh_vuc }}" disabled>
+                                        <input class="form-control" type="text" name="linh_vuc"
+                                            value="{{ optional($vanBanDi->linhVuc)->linh_vuc }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Số trang</label>
-                                        <input class="form-control" type="text" name="so_trang" value="{{ $vanBanDi->so_trang }}" disabled>
+                                        <input class="form-control" type="text" name="so_trang"
+                                            value="{{ $vanBanDi->so_trang }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Số lượng bản phát hành</label>
-                                        <input class="form-control" type="text" name="so_luong" value="{{ $vanBanDi->so_luong }}" disabled>
+                                        <input class="form-control" type="text" name="so_luong"
+                                            value="{{ $vanBanDi->so_luong }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="my-input">Trích yếu</label>
                                         <textarea class="form-control" type="text" name="trich_yeu" rows="3" disabled>
-                                            {{ $vanBanDi->trich_yeu }}</textarea>
+                                                {{ $vanBanDi->trich_yeu }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Người ký</label>
-                                        <input class="form-control" type="text" name="nguoi_ky" value="{{ optional($vanBanDi->nguoiKy)->name }}" disabled>
+                                        <input class="form-control" type="text" name="nguoi_ky"
+                                            value="{{ optional($vanBanDi->nguoiKy)->name }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Nhân viên phát hành</label>
-                                        <input class="form-control" type="text" name="nv_phathanh" value="{{ optional($vanBanDi->nvPhatHanh)->name }}" disabled>
+                                        <input class="form-control" type="text" name="nv_phathanh"
+                                            value="{{ optional($vanBanDi->nvPhatHanh)->name }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
-                                        <input class="form-control" type="text" name="ds_file" value="{{ $vanBanDi->ds_file }}" disabled>
+                                        <input class="form-control" type="text" name="ds_file"
+                                            value="{{ $vanBanDi->ds_file }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Chức vụ người ký</label>
-                                        <input class="form-control" type="text" name="chuc_vu" value="{{ optional($vanBanDi->chucVu)->ten_quyen }}" disabled>
+                                        <input class="form-control" type="text" name="chuc_vu"
+                                            value="{{ optional($vanBanDi->chucVu)->ten_quyen }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Cơ quan gửi</label>
-                                        <input class="form-control" type="text" name="noi_gui" value="{{ optional($vanBanDi->noiGui)->ten_co_quan }}" disabled>
+                                        <input class="form-control" type="text" name="noi_gui"
+                                            value="{{ optional($vanBanDi->noiGui)->ten_co_quan }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Độ khẩn</label>
-                                        <input class="form-control" type="text" name="do_khan" value="{{ optional($vanBanDi->doKhan)->do_khan }}" disabled>
+                                        <input class="form-control" type="text" name="do_khan"
+                                            value="{{ optional($vanBanDi->doKhan)->do_khan }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Hình thức sao lưu</label>
-                                        <input class="form-control" type="text" name="hinh_thuc_luu" value="{{ $vanBanDi->hinh_thuc_luu }}" disabled>
+                                        <input class="form-control" type="text" name="hinh_thuc_luu"
+                                            value="{{ $vanBanDi->hinh_thuc_luu }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Cơ quan nhận</label>
-                                        <input class="form-control" type="text" name="noi_nhan" value="{{ optional($vanBanDi->noiNhan)->ten_co_quan }}" disabled>
+                                        <input class="form-control" type="text" name="noi_nhan"
+                                            value="{{ optional($vanBanDi->noiNhan)->ten_co_quan }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Hạn xử lý</label>
-                                        <input class="form-control" type="text" name="han_xu_ly" value="{{ $vanBanDi->han_xu_ly }}" disabled>
+                                        <input class="form-control" type="text" name="han_xu_ly"
+                                            value="{{ $vanBanDi->han_xu_ly }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -143,5 +160,5 @@
 
 @section('js')
 
-<script src="{{asset('vendors/select2/select2.min.js')}}"></script>
+    <script src="{{ asset('vendors/select2/select2.min.js') }}"></script>
 @endsection

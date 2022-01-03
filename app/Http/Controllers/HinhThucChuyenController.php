@@ -38,7 +38,19 @@ class HinhThucChuyenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        $request->validate([
+            'hinh_thuc_chuyen' => 'required'
+        ]);
+
+        //store
+        $add = HinhThucChuyen::create($request->all());
+
+        if($add){
+            return redirect()->route('hinhThucChuyen.index')->with('success', 'Thêm mới thành công');
+        }
+
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**
@@ -47,9 +59,10 @@ class HinhThucChuyenController extends Controller
      * @param  \App\Models\Models\HinhThucChuyen  $hinhThucChuyen
      * @return \Illuminate\Http\Response
      */
-    public function show(HinhThucChuyen $hinhThucChuyen)
+    public function show(HinhThucChuyen $hinhThucChuyen, $id)
     {
-        //
+        $hinhThucChuyen = HinhThucChuyen::find($id);
+        return view('hinhThucChuyen.show', compact('hinhThucChuyen'));
     }
 
     /**

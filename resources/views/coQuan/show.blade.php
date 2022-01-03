@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Chỉnh sửa độ khẩn
+    Hiển thị cơ quan
 @endsection
 
 @section('content')
@@ -12,12 +12,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Chỉnh sửa độ khẩn</h1>
+                        <h1 class="m-0">Hiển thị cơ quan</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active">Chỉnh sửa độ khẩn</li>
+                            <li class="breadcrumb-item active">Hiển thị cơ quan</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -30,32 +30,30 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 mx-auto">
-                        <form action="{{ route('doKhan.update', $doKhan->id) }}" method="POST" role="form">
+                        <form action="" method="POST" role="form">
                             @csrf @method('PUT')
                             <div class="form-group">
-                                <label for="">Độ khẩn</label>
-                                <input type="text" class="form-control" name="do_khan" value="{{ $doKhan->do_khan }}">
-                                @error('do_khan')
-                                    <small class="help-block">{{ $message }}</small>
-                                @enderror
+                                <label for="">Tên cơ quan</label>
+                                <input type="text" class="form-control" name="ten_co_quan"
+                                    value="{{ $coQuan->ten_co_quan }}" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Địa chỉ cơ quan</label>
+                                <input type="text" class="form-control" name="dia_chi" value="{{ $coQuan->dia_chi }}"
+                                    disabled>
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
-                                <select class="form-control select2" name="trang_thai" id="input" style="width: 100%;">
-                                    <option selected="selected" value="1">Kích hoạt</option>
-                                    <option value="0"> Ngừng sử dụng</option>
-                                </select>
+                                <input type="text" class="form-control" name="trang_thai"
+                                    value="{{ $coQuan->trang_thai }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>
-                                <input type="text" class="form-control" name="ghi_chu" value="{{ $doKhan->ghi_chu }}">
-                                @error('ghi_chu')
-                                    <small class="help-block">{{ $message }}</small>
-                                @enderror
+                                <input type="text" class="form-control" name="ghi_chu" value="{{ $coQuan->ghi_chu }}"
+                                    disabled>
                             </div>
-                            <div class="d-grid gap-2 col-4 mx-auto">
+                            <div class="d-grid gap-2 col-2 mx-auto">
                                 <div class="col">
-                                    <button type="submit" class="btn btn-success">Cập nhật</button>
                                     <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                                 </div>
                             </div>

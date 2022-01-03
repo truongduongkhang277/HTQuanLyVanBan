@@ -49,7 +49,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>
-                                <input type="text" class="form-control" name="ghi_chu" value="{{ $hinhThucLuu->ghi_chu }}">
+                                <input type="text" class="form-control" name="ghi_chu"
+                                    value="{{ $hinhThucLuu->ghi_chu }}">
                                 @error('ghi_chu')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror

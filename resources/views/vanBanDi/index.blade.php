@@ -17,7 +17,8 @@
                     <div class="col-sm-4">
                         <form action="">
                             <div class="input-group input-group-md">
-                                <input type="search" class="form-control form-control-md" name="key" placeholder="Tìm kiếm văn bản đi bằng trích dẫn">
+                                <input type="search" class="form-control form-control-md" name="key"
+                                    placeholder="Tìm kiếm văn bản đi bằng trích dẫn">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-md btn-default">
                                         <i class="fa fa-search"></i>
@@ -59,7 +60,8 @@
                                         <td style="text-align: center">{{ $vanbandi->ki_hieu }}</td>
                                         <td>{{ $vanbandi->trich_yeu }}</td>
                                         @if (!empty($vanbandi->file_path))
-                                            <td style=" word-break: keep-all;"><a href="{{ $vanbandi->file_path }}">{{ $vanbandi->ds_file }}</a></td>
+                                            <td style=" word-break: keep-all;"><a
+                                                    href="{{ $vanbandi->file_path }}">{{ $vanbandi->ds_file }}</a></td>
                                         @else
                                             <td style="text-align: center; color:red">Không có file đính kèm</td>
                                         @endif

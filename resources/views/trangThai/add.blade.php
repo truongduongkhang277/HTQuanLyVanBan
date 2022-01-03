@@ -34,14 +34,15 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
-                                <input type="text" class="form-control" name="trang_thai" placeholder="Nhập trạng thái">
+                                <input type="text" class="form-control" name="ten_trang_thai"
+                                    placeholder="Nhập trạng thái">
                                 @error('trang_thai')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
-                                <select class="form-control select2" name="status" id="input" style="width: 100%;">
+                                <select class="form-control select2" name="trang_thai" id="input" style="width: 100%;">
                                     <option selected="selected" value="1">Kích hoạt</option>
                                     <option value="0"> Ngừng sử dụng</option>
                                 </select>

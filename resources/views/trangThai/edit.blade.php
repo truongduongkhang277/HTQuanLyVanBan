@@ -34,7 +34,7 @@
                             @csrf @method('PUT')
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
-                                <input type="text" class="form-control" name="trang_thai"
+                                <input type="text" class="form-control" name="ten_trang_thai"
                                     value="{{ $trangThai->trang_thai }}">
                                 @error('trang_thai')
                                     <small class="help-block">{{ $message }}</small>
@@ -42,14 +42,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
-                                <select class="form-control select2" name="status" id="input" style="width: 100%;">
+                                <select class="form-control select2" name="trang_thai" id="input" style="width: 100%;">
                                     <option selected="selected" value="1">Kích hoạt</option>
                                     <option value="0"> Ngừng sử dụng</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>
-                                <input type="text" class="form-control" name="ghi_chu" value="{{ $trangThai->ghi_chu }}">
+                                <input type="text" class="form-control" name="ghi_chu"
+                                    value="{{ $trangThai->ghi_chu }}">
                                 @error('ghi_chu')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror

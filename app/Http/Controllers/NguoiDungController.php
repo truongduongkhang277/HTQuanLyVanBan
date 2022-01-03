@@ -51,9 +51,10 @@ class NguoiDungController extends Controller
      * @param  \App\Models\NguoiDung  $nguoiDung
      * @return \Illuminate\Http\Response
      */
-    public function show(NguoiDung $nguoiDung)
+    public function show(NguoiDung $nguoiDung, $id)
     {
-        //
+        $nguoiDung = NguoiDung::find($id);
+        return view('nguoiDung.show', compact('nguoiDung'));
     }
 
     /**

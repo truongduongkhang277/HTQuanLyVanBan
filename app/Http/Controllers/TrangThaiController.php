@@ -59,10 +59,11 @@ class TrangThaiController extends Controller
      * @param  \App\Models\TrangThai  $trangThai
      * @return \Illuminate\Http\Response
      */
-    public function show(TrangThai $trangThai) {
-        //
+    public function show(TrangThai $trangThai, $id)
+    {
+        $trangThai = TrangThai::find($id);
+        return view('trangThai.show', compact('trangThai'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *

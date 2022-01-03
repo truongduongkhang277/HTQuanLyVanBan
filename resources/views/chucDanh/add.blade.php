@@ -38,7 +38,7 @@
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <label for="">Quyền truy cập</label>
+                            {{-- <label for="">Quyền truy cập</label>
                             <div class="row">
                                 <div class="form-group col-3">
                                     <label for="">Văn bản đến</label>
@@ -212,7 +212,7 @@
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
                                 <select class="form-control select2" name="trang_thai" id="input" style="width: 100%;">

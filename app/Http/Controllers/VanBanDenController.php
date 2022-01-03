@@ -130,9 +130,34 @@ class VanBanDenController extends Controller
      * @param  \App\Models\VanBanDen  $vanBanDen
      * @return \Illuminate\Http\Response
      */
-    public function show(VanBanDen $vanBanDen)
+    public function show(VanBanDen $vanBanDen, $id)
     {
-        //
+        $vanBanDen      = VanBanDen::find($id);
+        $domat          = DoMat::orderBy('do_mat', 'ASC')->get();
+        $dokhan         = DoKhan::orderBy('do_khan', 'ASC')->get();
+        $linhvuc        = LinhVuc::orderBy('linh_vuc', 'ASC')->get();
+        $hinhthuc       = HinhThuc::orderBy('hinh_thuc', 'ASC')->get();
+        $hinhthucchuyen = HinhThucChuyen::orderBy('hinh_thuc_chuyen', 'ASC')->get();
+        $hinhthucluu    = HinhThucLuu::orderBy('hinh_thuc_luu', 'ASC')->get();
+        $theloai        = TheLoai::orderBy('ten_loai', 'ASC')->get();
+        $trangthai      = TrangThai::orderBy('trang_thai', 'ASC')->get();
+        $don_vi_ban_hanh= CoQuan::orderBy('ten_co_quan', 'ASC')->get();
+        $nguoidung      = User::orderBy('email', 'ASC')->get();
+        $chucdanh       = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        return view('vanBanDi.show', compact(
+            'vanBanDen', 
+            'domat', 
+            'dokhan', 
+            'linhvuc',
+            'hinhthuc', 
+            'hinhthucchuyen',
+            'hinhthucluu',
+            'theloai', 
+            'trangthai', 
+            'don_vi_ban_hanh', 
+            'nguoidung', 
+            'chucdanh'
+        ));
     }
 
     /**

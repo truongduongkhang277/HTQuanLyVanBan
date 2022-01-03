@@ -34,7 +34,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Hình thức lưu</label>
-                                <input type="text" class="form-control" name="hinh_thuc_luu" placeholder="Nhập hình thức lưu">
+                                <input type="text" class="form-control" name="hinh_thuc_luu"
+                                    placeholder="Nhập hình thức lưu">
                                 @error('hinh_thuc_luu')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror

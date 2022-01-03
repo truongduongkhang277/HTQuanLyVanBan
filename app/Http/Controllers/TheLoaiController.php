@@ -59,9 +59,10 @@ class TheLoaiController extends Controller
      * @param  \App\Models\TheLoai  $theLoai
      * @return \Illuminate\Http\Response
      */
-    public function show(TheLoai $theLoai)
+    public function show(TheLoai $theLoai, $id)
     {
-        //
+        $theLoai = TheLoai::find($id);
+        return view('theLoai.show', compact('theLoai'));
     }
 
     /**

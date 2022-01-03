@@ -59,9 +59,10 @@ class HinhThucController extends Controller
      * @param  \App\Models\HinhThuc  $hinhThuc
      * @return \Illuminate\Http\Response
      */
-    public function show(HinhThuc $hinhThuc)
+    public function show(HinhThuc $hinhThuc, $id)
     {
-        //
+        $hinhThuc = HinhThuc::find($id);
+        return view('hinhThuc.show', compact('hinhThuc'));
     }
 
     /**

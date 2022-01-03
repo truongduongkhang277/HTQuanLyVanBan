@@ -59,9 +59,10 @@ class DoKhanController extends Controller
      * @param  \App\Models\DoKhan  $doKhan
      * @return \Illuminate\Http\Response
      */
-    public function show(DoKhan $doKhan)
+    public function show(DoKhan $doKhan, $id)
     {
-        //
+        $doKhan = DoKhan::find($id);
+        return view('doKhan.show', compact('doKhan'));
     }
 
     /**

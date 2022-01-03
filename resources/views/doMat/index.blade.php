@@ -17,7 +17,8 @@
                     <div class="col-sm-4">
                         <form action="">
                             <div class="input-group input-group-md">
-                                <input type="search" class="form-control form-control-md" name="key" placeholder="Tìm kiếm độ mật bằng tên độ mật">
+                                <input type="search" class="form-control form-control-md" name="key"
+                                    placeholder="Tìm kiếm độ mật bằng tên độ mật">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-md btn-default">
                                         <i class="fa fa-search"></i>

@@ -30,7 +30,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 mx-auto">
-                        <form action="{{ route('hinhThucChuyen.update', $hinhThucChuyen->id) }}" method="POST" role="form">
+                        <form action="{{ route('hinhThucChuyen.update', $hinhThucChuyen->id) }}" method="POST"
+                            role="form">
                             @csrf @method('PUT')
                             <div class="form-group">
                                 <label for="">Hình thức chuyển</label>
@@ -49,7 +50,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>
-                                <input type="text" class="form-control" name="ghi_chu" value="{{ $hinhThucChuyen->ghi_chu }}">
+                                <input type="text" class="form-control" name="ghi_chu"
+                                    value="{{ $hinhThucChuyen->ghi_chu }}">
                                 @error('ghi_chu')
                                     <small class="help-block">{{ $message }}</small>
                                 @enderror

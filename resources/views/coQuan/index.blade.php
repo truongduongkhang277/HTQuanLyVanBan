@@ -17,7 +17,8 @@
                     <div class="col-sm-4">
                         <form action="">
                             <div class="input-group input-group-md">
-                                <input type="search" class="form-control form-control-md" name="key" placeholder="Tìm kiếm cơ quan bằng tên cơ quan">
+                                <input type="search" class="form-control form-control-md" name="key"
+                                    placeholder="Tìm kiếm cơ quan bằng tên cơ quan">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-md btn-default">
                                         <i class="fa fa-search"></i>
@@ -55,8 +56,8 @@
                                         <td style="text-align:center">{{ $coquan->id }}</td>
                                         <td>{{ $coquan->ten_co_quan }}</td>
                                         <td>{{ $coquan->dia_chi }}</td>
-                                        
-                                        @if($coquan->trang_thai == 1)
+
+                                        @if ($coquan->trang_thai == 1)
                                             <td style="text-align: center; color:green"> Kích hoạt</td>
                                         @else
                                             <td style="text-align: center; color:red"> Ngừng hoạt động</td>
@@ -66,7 +67,8 @@
                                             <a href="{{ route('coQuan.edit', ['id' => $coquan->id]) }}"
                                                 class="btn btn-success">Chỉnh sửa </a>
                                             <a href="{{ route('coQuan.delete', ['id' => $coquan->id]) }}"
-                                                class="delete btn btn-danger" onclick="return confirm('Bạn có muốn xóa cơ quan này ?');">Xóa </a>
+                                                class="delete btn btn-danger"
+                                                onclick="return confirm('Bạn có muốn xóa cơ quan này ?');">Xóa </a>
                                         </td>
                                     </tr>
                                 @endforeach
