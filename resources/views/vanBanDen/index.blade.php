@@ -48,9 +48,9 @@
                                     <th>Ký hiệu</th>
                                     <th>Ngày VB</th>
                                     <th>Trích yếu</th>
-                                    <th style="width: 10%">Danh sách file</th>
+                                    <th style="width: 12%">Danh sách file</th>
                                     <th>Người kí</th>
-                                    <th style="width: 16%">Thao tác</th>
+                                    <th style="width: 18%">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,10 +67,12 @@
                                         @else
                                             <td style="text-align: center; color:red">Không có file đính kèm</td>
                                         @endif
-                                        <td>{{ optional($vanbanden->nguoiKy)->name }}</td>
+                                        <td>{{$vanbanden->nguoi_ky }}</td>
                                         <td style="text-align: center">
+                                            <a href="{{ route('vanBanDen.show', ['id' => $vanbanden->id]) }}"
+                                                class="btn btn-info">Xem</a>
                                             <a href="{{ route('vanBanDen.edit', ['id' => $vanbanden->id]) }}"
-                                                class="btn btn-success">Chỉnh sửa </a>
+                                                class="btn btn-success">Sửa </a>
                                             <a href="{{ route('vanBanDen.delete', ['id' => $vanbanden->id]) }}"
                                                 class="delete btn btn-danger"
                                                 onclick="return confirm('Bạn có muốn xóa trạng thái này ?');">Xóa </a>

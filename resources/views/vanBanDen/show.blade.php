@@ -40,153 +40,111 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Số văn bản đến</label>
-                                        <input class="form-control" type="text" name="so_vb_den">
+                                        <input class="form-control" type="text" name="so_vb_den"
+                                            value="{{ $vanBanDen->so_vb_den }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Số kí hiệu</label>
-                                        <input class="form-control" type="text" name="ki_hieu">
+                                        <input class="form-control" type="text" name="ki_hieu"
+                                            value="{{ $vanBanDen->ki_hieu }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Ngày đến</label>
-                                        <input class="form-control" type="text" name="ngay_nhan">
+                                        <input class="form-control" type="text" name="ngay_nhan"
+                                            value="{{ $vanBanDen->ngay_nhan }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Đơn vị ban hành</label>
-                                        <select class="form-control" type="text" name="don_vi_ban_hanh" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($don_vi_ban_hanh as $co_quan)
-                                                <option value="{{ $co_quan->id }}">{{ $co_quan->ten_co_quan }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="don_vi_ban_hanh"
+                                            value="{{ optional($vanBanDen->dvBanHanh)->ten_co_quan }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Hình thức</label>
-                                        <select class="form-control" type="text" name="hinh_thuc" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($hinhthuc as $hinh_thuc)
-                                                <option value="{{ $hinh_thuc->id }}">{{ $hinh_thuc->hinh_thuc }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="don_vi_ban_hanh"
+                                            value="{{ optional($vanBanDen->hinhThuc)->hinh_thuc }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Ngày văn bản</label>
-                                        <input class="form-control" type="text" name="ngay_vb">
+                                        <input class="form-control" type="text" name="ngay_vb"
+                                            value="{{ $vanBanDen->ngay_vb }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="my-input">Trích yếu</label>
                                         <textarea class="form-control" type="text" name="trich_yeu" rows="3"
-                                            placeholder="Trích yếu của văn bản đến"></textarea>
+                                            placeholder="Trích yếu của văn bản đến"
+                                            disabled> {{ $vanBanDen->trich_yeu }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Loại văn bản</label>
-                                        <select class="form-control" type="text" name="loai" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($theloai as $the_loai)
-                                                <option value="{{ $the_loai->id }}">{{ $the_loai->ten_loai }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="loai"
+                                            value="{{ optional($vanBanDen->loaiVB)->ten_loai }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Lĩnh vực</label>
-                                        <select class="form-control" type="text" name="linh_vuc" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($linhvuc as $linh_vuc)
-                                                <option value="{{ $linh_vuc->id }}">{{ $linh_vuc->linh_vuc }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="linh_vuc"
+                                            value="{{ optional($vanBanDen->linhVuc)->linh_vuc }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Người ký</label>
-                                        <select class="form-control" type="text" name="nguoi_ky" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($nguoidung as $nguoi_ky)
-                                                <option value="{{ $nguoi_ky->id }}">{{ $nguoi_ky->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="nguoi_ky"
+                                            value="{{ $vanBanDen->nguoi_ky }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
-                                        <input class="form-control-file" type="file" name="ds_file">
+                                        <input class="form-control" type="text" name="ds_file"
+                                            value="{{ $vanBanDen->ds_file }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Độ mật</label>
-                                        <select class="form-control" type="text" name="do_mat" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($domat as $do_mat)
-                                                <option value="{{ $do_mat->id }}">{{ $do_mat->do_mat }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="do_mat"
+                                            value="{{ optional($vanBanDen->doMat)->do_mat }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Độ khẩn</label>
-                                        <select class="form-control" type="text" name="do_khan" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($dokhan as $do_khan)
-                                                <option value="{{ $do_khan->id }}">{{ $do_khan->do_khan }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="do_khan"
+                                            value="{{ optional($vanBanDen->doKhan)->do_khan }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Chức vụ</label>
-                                        <select class="form-control" type="text" name="chuc_vu" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($chucdanh as $chuc_danh)
-                                                <option value="{{ $chuc_danh->id }}">{{ $chuc_danh->ten_quyen }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="chuc_vu"
+                                            value="{{ optional($vanBanDen->chucVu)->ten_quyen }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Hình thức chuyển</label>
-                                        <select class="form-control" type="text" name="hinh_thuc_chuyen" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($hinhthucchuyen as $hinh_thuc_chuyen)
-                                                <option value="{{ $hinh_thuc_chuyen->id }}">
-                                                    {{ $hinh_thuc_chuyen->hinh_thuc_chuyen }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="hinh_thuc_chuyen"
+                                            value="{{ optional($vanBanDen->hinhThucChuyen)->hinh_thuc_chuyen }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Hình thức sao lưu</label>
-                                        <select class="form-control" type="text" name="hinh_thuc_luu" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($hinhthucluu as $hinh_thuc_luu)
-                                                <option value="{{ $hinh_thuc_luu->id }}">
-                                                    {{ $hinh_thuc_luu->hinh_thuc_luu }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="hinh_thuc_luu"
+                                            value="{{ optional($vanBanDen->hinhThucLuu)->hinh_thuc_luu }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Người nhận</label>
-                                        <select class="form-control" type="text" name="nv_nhan" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($nguoidung as $nv_nhan)
-                                                <option value="{{ $nv_nhan->id }}">{{ $nv_nhan->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="nv_nhan"
+                                            value="{{ optional($vanBanDen->nguoiNhan)->name }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Hạn xử lý</label>
-                                        <input class="form-control" type="text" name="han_xu_ly">
+                                        <input class="form-control" type="text" name="han_xu_ly"
+                                            value="{{ $vanBanDen->han_xu_ly }}" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-grid gap-2 col-4 mx-auto">
+                            <div class="d-grid gap-2 col-2 mx-auto">
                                 <div class="col">
-                                    <button type="submit" class="btn btn-success">Cập nhật</button>
                                     <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                                 </div>
                             </div>

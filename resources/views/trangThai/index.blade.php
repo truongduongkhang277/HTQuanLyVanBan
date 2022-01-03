@@ -61,8 +61,10 @@
                                         @endif
 
                                         <td style="text-align: center">
+                                            <a href="{{ route('trangThai.show', ['id' => $trangthai->id]) }}"
+                                                class="btn btn-info">Xem </a>
                                             <a href="{{ route('trangThai.edit', ['id' => $trangthai->id]) }}"
-                                                class="btn btn-success">Chỉnh sửa </a>
+                                                class="btn btn-success">Sửa </a>
                                             <a href="{{ route('trangThai.delete', ['id' => $trangthai->id]) }}"
                                                 class="delete btn btn-danger"
                                                 onclick="return confirm('Bạn có muốn xóa trạng thái này ?');">Xóa </a>

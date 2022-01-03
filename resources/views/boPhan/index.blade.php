@@ -66,8 +66,10 @@
                                         @endif
                                         <td>{{ $bophan->ghi_chu }}</td>
                                         <td style="text-align: center">
+                                            <a href="{{ route('boPhan.show', ['id' => $bophan->id]) }}"
+                                                class="btn btn-info">Xem </a>
                                             <a href="{{ route('boPhan.edit', ['id' => $bophan->id]) }}"
-                                                class="btn btn-success">Chỉnh sửa </a>
+                                                class="btn btn-success">Sửa </a>
                                             <a href="{{ route('boPhan.delete', ['id' => $bophan->id]) }}"
                                                 class="delete btn btn-danger"
                                                 onclick="return confirm('Bạn có muốn xóa bộ phận này ?');">Xóa </a>

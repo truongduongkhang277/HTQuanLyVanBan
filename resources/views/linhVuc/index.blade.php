@@ -61,8 +61,10 @@
                                         @endif
 
                                         <td style="text-align: center">
+                                            <a href="{{ route('linhVuc.show', ['id' => $linhVuc->id]) }}"
+                                                class="btn btn-info">Xem </a>
                                             <a href="{{ route('linhVuc.edit', ['id' => $linhVuc->id]) }}"
-                                                class="btn btn-success">Chỉnh sửa </a>
+                                                class="btn btn-success">Sửa </a>
                                             <a href="{{ route('linhVuc.delete', ['id' => $linhVuc->id]) }}"
                                                 class="delete btn btn-danger"
                                                 onclick="return confirm('Bạn có muốn xóa lĩnh vực này ?');">Xóa </a>

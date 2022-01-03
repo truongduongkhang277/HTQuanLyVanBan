@@ -6,6 +6,7 @@ use App\Models\ChucDanh;
 use App\Models\VanBanDen;
 use Illuminate\Http\Request;
 
+use App\Traits\StorageFileTrait;
 use App\Models\HinhThuc;
 use App\Models\TheLoai;
 use App\Models\DoKhan;
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\DB;
 
 class VanBanDenController extends Controller
 {
+    use StorageFileTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -103,21 +106,20 @@ class VanBanDenController extends Controller
             ];
     
             // liên kết với file stotageFileTrait để tối ưu lưu file vào hệ thống
-            $fileUpload = $this->storageTraitUpload($request, 'ds_file', 'vanBanDen');
+            $fileUpload = $this->storageTraitUpload($request, 'ds_file', 'vanBanDi');
             
             if(!empty($fileUpload)){
                 $data['ds_file'] = $fileUpload['file_name'];
                 $data['file_path'] = $fileUpload['file_path'];
             }
-    
             $add = VanBanDen::create($data);
             DB::commit();
             if($add){
                 return redirect()->route('vanBanDen.index')->with('success', 'Thêm mới thành công');
             }
-    
         } catch (Exception $e) {
             DB::rollback();
+        
             return redirect()->back()->with('error', 'Thêm mới không thành công');
         }
 
@@ -144,7 +146,7 @@ class VanBanDenController extends Controller
         $don_vi_ban_hanh= CoQuan::orderBy('ten_co_quan', 'ASC')->get();
         $nguoidung      = User::orderBy('email', 'ASC')->get();
         $chucdanh       = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
-        return view('vanBanDi.show', compact(
+        return view('vanBanDen.show', compact(
             'vanBanDen', 
             'domat', 
             'dokhan', 
@@ -180,7 +182,7 @@ class VanBanDenController extends Controller
         $don_vi_ban_hanh= CoQuan::orderBy('ten_co_quan', 'ASC')->get();
         $nguoidung      = User::orderBy('email', 'ASC')->get();
         $chucdanh       = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
-        return view('vanBanDi.edit', compact(
+        return view('vanBanDen.edit', compact(
             'vanBanDen', 
             'domat', 
             'dokhan', 

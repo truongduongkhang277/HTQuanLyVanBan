@@ -61,8 +61,10 @@
                                         @endif
 
                                         <td style="text-align: center">
+                                            <a href="{{ route('hinhThucLuu.show', ['id' => $hinhThucLuu->id]) }}"
+                                                class="btn btn-info">Xem </a>
                                             <a href="{{ route('hinhThucLuu.edit', ['id' => $hinhThucLuu->id]) }}"
-                                                class="btn btn-success">Chỉnh sửa </a>
+                                                class="btn btn-success">Sửa </a>
                                             <a href="{{ route('hinhThucLuu.delete', ['id' => $hinhThucLuu->id]) }}"
                                                 class="delete btn btn-danger"
                                                 onclick="return confirm('Bạn có muốn xóa hình thức lưu này ?');">Xóa </a>

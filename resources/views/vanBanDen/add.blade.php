@@ -102,12 +102,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Người ký</label>
-                                        <select class="form-control" type="text" name="nguoi_ky" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($nguoidung as $nguoi_ky)
-                                                <option value="{{ $nguoi_ky->id }}">{{ $nguoi_ky->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="nguoi_ky">
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
@@ -165,7 +160,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="my-input">Người nhận</label>
                                         <select class="form-control" type="text" name="nv_nhan" required>
                                             <option value="">Chọn một</option>
@@ -173,7 +168,7 @@
                                                 <option value="{{ $nv_nhan->id }}">{{ $nv_nhan->name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="my-input">Hạn xử lý</label>
                                         <input class="form-control" type="text" name="han_xu_ly">

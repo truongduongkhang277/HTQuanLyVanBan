@@ -41,17 +41,17 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Số văn bản đến</label>
-                                        <input class="form-control" type="text" name="so_vb_den">
+                                        <input class="form-control" type="text" name="so_vb_den" value="{{ $vanBanDen->so_vb_den }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Số kí hiệu</label>
-                                        <input class="form-control" type="text" name="ki_hieu">
+                                        <input class="form-control" type="text" name="ki_hieu" value="{{ $vanBanDen->ki_hieu }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="my-input">Ngày đến</label>
-                                        <input class="form-control" type="text" name="ngay_nhan">
+                                        <input class="form-control" type="text" name="ngay_nhan" value="{{ $vanBanDen->ngay_nhan }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Đơn vị ban hành</label>
@@ -76,14 +76,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Ngày văn bản</label>
-                                        <input class="form-control" type="text" name="ngay_vb">
+                                        <input class="form-control" type="text" name="ngay_vb" value="{{ $vanBanDen->ngay_vb }}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="my-input">Trích yếu</label>
                                         <textarea class="form-control" type="text" name="trich_yeu" rows="3"
-                                            placeholder="Trích yếu của văn bản đến"></textarea>
+                                            placeholder="Trích yếu của văn bản đến"> {{ $vanBanDen->trich_yeu }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -107,16 +107,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Người ký</label>
-                                        <select class="form-control" type="text" name="nguoi_ky" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($nguoidung as $nguoi_ky)
-                                                <option value="{{ $nguoi_ky->id }}">{{ $nguoi_ky->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input class="form-control" type="text" name="ngay_vb" value="{{ $vanBanDen->nguoi_ky }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
                                         <input class="form-control-file" type="file" name="ds_file">
+                                        <a>{{ $vanBanDen->ds_file }}</a>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -170,7 +166,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="my-input">Người nhận</label>
                                         <select class="form-control" type="text" name="nv_nhan" required>
                                             <option value="">Chọn một</option>
@@ -178,10 +174,10 @@
                                                 <option value="{{ $nv_nhan->id }}">{{ $nv_nhan->name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="my-input">Hạn xử lý</label>
-                                        <input class="form-control" type="text" name="han_xu_ly">
+                                        <input class="form-control" type="text" name="han_xu_ly" value="{{ $vanBanDen->han_xu_ly }}">
                                     </div>
                                 </div>
                             </div>

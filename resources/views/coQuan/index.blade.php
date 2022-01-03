@@ -64,8 +64,10 @@
                                         @endif
 
                                         <td style="text-align: center">
+                                            <a href="{{ route('coQuan.show', ['id' => $coquan->id]) }}"
+                                                class="btn btn-info">Xem </a>
                                             <a href="{{ route('coQuan.edit', ['id' => $coquan->id]) }}"
-                                                class="btn btn-success">Chỉnh sửa </a>
+                                                class="btn btn-success">Sửa </a>
                                             <a href="{{ route('coQuan.delete', ['id' => $coquan->id]) }}"
                                                 class="delete btn btn-danger"
                                                 onclick="return confirm('Bạn có muốn xóa cơ quan này ?');">Xóa </a>

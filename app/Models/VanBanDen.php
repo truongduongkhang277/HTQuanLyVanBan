@@ -44,13 +44,53 @@ class VanBanDen extends Model
         return $query;
     }
 
-    public function nguoiKy(){
-        // 1 văn bản có 1 người dùng
-        return $this->belongsTo('App\Models\User', 'nguoi_ky');
+    public function hinhThuc(){
+        // 1 văn bản có 1 hình thức
+        return $this->belongsTo('App\Models\HinhThuc', 'hinh_thuc');
     }
 
     public function dvBanHanh(){
         // 1 văn bản có 1 đơn vị ban hành
         return $this->belongsTo('App\Models\CoQuan', 'don_vi_ban_hanh');
+    }
+
+    public function loaiVB(){
+        // 1 văn bản có 1 loại văn bản
+        return $this->belongsTo('App\Models\TheLoai', 'loai');
+    }
+
+    public function linhVuc(){
+        // 1 văn bản có 1 loại văn bản
+        return $this->belongsTo('App\Models\LinhVuc', 'linh_vuc');
+    }
+
+    public function doMat(){
+        // 1 văn bản có 1 loại văn bản
+        return $this->belongsTo('App\Models\DoMat', 'do_mat');
+    }
+
+    public function doKhan(){
+        // 1 văn bản có 1 loại văn bản
+        return $this->belongsTo('App\Models\DoKhan', 'do_khan');
+    }
+
+    public function chucVu(){
+        // 1 văn bản có 1 đơn vị ban hành
+        return $this->belongsTo('App\Models\ChucDanh', 'chuc_vu');
+    }
+
+    public function hinhThucChuyen(){
+        // 1 văn bản có 1 hình thức
+        return $this->belongsTo('App\Models\HinhThucChuyen', 'hinh_thuc_chuyen');
+    }
+
+    public function hinhThucLuu(){
+        // 1 văn bản có 1 hình thức
+        return $this->belongsTo('App\Models\HinhThucLuu', 'hinh_thuc_luu');
+    }
+
+    public function nguoiNhan(){
+        // 1 văn bản có 1 hình thức
+        return $this->belongsTo('App\Models\User', 'nv_nhan');
     }
 }

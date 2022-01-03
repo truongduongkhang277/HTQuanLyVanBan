@@ -62,14 +62,16 @@
                                         <td>{{ $nguoidung->anh }}</td>
                                         <td>{{ $nguoidung->created_at->format('d-m-Y') }}</td>
                                         <td class="text-right">
-                                            <a href="" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('nguoiDung.show', $nguoidung->id) }}" class="btn btn-sm btn-primary">
                                                 <i class="fas fa-user"></i>
                                             </a>
                                             <a href="{{ route('nguoiDung.edit', $nguoidung->id) }}"
                                                 class="btn btn-sm btn-success">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="" class="btn btn-sm btn-danger">
+                                            <a href="{{ route('nguoiDung.delete', ['id' => $nguoidung->id]) }}"
+                                                class="delete btn btn-danger"
+                                                onclick="return confirm('Bạn có muốn xóa thể loại này ?');">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
