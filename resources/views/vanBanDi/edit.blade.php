@@ -125,6 +125,15 @@
                                         </select>
                                     </div> --}}
                                     <div class="form-group">
+                                        <label for="my-input">Độ khẩn</label>
+                                        <select class="form-control" type="text" name="do_khan" required>
+                                            <option value="">Chọn một</option>
+                                            @foreach ($dokhan as $do_khan)
+                                                <option value="{{ $do_khan->id }}">{{ $do_khan->do_khan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
                                         <input class="form-control-file" type="file" name="ds_file">
                                         <a>{{ $vanBanDi->ds_file }}</a>
@@ -150,15 +159,11 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div>                                    
                                     <div class="form-group">
-                                        <label for="my-input">Độ khẩn</label>
-                                        <select class="form-control" type="text" name="do_khan" required>
-                                            <option value="">Chọn một</option>
-                                            @foreach ($dokhan as $do_khan)
-                                                <option value="{{ $do_khan->id }}">{{ $do_khan->do_khan }}</option>
-                                            @endforeach
-                                        </select>
+                                        <label for="my-input">Hạn xử lý</label>
+                                        <input class="form-control" type="text" name="han_xu_ly"
+                                            value="{{ $vanBanDi->han_xu_ly }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -181,11 +186,6 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="my-input">Hạn xử lý</label>
-                                        <input class="form-control" type="text" name="han_xu_ly"
-                                            value="{{ $vanBanDi->han_xu_ly }}">
                                     </div>
                                 </div>
                             </div>

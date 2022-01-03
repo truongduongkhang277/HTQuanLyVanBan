@@ -73,7 +73,7 @@
                                                 class="btn btn-success">Sửa </a>
                                             <a href="{{ route('vanBanDi.delete', ['id' => $vanbandi->id]) }}"
                                                 class="delete btn btn-danger"
-                                                onclick="return confirm('Bạn có muốn xóa trạng thái này ?');">Xóa </a>
+                                                onclick="return confirm('Bạn có muốn xóa văn bản này ?');">Xóa </a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -62,8 +62,8 @@
                                         <td>{{ $vanbanden->ngay_vb }}</td>
                                         <td>{{ $vanbanden->trich_yeu }}</td>
                                         @if (!empty($vanbanden->file_path))
-                                            <td><a class="btn btn-primary" href="{{ $vanbanden->file_path }}">Download về
-                                                    máy</a></td>
+                                        <td style=" word-break: keep-all;"><a
+                                                href="{{ $vanbanden->file_path }}">{{ $vanbanden->ds_file }}</a></td>
                                         @else
                                             <td style="text-align: center; color:red">Không có file đính kèm</td>
                                         @endif
@@ -75,7 +75,7 @@
                                                 class="btn btn-success">Sửa </a>
                                             <a href="{{ route('vanBanDen.delete', ['id' => $vanbanden->id]) }}"
                                                 class="delete btn btn-danger"
-                                                onclick="return confirm('Bạn có muốn xóa trạng thái này ?');">Xóa </a>
+                                                onclick="return confirm('Bạn có muốn xóa văn bản này ?');">Xóa </a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 03, 2022 at 09:25 AM
+-- Generation Time: Jan 03, 2022 at 09:01 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -119,21 +119,22 @@ CREATE TABLE IF NOT EXISTS `tbl_bophan` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_truong_bo_phan` (`truong_bo_phan`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_bophan`
 --
 
 INSERT INTO `tbl_bophan` (`id`, `bo_phan`, `ki_hieu`, `truong_bo_phan`, `trang_thai`, `ghi_chu`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Ban giám đốc', 'BGD', NULL, 1, NULL, '2021-12-17 16:46:56', NULL, NULL),
+(1, 'Ban giám đốc', 'BGD', 1, 1, NULL, '2021-12-17 16:46:56', '2022-01-03 20:34:38', NULL),
 (2, 'Phòng Chuyên đề', 'PCD', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
-(3, 'Phòng Chương trình', 'PCT', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
+(3, 'Phòng Chương trình', 'PCT', 2, 1, NULL, '2021-12-17 16:51:27', '2022-01-03 20:34:47', NULL),
 (4, 'Phòng DV Quảng cáo', 'PDVQC', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
 (5, 'Phòng Tổ chức và Hành chính', 'PTCHC', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
 (6, 'Phòng Thời sự', 'PTS', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
 (7, 'Phòng Văn nghệ', 'PVN', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
-(8, 'Phòng Kỹ thuật và Công Nghệ', 'PKT', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL);
+(8, 'Phòng Kỹ thuật và Công Nghệ', 'PKT', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
+(9, 'Test bộ phận', 'Test', 3, 0, 'test bộ phận', '2022-01-03 20:45:53', '2022-01-03 20:46:43', NULL);
 
 -- --------------------------------------------------------
 
@@ -152,14 +153,14 @@ CREATE TABLE IF NOT EXISTS `tbl_chucdanh` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_chucdanh`
 --
 
 INSERT INTO `tbl_chucdanh` (`id`, `ten_quyen`, `quyen_truy_cap`, `trang_thai`, `ghi_chu`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Bí thư', NULL, 1, 'BT', '2021-12-04 14:43:07', NULL, NULL),
+(1, 'Bí thư', NULL, 1, 'BT', '2021-12-04 14:43:07', '2022-01-03 20:53:05', NULL),
 (2, 'Cán bộ', NULL, 1, 'CB', '2021-12-04 14:43:07', NULL, NULL),
 (3, 'Cán sự', NULL, 1, 'CS', '2021-12-04 14:43:07', NULL, NULL),
 (4, 'Chánh thanh tra', NULL, 1, 'CTTr', '2021-12-04 14:43:07', NULL, NULL),
@@ -528,8 +529,8 @@ INSERT INTO `tbl_theloai` (`id`, `ten_loai`, `trang_thai`, `ghi_chu`, `created_a
 DROP TABLE IF EXISTS `tbl_trangthai`;
 CREATE TABLE IF NOT EXISTS `tbl_trangthai` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `trang_thai` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `ten_trang_thai` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `trang_thai` tinyint(1) NOT NULL DEFAULT '1',
   `ghi_chu` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -541,8 +542,7 @@ CREATE TABLE IF NOT EXISTS `tbl_trangthai` (
 -- Dumping data for table `tbl_trangthai`
 --
 
-INSERT INTO `tbl_trangthai` (`id`, `trang_thai`, `status`, `ghi_chu`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Tiếp nhận văn bản đến', 1, 'Văn thư tiếp nhận văn bản đến từ cơ quan ngoài.', '2021-12-10 16:49:06', NULL, NULL),
+INSERT INTO `tbl_trangthai` (`id`, `ten_trang_thai`, `trang_thai`, `ghi_chu`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 'Tiếp nhận văn bản đến', 1, 'Văn thư tiếp nhận văn bản đến từ cơ quan ngoài.', '2021-12-10 17:02:05', NULL, NULL),
 (3, 'Trình lãnh đạo đơn vị', 1, 'Văn thư chuyển văn bản đến vừa tiếp nhận cho lãnh đạo đơn vị xem xét.', '2021-12-10 17:02:05', NULL, NULL),
 (4, 'Lãnh đạo đơn vị yêu cầu giải quyết', 1, 'Lãnh đạo đơn vị chuyển văn bản đến vừa tiếp nhận cho cấp dưới để xử lý.', '2021-12-10 17:02:05', NULL, NULL),
@@ -600,14 +600,15 @@ CREATE TABLE IF NOT EXISTS `tbl_vanban_den` (
   KEY `FK_chucvu_vbden` (`chuc_vu`),
   KEY `FK_hinhthucchuyen_vbden` (`hinh_thuc_chuyen`),
   KEY `FK_hinhthucluu_vbden` (`hinh_thuc_luu`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_vanban_den`
 --
 
 INSERT INTO `tbl_vanban_den` (`id`, `so_vb_den`, `ki_hieu`, `ngay_nhan`, `don_vi_ban_hanh`, `hinh_thuc`, `ngay_vb`, `trich_yeu`, `loai`, `linh_vuc`, `nguoi_ky`, `ds_file`, `file_path`, `do_mat`, `do_khan`, `chuc_vu`, `hinh_thuc_chuyen`, `hinh_thuc_luu`, `nv_nhan`, `han_xu_ly`, `trang_thai`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'BC-1', '21/12/2021', 13, 1, '21/12/2021', 'Báo cáo thực hiện trong tuần 10 ( 20/12 - 26/12)', 1, 1, '1', '', NULL, 1, 1, 5, 1, 1, 2, '26/12/2021', NULL, '2021-12-21 05:27:39', '2021-12-21 05:27:39', NULL);
+(3, 3, '43/2021/QĐ-UBND', '30/11/2021', 45, 1, '30/11/2021', 'Ban hành quy định lập, thẩm định và phê duyệt Kế hoạch ứng phó sự cố tràn dầu của cấp cơ sở trên địa bàn tỉnh Bạc Liêu.', 8, 1, 'Cao Xuân Thu Vân', '42-QDQPPL.signed.pdf', '/storage/vanBanDi/2/vpB92BIl7d5cXvEa2KfD.pdf', 1, 1, 20, 1, 1, 2, '10/01/2022', NULL, '2022-01-03 20:28:00', '2022-01-03 20:28:00', NULL),
+(2, 2, '44/2021/QĐ-UBND', '30/12/2021', 45, 1, '30/12/2021', 'Quy định vùng tạo nguồn cán bộ cho các dân tộc thiểu số thuộc diện tuyển sinh vào Trường phổ thông Dân tộc nội trú trên địa bàn tỉnh Bạc Liêu', 8, 3, 'Phan Thanh Duy', '44-QDQPPL.signed.pdf', '/storage/vanBanDi/2/M3Gs4OAZgOX2SkfVFKVt.pdf', 1, 1, 18, 1, 1, 2, '09/01/2022', NULL, '2022-01-03 18:13:22', '2022-01-03 18:13:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -661,11 +662,11 @@ CREATE TABLE IF NOT EXISTS `tbl_vanban_di` (
 
 INSERT INTO `tbl_vanban_di` (`id`, `so_vb_di`, `ki_hieu`, `ngay_gui`, `loai`, `hinh_thuc`, `linh_vuc`, `so_trang`, `so_luong`, `trich_yeu`, `nguoi_ky`, `nv_phathanh`, `ds_file`, `file_path`, `chuc_vu`, `noi_gui`, `do_khan`, `hinh_thuc_luu`, `noi_nhan`, `han_xu_ly`, `trang_thai`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, '1', 'BC-1', '21/12/2021', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 10', 1, 2, '', NULL, 35, 13, 1, 1, '37', '26/12/2021', NULL, '2021-12-21 05:49:21', '2021-12-21 05:49:21', NULL),
-(2, '2', 'BC-2', '30/12/2021', 1, 1, 1, 50, 1, 'Báo cáo tiến độ thực hiện đồ án tuần 11', 1, 2, '', NULL, 13, 37, 1, 1, '13', '02/01/2022', NULL, '2021-12-29 19:04:34', '2021-12-29 19:04:34', NULL),
-(3, '3', 'BC-3', '02/01/2022', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 11', 1, 1, '15_BT1_C1_1811546141_TruongDuongKhang.docx', NULL, 15, 35, 1, 1, '37', '09/01/2022', NULL, '2022-01-02 18:25:24', '2022-01-02 18:25:24', NULL),
-(4, '4', 'BC-4', '02/01/2022', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 11', 1, 1, '15_BT1_C1_1811546141_TruongDuongKhang.docx', '/storage/vanBanDi/1/0kmeLu3sYbMl8eFLSIBo.docx', 15, 35, 1, 1, '37', '09/01/2022', NULL, '2022-01-02 18:27:49', '2022-01-02 18:27:49', NULL),
-(5, '5', 'BC-5', '02/01/2022', 5, 1, 2, 50, 2, 'Về phòng, chống dịch Covid-19', 1, 1, '1063_CD-TTg_31072021_1-signed.pdf', '/storage/vanBanDi/1/WPhpyC5B5ckqKxeUQEZX.pdf', 6, 25, 2, 2, '33', '09/01/2022', NULL, '2022-01-02 18:35:50', '2022-01-02 18:35:50', NULL),
-(6, '6', '68/NQ-CP', '01/07/2021', 7, 1, 1, 50, 10, 'Về một số chính sách hỗ trợ người lao động và người sử dụng lao động gặp khó khăn do đại dịch COVID-19', 1, 2, '68.signed.pdf', '/storage/vanBanDi/2/6sQsFJy7rvZNtqz7jV0B.pdf', 6, 30, 2, 1, '45', '19/01/2022', NULL, '2022-01-02 21:02:48', '2022-01-02 21:02:48', NULL);
+(2, '2', 'BC-2', '30/12/2021', 1, 1, 1, 50, 1, 'Báo cáo tiến độ thực hiện đồ án tuần 11', 2, 2, '', NULL, 13, 13, 1, 1, '14', '02/01/2022', NULL, '2021-12-29 19:04:34', '2021-12-29 19:04:34', NULL),
+(3, '3', 'BC-3', '02/01/2022', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 11', 3, 1, '', NULL, 15, 13, 1, 1, '37', '09/01/2022', NULL, '2022-01-02 18:25:24', '2022-01-02 18:25:24', NULL),
+(4, '4', 'BC-4', '02/01/2022', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 11', 1, 1, 'BÁO CÁO KẾT QUẢ THỰC HIỆN DỰ ÁN TRONG TUẦN 11.docx', '/storage/vanBanDi/1/0kmeLu3sYbMl8eFLSIBo.docx', 15, 13, 1, 1, '37', '09/01/2022', NULL, '2022-01-02 18:27:49', '2022-01-02 18:27:49', NULL),
+(5, '5', 'BC-5', '02/01/2022', 5, 1, 2, 50, 2, 'Về phòng, chống dịch Covid-19', 2, 1, '1063_CD-TTg_31072021_1-signed.pdf', '/storage/vanBanDi/1/WPhpyC5B5ckqKxeUQEZX.pdf', 6, 13, 2, 2, '33', '09/01/2022', NULL, '2022-01-02 18:35:50', '2022-01-02 18:35:50', NULL),
+(6, '6', '68/NQ-CP', '01/07/2021', 7, 1, 1, 50, 10, 'Về một số chính sách hỗ trợ người lao động và người sử dụng lao động gặp khó khăn do đại dịch COVID-19', 1, 2, '68.signed.pdf', '/storage/vanBanDi/2/6sQsFJy7rvZNtqz7jV0B.pdf', 6, 13, 2, 1, '45', '19/01/2022', NULL, '2022-01-02 21:02:48', '2022-01-02 21:02:48', NULL);
 
 -- --------------------------------------------------------
 

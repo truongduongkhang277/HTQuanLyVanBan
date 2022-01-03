@@ -18,7 +18,7 @@
                         <form action="">
                             <div class="input-group input-group-md">
                                 <input type="search" class="form-control form-control-md" name="key"
-                                    placeholder="Tìm kiếm tài khoản người dùng bằng tên người dùng">
+                                    placeholder="Tìm kiếm tài khoản bằng tên người dùng">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-md btn-default">
                                         <i class="fa fa-search"></i>
@@ -37,19 +37,19 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="" class="btn btn-info float-right m-2">Thêm mới </a>
+                        <a href="{{route('nguoiDung.create')}}" class="btn btn-info float-right m-2">Thêm mới </a>
                     </div>
                     <div class="col-md-12">
                         <table class="table table-hover">
                             <thead>
-                                <tr>
+                                <tr style="text-align:center">
                                     <th>Tên đăng nhập</th>
                                     <th>Họ và tên</th>
                                     <th>Ngày sinh</th>
                                     <th>Số điện thoại</th>
                                     <th>Ảnh</th>
                                     <th>Ngày tạo</th>
-                                    <th class="text-right">Thao tác</th>
+                                    <th style="width: 18%">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,19 +61,14 @@
                                         <td>{{ $nguoidung->so_dt }}</td>
                                         <td>{{ $nguoidung->anh }}</td>
                                         <td>{{ $nguoidung->created_at->format('d-m-Y') }}</td>
-                                        <td class="text-right">
-                                            <a href="{{ route('nguoiDung.show', $nguoidung->id) }}" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i>
-                                            </a>
-                                            <a href="{{ route('nguoiDung.edit', $nguoidung->id) }}"
-                                                class="btn btn-sm btn-success">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                        <td style="text-align: center">
+                                            <a href="{{ route('nguoiDung.show', ['id' => $nguoidung->id]) }}"
+                                                class="btn btn-info">Xem</a>
+                                            <a href="{{ route('nguoiDung.edit', ['id' => $nguoidung->id]) }}"
+                                                class="btn btn-success">Sửa </a>
                                             <a href="{{ route('nguoiDung.delete', ['id' => $nguoidung->id]) }}"
                                                 class="delete btn btn-danger"
-                                                onclick="return confirm('Bạn có muốn xóa thể loại này ?');">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
+                                                onclick="return confirm('Bạn có muốn xóa tài khoản này ?');">Xóa </a>
                                         </td>
                                     </tr>
                                 @endforeach

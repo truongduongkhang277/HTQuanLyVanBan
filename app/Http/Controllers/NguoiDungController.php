@@ -31,7 +31,7 @@ class NguoiDungController extends Controller
      */
     public function create()
     {
-        return view('dashboard');
+        return view('nguoiDung.add');
     }
 
     /**
