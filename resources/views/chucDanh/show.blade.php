@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
                                 <input type="text" class="form-control" name="trang_thai"
-                                    value="{{ $chucDanh->trang_thai }}" disabled>
+                                 disabled @if ($chucDanh->trang_thai == 1) value="Kích hoạt" @else value="Ngừng hoạt động" @endif>
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>

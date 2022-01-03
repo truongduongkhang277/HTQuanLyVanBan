@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BoPhan;
 use App\Models\NguoiDung;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BoPhanController extends Controller
@@ -28,7 +29,8 @@ class BoPhanController extends Controller
      */
     public function create()
     {
-        return view('boPhan.add');
+        $nguoidung      = User::orderBy('email', 'ASC')->get();
+        return view('boPhan.add', compact('nguoidung'));
     }
 
     /**
@@ -62,9 +64,11 @@ class BoPhanController extends Controller
      * @param  \App\Models\BoPhan  $boPhan
      * @return \Illuminate\Http\Response
      */
-    public function show(BoPhan $boPhan)
+    public function show(BoPhan $boPhan, $id)
     {
-        //
+        $boPhan = BoPhan::find($id);
+        $nguoidung      = User::orderBy('email', 'ASC')->get();
+        return view('boPhan.show', compact('boPhan','nguoidung'));
     }
 
     /**
@@ -76,12 +80,10 @@ class BoPhanController extends Controller
     public function edit(BoPhan $boPhan, $id)
     {
         $boPhan = BoPhan::find($id);
-        return view('boPhan.edit', compact('boPhan'));
 
         // truyền biến nguoiDung đến giao diện edit của người dùng
-        //  $nguoidung   = NguoiDung::orderBy('id', 'ASC')->get();
- 
-        //  return view('boPhan.edit', compact('boPhan', 'nguoidung'));
+        $nguoidung      = User::orderBy('email', 'ASC')->get();
+        return view('boPhan.edit', compact('boPhan', 'nguoidung'));
     }
 
     /**

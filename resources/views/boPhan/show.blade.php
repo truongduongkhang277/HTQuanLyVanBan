@@ -45,12 +45,12 @@
                             <div class="form-group">
                                 <label for="my-input">Trưởng bộ phận</label>
                                 <input type="text" class="form-control" name="truong_bo_phan"
-                                    value="{{ $boPhan->truong_bo_phan }}" disabled>
+                                    value="{{ optional($boPhan->truongBoPhan)->name }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
-                                <input type="text" class="form-control" name="truong_bo_phan"
-                                    value="{{ $boPhan->truong_bo_phan }}" disabled>
+                                <input type="text" class="form-control" name="trang_thai" disabled
+                                    @if ($boPhan->trang_thai == 1) value="Kích hoạt" @else value="Ngừng hoạt động" @endif>
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>

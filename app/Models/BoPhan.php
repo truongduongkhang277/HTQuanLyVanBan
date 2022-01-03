@@ -23,5 +23,8 @@ class BoPhan extends Model
         return $query;
     }
 
-    //global scope
+    public function truongBoPhan(){
+        // 1 văn bản có 1 người dùng
+        return $this->belongsTo('App\Models\User', 'truong_bo_phan');
+    }
 }

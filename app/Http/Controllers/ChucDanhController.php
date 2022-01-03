@@ -65,9 +65,10 @@ class ChucDanhController extends Controller
      * @param  \App\Models\ChucDanh  $chucDanh
      * @return \Illuminate\Http\Response
      */
-    public function show(ChucDanh $chucDanh)
+    public function show(ChucDanh $chucDanh, $id)
     {
-        return view('chucDanh.show');
+        $chucDanh = ChucDanh::find($id);
+        return view('chucDanh.show', compact('chucDanh'));
     }
 
     /**

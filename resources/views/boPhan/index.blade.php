@@ -58,7 +58,7 @@
                                         <td style="text-align:center">{{ $bophan->id }}</td>
                                         <td>{{ $bophan->bo_phan }}</td>
                                         <td>{{ $bophan->ki_hieu }}</td>
-                                        <td>{{ $bophan->truong_bo_phan }}</td>
+                                        <td>{{ optional($bophan->truongBoPhan)->name }}</td>
                                         @if ($bophan->trang_thai == 1)
                                             <td style="text-align: center; color:green"> Kích hoạt</td>
                                         @else

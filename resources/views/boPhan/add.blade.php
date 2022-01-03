@@ -49,9 +49,9 @@
                                 <label for="my-input">Trưởng bộ phận</label>
                                 <select class="form-control" type="text" name="truong_bo_phan" required>
                                     <option value="">Chọn một</option>
-                                    {{-- @foreach ($nguoidung as $truong_bo_phan)
+                                    @foreach ($nguoidung as $truong_bo_phan)
                                         <option value="{{ $truong_bo_phan->id }}">{{ $truong_bo_phan->name }}</option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
@@ -70,7 +70,7 @@
                             </div>
                             <div class="d-grid gap-2 col-4 mx-auto">
                                 <div class="col">
-                                    <button type="submit" class="btn btn-success">Cập nhật</button>
+                                    <button type="submit" class="btn btn-success">Lưu</button>
                                     <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                                 </div>
                             </div>

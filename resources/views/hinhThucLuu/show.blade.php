@@ -39,11 +39,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
-                                <div class="form-group">
-                                    <label for="">Trạng thái</label>
-                                    <input type="text" class="form-control" name="trang_thai"
-                                        value="{{ $hinhThucLuu->trang_thai }}" disabled>
-                                </div>
+                                <input type="text" class="form-control" name="trang_thai" disabled
+                                    @if ($hinhThucLuu->trang_thai == 1) : value="Kích hoạt" @else value="Ngừng hoạt động" @endif>
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>

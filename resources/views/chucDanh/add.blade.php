@@ -28,7 +28,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12 mx-auto">
+                    <div class="col-md-6 mx-auto">
                         <form action="{{ route('chucDanh.store') }}" method="POST" role="form">
                             @csrf
                             <div class="form-group">
