@@ -15,7 +15,7 @@ class TrangThaiController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model TrangThai để rút gọn code
-        $data = TrangThai::orderBy('created_at', 'ASC')->search()->paginate(15);
+        $data = TrangThai::orderBy('created_at', 'ASC')->search()->paginate(5);
 
         return view('trangThai.index', compact('data'));
     }

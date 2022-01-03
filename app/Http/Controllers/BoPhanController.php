@@ -16,7 +16,7 @@ class BoPhanController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model BoPhan để rút gọn code
-        $data = BoPhan::orderBy('created_at', 'ASC')->search()->paginate(15);
+        $data = BoPhan::orderBy('created_at', 'ASC')->search()->paginate(5);
 
         return view('boPhan.index', compact('data'));
     }

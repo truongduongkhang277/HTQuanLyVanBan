@@ -43,7 +43,7 @@
                             <thead>
                                 <tr style="text-align:center">
                                     <th>Mã</th>
-                                    <th>hình thức lưu</th>
+                                    <th>Hình thức lưu</th>
                                     <th>Trạng thái</th>
                                     <th>Thao tác</th>
                                 </tr>
@@ -71,7 +71,7 @@
                             </tbody>
                         </table>
                         <hr>
-                        <div class="d-grid gap-2 col-4 mx-auto">
+                        <div class="d-grid gap-2 col-2 mx-auto">
                             <div class="col">
                                 {{ $data->appends(request()->all())->links() }}
                             </div>

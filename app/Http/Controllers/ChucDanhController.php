@@ -15,7 +15,7 @@ class ChucDanhController extends Controller
     public function index()
     {
          // trỏ đến hàm scopeSearch trong model ChucDanh để rút gọn code
-         $data = ChucDanh::orderBy('created_at', 'ASC')->search()->paginate(15);
+         $data = ChucDanh::orderBy('created_at', 'ASC')->search()->paginate(10);
 
          return view('chucDanh.index', compact('data'));
     }

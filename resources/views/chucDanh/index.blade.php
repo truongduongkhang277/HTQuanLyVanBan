@@ -71,7 +71,7 @@
                             </tbody>
                         </table>
                         <hr>
-                        <div class="d-grid gap-2 col-4 mx-auto">
+                        <div class="d-grid gap-2 col-3 mx-auto">
                             <div class="col">
                                 {{ $data->appends(request()->all())->links() }}
                             </div>

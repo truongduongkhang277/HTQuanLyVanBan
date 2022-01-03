@@ -11,7 +11,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <h1 class="m-0">Danh sách trạng thái</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-4">
@@ -71,7 +71,7 @@
                             </tbody>
                         </table>
                         <hr>
-                        <div class="d-grid gap-2 col-4 mx-auto">
+                        <div class="d-grid gap-2 col-2 mx-auto">
                             <div class="col">
                                 {{ $data->appends(request()->all())->links() }}
                             </div>
