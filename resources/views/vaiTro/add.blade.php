@@ -76,7 +76,7 @@
                                                     <div class="card-body">
                                                         <div class="card-title">
                                                             <label for="">
-                                                                <input type="checkbox" name="quyenTruyCap_id" class="checkbox_children"
+                                                                <input type="checkbox" name="quyenTruyCap_id[]" class="checkbox_children"
                                                                     value="{{ $permissionChildrenItem->id }}">
                                                             </label>
                                                             {{ $permissionChildrenItem->quyen_truy_cap }}
