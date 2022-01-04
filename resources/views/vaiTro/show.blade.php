@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Chỉnh sửa chức danh
+    Hiển thị vai trò
 @endsection
 
 @section('content')
@@ -12,12 +12,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Chỉnh sửa chức danh</h1>
+                        <h1 class="m-0">Hiển thị vai trò</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active">Chỉnh sửa chức danh</li>
+                            <li class="breadcrumb-item active">Hiển thị vai trò</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -30,33 +30,25 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 mx-auto">
-                        <form action="{{ route('chucDanh.update', $chucDanh->id) }}" method="POST" role="form">
+                        <form action="" method="POST" role="form">
                             @csrf @method('PUT')
                             <div class="form-group">
-                                <label for="">Tên quyền</label>
-                                <input type="text" class="form-control" name="ten_quyen"
-                                    value="{{ $chucDanh->ten_quyen }}">
-                                @error('ten_quyen')
-                                    <small class="help-block">{{ $message }}</small>
-                                @enderror
+                                <label for="">Vai trò</label>
+                                <input type="text" class="form-control" name="vai_tro"
+                                    value="{{ $chucDanh->vai_tro }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
-                                <select class="form-control select2" name="trang_thai" id="input" style="width: 100%;">
-                                    <option selected="selected" value="1">Kích hoạt</option>
-                                    <option value="0"> Ngừng sử dụng</option>
-                                </select>
+                                <input type="text" class="form-control" name="trang_thai"
+                                 disabled @if ($chucDanh->trang_thai == 1) value="Kích hoạt" @else value="Ngừng hoạt động" @endif>
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>
-                                <input type="text" class="form-control" name="ghi_chu" value="{{ $chucDanh->ghi_chu }}">
-                                @error('ghi_chu')
-                                    <small class="help-block">{{ $message }}</small>
-                                @enderror
+                                <input type="text" class="form-control" name="ghi_chu" value="{{ $chucDanh->ghi_chu }}"
+                                    disabled>
                             </div>
                             <div class="d-grid gap-2 col-4 mx-auto">
                                 <div class="col">
-                                    <button type="submit" class="btn btn-success">Cập nhật</button>
                                     <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                                 </div>
                             </div>

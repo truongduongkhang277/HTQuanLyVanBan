@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Danh sách chức danh
+    Danh sách vai trò
 @endsection
 
 @section('content')
@@ -12,13 +12,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-8">
-                        <h1 class="m-0">Danh sách chức danh</h1>
+                        <h1 class="m-0">Danh sách vai trò</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-4">
                         <form action="">
                             <div class="input-group input-group-md">
                                 <input type="search" class="form-control form-control-md" name="key"
-                                    placeholder="Tìm kiếm chức danh bằng tên quyền">
+                                    placeholder="Tìm kiếm vai trò bằng tên vai trò">
                                 <div class="input-group-append">
                                     <button type="submit" class="btn btn-md btn-default">
                                         <i class="fa fa-search"></i>
@@ -37,37 +37,37 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{ route('chucDanh.create') }}" class="btn btn-info float-right m-2">Thêm mới </a>
+                        <a href="{{ route('vaiTro.create') }}" class="btn btn-info float-right m-2">Thêm mới </a>
                     </div>
                     <div class="col-md-12">
                         <table class="table table-hover">
                             <thead>
                                 <tr style="text-align:center">
                                     <th>Mã quyền</th>
-                                    <th>Tên quyền</th>
+                                    <th>Vai trò</th>
                                     <th>Trạng thái</th>
                                     <th>Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $chucdanh)
+                                @foreach ($data as $vaiTro)
                                     <tr>
-                                        <td style="text-align:center">{{ $chucdanh->id }}</td>
-                                        <td>{{ $chucdanh->ten_quyen }}</td>
-                                        @if ($chucdanh->trang_thai == 1)
+                                        <td style="text-align:center">{{ $vaiTro->id }}</td>
+                                        <td>{{ $vaiTro->vai_tro }}</td>
+                                        @if ($vaiTro->trang_thai == 1)
                                             <td style="text-align: center; color:green"> Kích hoạt</td>
                                         @else
                                             <td style="text-align: center; color:red"> Ngừng hoạt động</td>
                                         @endif
 
                                         <td style="text-align: center">
-                                            <a href="{{ route('chucDanh.show', ['id' => $chucdanh->id]) }}"
+                                            <a href="{{ route('vaiTro.show', ['id' => $vaiTro->id]) }}"
                                                 class="btn btn-info">Xem </a>
-                                            <a href="{{ route('chucDanh.edit', ['id' => $chucdanh->id]) }}"
+                                            <a href="{{ route('vaiTro.edit', ['id' => $vaiTro->id]) }}"
                                                 class="btn btn-success">Sửa </a>
-                                            <a href="{{ route('chucDanh.delete', ['id' => $chucdanh->id]) }}"
+                                            <a href="{{ route('vaiTro.delete', ['id' => $vaiTro->id]) }}"
                                                 class="delete btn btn-danger"
-                                                onclick="return confirm('Bạn có muốn xóa chức danh này ?');">Xóa </a>
+                                                onclick="return confirm('Bạn có muốn xóa vai trò này ?');">Xóa </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -88,3 +88,4 @@
     </div>
     <!-- /.content-wrapper -->
 @endsection
+

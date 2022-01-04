@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Hash;
 class NguoiDungController extends Controller
 {
     use StorageFileTrait;
+
+    private $nguoiDung;
+
+    public function __construct(User $nguoiDung){
+        $this->nguoiDung = $nguoiDung;
+    }
     
     /**
      * Display a listing of the resource.

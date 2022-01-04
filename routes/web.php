@@ -7,7 +7,7 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BoPhanController;
-use App\Http\Controllers\ChucDanhController;
+use App\Http\Controllers\VaiTroController;
 use App\Http\Controllers\CoQuanController;
 use App\Http\Controllers\DoKhanController;
 use App\Http\Controllers\DoMatController;
@@ -16,6 +16,7 @@ use App\Http\Controllers\HinhThucController;
 use App\Http\Controllers\HinhThucLuuController;
 use App\Http\Controllers\LinhVucController;
 use App\Http\Controllers\NguoiDungController;
+use App\Http\Controllers\QuyenTruyCapController;
 use App\Http\Controllers\TheLoaiController;
 use App\Http\Controllers\TrangThaiController;
 use App\Http\Controllers\VanBanDenController;
@@ -58,22 +59,22 @@ Route::prefix('boPhan')->group(function(){
     Route::get('/delete/{id}',[BoPhanController::class, 'destroy'])->name('boPhan.delete');
 });
 
-// khi truy cập các mục liên quan đến chức danh thì dùng route này
-Route::prefix('chucDanh')->group(function(){    
-    // danh sách chức danh, phương thức hiển thị
-    Route::get('/',[ChucDanhController::class, 'index'])->name('chucDanh.index');
-    // thêm mới chức danh, phương thức thêm
-    Route::get('/create',[ChucDanhController::class, 'create'])->name('chucDanh.create');
-    // lưu trữ chức danh vừa thêm, phương thức thêm
-    Route::post('/store',[ChucDanhController::class, 'store'])->name('chucDanh.store');
-    // hiển thị chức danh, phương thức hiển thị
-    Route::get('/show/{id}',[ChucDanhController::class, 'show'])->name('chucDanh.show'); 
-    // chỉnh sửa chức danh, phương thức chỉnh sửa
-    Route::get('/edit/{id}',[ChucDanhController::class, 'edit'])->name('chucDanh.edit');    
-    // lưu thông tin chức danh vừa chỉnh sửa, phương thức chỉnh sửa
-    Route::put('/update/{id}',[ChucDanhController::class, 'update'])->name('chucDanh.update');
-    // xóa chức danh, phương thức xóa
-    Route::get('/delete/{id}',[ChucDanhController::class, 'destroy'])->name('chucDanh.delete');
+// khi truy cập các mục liên quan đến vai trò thì dùng route này
+Route::prefix('vaiTro')->group(function(){    
+    // danh sách vai trò, phương thức hiển thị
+    Route::get('/',[VaiTroController::class, 'index'])->name('vaiTro.index');
+    // thêm mới vai trò, phương thức thêm
+    Route::get('/create',[VaiTroController::class, 'create'])->name('vaiTro.create');
+    // lưu trữ vai trò vừa thêm, phương thức thêm
+    Route::post('/store',[VaiTroController::class, 'store'])->name('vaiTro.store');
+    // hiển thị vai trò, phương thức hiển thị
+    Route::get('/show/{id}',[VaiTroController::class, 'show'])->name('vaiTro.show'); 
+    // chỉnh sửa vai trò, phương thức chỉnh sửa
+    Route::get('/edit/{id}',[VaiTroController::class, 'edit'])->name('vaiTro.edit');    
+    // lưu thông tin vai trò vừa chỉnh sửa, phương thức chỉnh sửa
+    Route::put('/update/{id}',[VaiTroController::class, 'update'])->name('vaiTro.update');
+    // xóa vai trò, phương thức xóa
+    Route::get('/delete/{id}',[VaiTroController::class, 'destroy'])->name('vaiTro.delete');
 });
 
 // khi truy cập các mục liên quan đến cơ quan thì dùng route này
@@ -254,6 +255,24 @@ Route::prefix('trangThai')->group(function(){
     Route::put('/update/{id}',[TrangThaiController::class, 'update'])->name('trangThai.update');
     // xóa trạng thái, phương thức xóa
     Route::get('/delete/{id}',[TrangThaiController::class, 'destroy'])->name('trangThai.delete');
+});
+
+// khi truy cập các mục liên quan đến quyền truy cập thì dùng route này
+Route::prefix('quyenTruyCap')->group(function(){    
+    // danh sách quyền truy cập, phương thức hiển thị
+    Route::get('/',[QuyenTruyCapController::class, 'index'])->name('quyenTruyCap.index');
+    // thêm mới quyền truy cập, phương thức thêm
+    Route::get('/create',[QuyenTruyCapController::class, 'create'])->name('quyenTruyCap.create');
+    // lưu trữ quyền truy cập vừa thêm, phương thức thêm
+    Route::post('/store',[QuyenTruyCapController::class, 'store'])->name('quyenTruyCap.store');
+    // hiển thị quyền truy cập, phương thức hiển thị
+    Route::get('/show/{id}',[QuyenTruyCapController::class, 'show'])->name('quyenTruyCap.show');  
+    // chỉnh sửa quyền truy cập, phương thức chỉnh sửa
+    Route::get('/edit/{id}',[QuyenTruyCapController::class, 'edit'])->name('quyenTruyCap.edit');    
+    // lưu thông tin quyền truy cập vừa chỉnh sửa, phương thức cập nhật
+    Route::put('/update/{id}',[QuyenTruyCapController::class, 'update'])->name('quyenTruyCap.update');
+    // xóa quyền truy cập, phương thức xóa
+    Route::get('/delete/{id}',[QuyenTruyCapController::class, 'destroy'])->name('quyenTruyCap.delete');
 });
 
 // khi truy cập các mục liên quan đến văn bản đến thì dùng route này
