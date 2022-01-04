@@ -26,6 +26,9 @@ class VaiTro extends Model
         return $query;
     }
 
+    // tbl: tên bảng sinh ra của 2 model
+    // id_vaitro : khóa ngoại của model vaitro
+    // id_quyentruycap: khóa ngoại của model quyentruycap
     public function cacQuyenTruyCap(){
         return $this->belongsToMany(QuyenTruyCap::class, 'tbl_vaitro_quyentruycap', 'id_vaitro', 'id_quyentruycap');
     }
