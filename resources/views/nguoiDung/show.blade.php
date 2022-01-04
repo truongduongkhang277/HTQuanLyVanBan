@@ -29,7 +29,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6 mx-auto">
+                    <div class="col-md-10 mx-auto">
                         <form action="" method="POST" role="form">
                             @csrf @method('PUT')
                             <div class="row">
@@ -64,15 +64,16 @@
                                         <input type="text" class="form-control" name="gioi_tinh"
                                         @if ($nguoiDung->gioi_tinh == 1) : value="Nam" @else value="Nữ" @endif>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                    
                                     <div class="form-group">
                                         <label for="">Địa chỉ</label>
                                         <input type="text" class="form-control" name="dia_chi"
                                             value="{{ $nguoiDung->dia_chi }}">
                                     </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Ảnh đại diện</label>
+                                        <label for="exampleInputFile">Ảnh đại diện</label><br/>
                                         <img src="{{ $nguoiDung->file_path }}" alt="{{ $nguoiDung->anh }}" style="width: 200px; height= 200px;">
                                     </div>
                                     <div class="form-group">
@@ -91,7 +92,11 @@
                                         @if ($nguoiDung->trang_thai == 1) : value="Kích hoạt" @else value="Ngừng hoạt động" @endif>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="d-grid gap-2 col-2 mx-auto">
+                                    <div class="col">
+                                        <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                                    </div>
+                                </div>
                         </form>
                     </div>
                 </div>

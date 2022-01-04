@@ -208,24 +208,46 @@ class VanBanDiController extends Controller
      */
     public function update(Request $request, VanBanDi $vanBanDi, $id)
     {
-        $vanBanDi->find($id)->update($request->only(
-            'ki_hieu', 
-            'ngay_gui', 
-            'loai', 
-            'hinh_thuc', 
-            'linh_vuc', 
-            'so_trang', 
-            'trich_yeu', 
-            'nguoi_ky',
-            'chuc_vu',
-            'noi_gui',
-            'do_khan',
-            'hinh_thuc_luu',
-            'noi_nhan',
-            'han_xu_ly',
-            'updated_at'));
-        
-        return redirect()->route('vanBanDi.index');
+        try{
+            DB::beginTransaction();
+            $data = [
+                'so_vb_di' => $request->so_vb_di, 
+                'ki_hieu'=> $request->ki_hieu,
+                'ngay_gui'=> $request->ngay_gui,
+                'loai'=> $request->loai,
+                'hinh_thuc'=> $request->hinh_thuc,
+                'linh_vuc'=> $request->linh_vuc,
+                'so_trang'=> $request->so_trang,
+                'so_luong'=> $request->so_luong,
+                'trich_yeu'=> $request->trich_yeu,
+                'nguoi_ky'=> $request->nguoi_ky,
+                'nv_phathanh' => auth()->id(),
+                'chuc_vu'=> $request->chuc_vu,
+                'noi_gui'=> $request->noi_gui,
+                'do_khan'=> $request->do_khan,
+                'hinh_thuc_luu'=> $request->hinh_thuc_luu,
+                'noi_nhan'=> $request->noi_nhan,
+                'han_xu_ly'=> $request->han_xu_ly,
+            ];
+    
+            // liên kết với file stotageFileTrait để tối ưu lưu file vào hệ thống
+            $fileUpload = $this->storageTraitUpload($request, 'ds_file', 'vanBanDi');
+            
+            if(!empty($fileUpload)){
+                $data['ds_file'] = $fileUpload['file_name'];
+                $data['file_path'] = $fileUpload['file_path'];
+            }
+    
+            $add = VanBanDi::find($id)->update($data);
+            DB::commit();
+            if($add){
+                return redirect()->route('vanBanDi.index')->with('success', 'Cập nhật thành công');
+            }
+    
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Cập nhật không thành công');
+        }
     }
 
     /**

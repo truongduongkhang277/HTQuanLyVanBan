@@ -29,14 +29,14 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-6 mx-auto">
-                        <form action="" method="POST" role="form"
+                    <div class="col-md-10 mx-auto">
+                        <form action="{{ route('nguoiDung.update', $nguoiDung->id) }}" method="POST" role="form"
                             enctype="multipart/form-data">
                             @csrf @method('PUT')
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Họ và tên</label>
+                                        <label for="">Họ và tên</label>
                                         <input type="text" class="form-control" name="name"
                                             value="{{ $nguoiDung->name }}">
                                     </div>
@@ -68,31 +68,35 @@
                                             <option value="0"> [F] Nữ</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                    
                                     <div class="form-group">
                                         <label for="">Địa chỉ</label>
                                         <input type="text" class="form-control" name="dia_chi"
                                             value="{{ $nguoiDung->dia_chi }}">
                                     </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Ảnh đại diện</label>
-                                        <div class="input-group">
-                                            <div class="custom-file">
-                                                <input type="file" name="anh" class="custom-file-input"
-                                                    id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile"
-                                                    value="{{ $nguoiDung->anh }}"></label>
-                                            </div>
-                                        </div>
+                                        <label for="my-input">Ảnh đại diện</label>
+                                        <input class="form-control-file" type="file" name="anh">
+                                        @if (!empty($nguoidung->file_path))
+                                            <img style="width: 180px; height= 180px; object-fit:cover"
+                                                src="{{ $nguoidung->file_path }}" alt="{{ $nguoidung->anh }}">
+                                        @else
+                                            <img style="width: 180px; height= 180px; object-fit:cover"
+                                                src="{{ asset('adminlte/dist/img/noimage.png') }}" alt="No Image">
+                                        @endif
+
                                     </div>
                                     <div class="form-group">
                                         <label for="">Quyền</label>
-
+                                        <input type="text" class="form-control" 
+                                        value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Bộ phận</label>
-
+                                        <input type="text" class="form-control"
+                                        value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Trạng thái</label>
@@ -103,7 +107,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="d-grid gap-2 col-3 mx-auto">
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-success">Cập nhật</button>
+                                        <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -207,26 +207,46 @@ class VanBanDenController extends Controller
      */
     public function update(Request $request, VanBanDen $vanBanDen, $id)
     {
-        $vanBanDen->find($id)->update($request->only(
-                'ki_hieu'           ,
-                'ngay_nhan'         ,
-                'don_vi_ban_hanh'  ,
-                'hinh_thuc'         ,
-                'ngay_vb'          ,
-                'trich_yeu'         ,
-                'loai'              ,
-                'ds_file',
-                'linh_vuc'          ,
-                'nguoi_ky'          ,
-                'do_mat'           ,
-                'do_khan'           ,
-                'chuc_vu'           ,
-                'hinh_thuc_chuyen' ,
-                'hinh_thuc_luu'     ,
-                'han_xu_ly'     ,
-            'updated_at'));
+        try{
+            DB::beginTransaction();
+            $dataUpdate = [
+                'so_vb_den'         => $request->so_vb_den, 
+                'ki_hieu'           => $request->ki_hieu,
+                'ngay_nhan'         => $request->ngay_nhan,
+                'don_vi_ban_hanh'   => $request->don_vi_ban_hanh,
+                'hinh_thuc'         => $request->hinh_thuc,
+                'ngay_vb'           => $request->ngay_vb,
+                'trich_yeu'         => $request->trich_yeu,
+                'loai'              => $request->loai,
+                'linh_vuc'          => $request->linh_vuc,
+                'nguoi_ky'          => $request->nguoi_ky,
+                'do_mat'            => $request->do_mat,
+                'do_khan'           => $request->do_khan,
+                'chuc_vu'           => $request->chuc_vu,
+                'hinh_thuc_chuyen'  => $request->hinh_thuc_chuyen,
+                'hinh_thuc_luu'     => $request->hinh_thuc_luu,
+                'nv_nhan'           => auth()->id(),
+                'han_xu_ly'         => $request->han_xu_ly,
+            ];
+    
+            // liên kết với file stotageFileTrait để tối ưu lưu file vào hệ thống
+            $fileUpload = $this->storageTraitUpload($request, 'ds_file', 'vanBanDi');
+            
+            if(!empty($fileUpload)){
+                $dataUpdate['ds_file'] = $fileUpload['file_name'];
+                $dataUpdate['file_path'] = $fileUpload['file_path'];
+            }
+            $add = VanBanDen::find($id)->update($dataUpdate);
+            DB::commit();
+            if($add){
+                return redirect()->route('vanBanDen.index')->with('success', 'Cập nhật thành công');
+            }
+        } catch (Exception $e) {
+            DB::rollback();
         
-        return redirect()->route('vanBanDen.index');
+            return redirect()->back()->with('error', 'Cập nhật không thành công');
+        }
+    
     }
 
 

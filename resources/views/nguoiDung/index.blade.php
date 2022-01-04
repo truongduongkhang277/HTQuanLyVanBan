@@ -37,7 +37,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{route('nguoiDung.create')}}" class="btn btn-info float-right m-2">Thêm mới </a>
+                        <a href="{{ route('nguoiDung.create') }}" class="btn btn-info float-right m-2">Thêm mới </a>
                     </div>
                     <div class="col-md-12">
                         <table class="table table-hover">
@@ -60,13 +60,17 @@
                                         <td>{{ $nguoidung->ngay_sinh }}</td>
                                         <td>{{ $nguoidung->so_dt }}</td>
                                         @if (!empty($nguoidung->file_path))
-                                        <td>
-                                            <img style="width: 80px; height= 80px; object-fit:cover" src="{{$nguoidung->file_path }}" alt="{{$nguoidung->anh}}">
-                                        </td>
+                                            <td>
+                                                <img style="width: 80px; height: 80px; object-fit: contain;"
+                                                    src="{{ $nguoidung->file_path }}" alt="{{ $nguoidung->anh }}">
+                                            </td>
                                         @else
-                                            <td style="text-align: center; color:red">Không có ảnh hiển thị</td>
+                                            <td>
+                                                <img style="width: 80px; height= 80px; object-fit:cover"
+                                                    src="{{ asset('adminlte/dist/img/noimage.png') }}" alt="No Image">
+                                            </td>
                                         @endif
-                                        
+
                                         <td>{{ $nguoidung->created_at->format('d-m-Y') }}</td>
                                         <td style="text-align: center">
                                             <a href="{{ route('nguoiDung.show', ['id' => $nguoidung->id]) }}"
