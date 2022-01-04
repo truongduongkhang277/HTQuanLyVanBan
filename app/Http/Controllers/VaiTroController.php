@@ -25,7 +25,6 @@ class VaiTroController extends Controller
     {
          // trỏ đến hàm scopeSearch trong model VaiTro để rút gọn code
          $data = VaiTro::orderBy('created_at', 'ASC')->search()->paginate(10);
-
          return view('vaiTro.index', compact('data'));
     }
 
@@ -52,18 +51,18 @@ class VaiTroController extends Controller
         //validate
         $request->validate([
             'vai_tro' => 'required'
-        ],['vai_tro.required' => 'Tên quyền không được để trống !!']);
+        ],['vai_tro.required' => 'Tên vai trò không được để trống !!']);
 
         //store
-        $add = VaiTro::create(['vai_tro' => $request->vai_tro]);
+        $vaiTro = VaiTro::create([
+            'vai_tro' => $request->vai_tro,
+            'trang_thai' => $request->trang_thai,
+            'ghi_chu' => $request->ghi_chu
+        ]);
 
-        //VaiTro::create($request->all());
+        $vaiTro->cacQuyenTruyCap()->attach($request->quyenTruyCap_id);
 
-        if($add){
-            return redirect()->route('vaiTro.index')->with('success', 'Thêm mới thành công');
-        }
-
-        return redirect()->back()->with('error', 'Thêm mới không thành công');
+        return redirect()->route('vaiTro.index');
     }
 
     /**
