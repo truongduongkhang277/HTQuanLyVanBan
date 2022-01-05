@@ -278,7 +278,7 @@ Route::prefix('quyenTruyCap')->group(function(){
 // khi truy cập các mục liên quan đến văn bản đến thì dùng route này
 Route::prefix('vanBanDen')->group(function(){    
     // danh sách văn bản đến, phương thức hiển thị
-    Route::get('/',[VanBanDenController::class, 'index'])->name('vanBanDen.index');
+    Route::get('/',[VanBanDenController::class, 'index'])->name('vanBanDen.index')->middleware('can:danh-sach-van-ban-den');
     // thêm mới văn bản đến, phương thức thêm
     Route::get('/create',[VanBanDenController::class, 'create'])->name('vanBanDen.create');
     // lưu trữ văn bản đến vừa thêm, phương thức thêm

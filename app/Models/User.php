@@ -74,6 +74,20 @@ class User extends Authenticatable
         return $this->belongsToMany(VaiTro::class, 'tbl_nguoidung_vaitro', 'id_nguoidung', 'id_vaitro');
     }
 
+    public function checkQuyenTruyCap($kiemTraQuyen){
+        //b1 lấy được tất cả các quyền truy cập của user đang trong hệ thống
+        $cacVaiTro = auth()->user()->cacVaiTro;
+        foreach($cacVaiTro as $vaiTro){
+            $quyenTruyCap = $vaiTro->cacQuyenTruyCap;
+            //b2 so sánh giá trị với dữ liệu có tồn tại hay không
+            if($quyenTruyCap.contains('keycode', $kiemTraQuyen)) {
+                return true;
+            }
+            
+        }
+        return false;
+    }
+
     public function boPhan(){
         return $this->belongsTo('App\Models\BoPhan', 'bo_phan');
     }
