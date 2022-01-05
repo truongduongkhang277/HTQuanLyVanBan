@@ -85,8 +85,10 @@ class VaiTroController extends Controller
      */
     public function edit(VaiTro $vaiTro, $id)
     {
-        $vaiTro = VaiTro::find($id);
-        return view('vaiTro.edit', compact('vaiTro'));
+        $quyenTruyCapParent = $this->quyenTruyCap->where('parent_id', 0)->get();
+        $vaiTro = VaiTro::find($id); 
+        $quyenTruyCapChecked = $vaiTro->cacQuyenTruyCap;   
+        return view('vaiTro.edit', compact('quyenTruyCapParent', 'vaiTro', 'quyenTruyCapChecked'));
     }
 
     /**
@@ -98,6 +100,24 @@ class VaiTroController extends Controller
      */
     public function update(Request $request, VaiTro $vaiTro, $id)
     {
+        //validate
+        $request->validate([
+            'vai_tro' => 'required'
+        ],['vai_tro.required' => 'Tên vai trò không được để trống !!']);
+
+        
+        $vaiTro = VaiTro::find($id);
+        //store
+        $vaiTro->update([
+            'vai_tro' => $request->vai_tro,
+            'trang_thai' => $request->trang_thai,
+            'ghi_chu' => $request->ghi_chu
+        ]);
+        $vaiTro->cacQuyenTruyCap()->sync($request->quyenTruyCap_id);
+
+        return redirect()->route('vaiTro.index');
+
+
         $vaiTro->find($id)->update($request->only('vai_tro', 'trang_thai', 'ghi_chu', 'updated_at'));
         return redirect()->route('vaiTro.index');
     }

@@ -105,14 +105,6 @@
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('vaiTro.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách vai trò</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
                             <a href="{{ route('coQuan.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách cơ quan</p>
@@ -189,6 +181,18 @@
                     <a href="{{ route('nguoiDung.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p> Danh sách người dùng </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('vaiTro.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Danh sách vai trò</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('quyenTruyCap.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Danh sách quyền</p>
                     </a>
                 </li>
                 <li class="nav-item">

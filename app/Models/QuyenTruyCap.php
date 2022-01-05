@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class QuyenTruyCap extends Model
 {
     use HasFactory;
+    
+    use SoftDeletes;
+    
     protected $table = 'tbl_quyentruycap';
 
     protected $fillable = ['quyen_truy_cap', 'parent_id', 'keycode', 'trang_thai'];

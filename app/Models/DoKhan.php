@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DoKhan extends Model
 {
     use HasFactory;
+    
+    use SoftDeletes;
+    
     protected $table = 'tbl_dokhan';
 
     protected $fillable = ['do_khan', 'trang_thai', 'ghi_chu'];

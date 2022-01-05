@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LinhVuc extends Model
 {
     use HasFactory;
+    
+    use SoftDeletes;
+    
     protected $table = 'tbl_linhvuc';
 
     protected $fillable = ['linh_vuc', 'trang_thai', 'ghi_chu'];
