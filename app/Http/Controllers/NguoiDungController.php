@@ -7,6 +7,8 @@ use App\Models\ChucDanh;
 use App\Models\BoPhan;
 use App\Models\NguoiDung;
 use App\Models\ChucNangNguoiDung;
+use App\Models\QuyenTruyCap;
+use App\Models\VaiTro;
 use App\Traits\StorageFileTrait;
 use Exception;
 use Illuminate\Http\Request;
@@ -43,7 +45,9 @@ class NguoiDungController extends Controller
      */
     public function create()
     {
-        return view('nguoiDung.add');
+        $vaiTro   = VaiTro::orderBy('id', 'ASC')->get();
+        $boPhan   = BoPhan::orderBy('bo_phan', 'ASC')->get();
+        return view('nguoiDung.add', compact('vaiTro', 'boPhan'));
     }
 
     /**
@@ -67,6 +71,7 @@ class NguoiDungController extends Controller
                 'gioi_tinh'   => $request->gioi_tinh,
                 'dia_chi'     => $request->dia_chi,
                 'trang_thai'  => $request->trang_thai,
+                'bo_phan'     => $request->bo_phan,
                 'created_by'  => auth()->id(),
             ];
             
@@ -78,6 +83,8 @@ class NguoiDungController extends Controller
             }
     
             $add = User::create($data);
+            // khi tạo mới user hoàn tất, đưa dữ liệu vào bảng vaitro_nguoidung 
+            $add->cacVaiTro()->attach($request->vai_tro);
             DB::commit();
             if($add){
                 return redirect()->route('nguoiDung.index')->with('success', 'Thêm mới thành công');
@@ -92,28 +99,30 @@ class NguoiDungController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\NguoiDung  $nguoiDung
+     * @param  \App\Models\User  $nguoiDung
      * @return \Illuminate\Http\Response
      */
-    public function show(NguoiDung $nguoiDung, $id)
+    public function show(User $nguoiDung, $id)
     {
-        $nguoiDung = NguoiDung::find($id);
+        $nguoiDung = User::find($id);
         return view('nguoiDung.show', compact('nguoiDung'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\NguoiDung  $nguoiDung
+     * @param  \App\Models\User  $nguoiDung
      * @return \Illuminate\Http\Response
      */
-    public function edit(NguoiDung $nguoiDung, $id)
+    public function edit(User $nguoiDung, $id)
     {
         // truyền biến nguoiDung đến giao diện edit của người dùng
-        //$chucDanh   = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
-        //$boPhan     = BoPhan::orderBy('bo_phan', 'ASC')->get();
-        $nguoiDung = NguoiDung::find($id);
-        return view('nguoiDung.edit', compact('nguoiDung'));
+        $nguoiDung = User::find($id);
+        $vaiTro   = VaiTro::orderBy('id', 'ASC')->get();
+        $boPhan   = BoPhan::orderBy('bo_phan', 'ASC')->get();
+        $vaiTroNguoiDung = $nguoiDung->cacVaiTro;
+        
+        return view('nguoiDung.edit', compact('nguoiDung', 'vaiTro', 'boPhan', 'vaiTroNguoiDung'));
     }
 
     /**
@@ -135,7 +144,7 @@ class NguoiDungController extends Controller
                 'gioi_tinh'   => $request->gioi_tinh,
                 'dia_chi'     => $request->dia_chi,
                 'trang_thai'  => $request->trang_thai,
-                'created_by'  => auth()->id(),
+                'bo_phan'     => $request->bo_phan,
             ];
             
             $fileUpload = $this->storageTraitUpload($request, 'anh', 'avatar');
@@ -144,11 +153,14 @@ class NguoiDungController extends Controller
                 $data['anh'] = $fileUpload['file_name'];
                 $data['file_path'] = $fileUpload['file_path'];
             }
-            $add = User::find($id)->update($data);
+            $nguoiDung = User::find($id);
+            
+            $nguoiDung->update($data);
+
+            $nguoiDung->cacVaiTro()->sync($request->vai_tro);
             DB::commit();
-            if($add){
-                return redirect()->route('nguoiDung.index')->with('success', 'Cập nhật thành công');
-            }
+            
+            return redirect()->route('nguoiDung.index');
         } catch (Exception $e) {
             DB::rollback();
         
@@ -162,7 +174,7 @@ class NguoiDungController extends Controller
      * @param  \App\Models\NguoiDung  $nguoiDung
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NguoiDung $nguoiDung, $id)
+    public function destroy(User $nguoiDung, $id)
     {
         $nguoiDung->find($id)->delete();
         return redirect()->route('nguoiDung.index')->with('success','Xóa tài khoản thành công');

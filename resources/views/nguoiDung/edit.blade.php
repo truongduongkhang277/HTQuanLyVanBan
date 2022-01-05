@@ -3,7 +3,16 @@
 @section('title')
     Chỉnh sửa lĩnh vực
 @endsection
+@section('css')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
+    <style>
+        .select2-selection__choice {
+            background-color: darkcyan !important
+        }
 
+    </style>
+@endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -68,7 +77,7 @@
                                             <option value="0"> [F] Nữ</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="">Địa chỉ</label>
                                         <input type="text" class="form-control" name="dia_chi"
@@ -79,24 +88,44 @@
                                     <div class="form-group">
                                         <label for="my-input">Ảnh đại diện</label>
                                         <input class="form-control-file" type="file" name="anh">
-                                        @if (!empty($nguoidung->file_path))
-                                            <img style="width: 180px; height= 180px; object-fit:cover"
-                                                src="{{ $nguoidung->file_path }}" alt="{{ $nguoidung->anh }}">
-                                        @else
-                                            <img style="width: 180px; height= 180px; object-fit:cover"
-                                                src="{{ asset('adminlte/dist/img/noimage.png') }}" alt="No Image">
-                                        @endif
-
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                @if (!empty($nguoiDung->file_path))
+                                                    <img style="width: 180px; height= 180px; object-fit:cover"
+                                                        src="{{ $nguoiDung->file_path }}" alt="{{ $nguoiDung->anh }}">
+                                                @else
+                                                    <img style="width: 180px; height= 180px; object-fit:cover"
+                                                        src="{{ asset('adminlte/dist/img/noimage.png') }}"
+                                                        alt="No Image">
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Quyền</label>
-                                        <input type="text" class="form-control" 
-                                        value="">
+                                        <label>Vai trò</label>
+                                        <select name="vai_tro[]" class="form-control select2_init" multiple>
+                                            <option value=""></option>
+                                            @foreach ($vaiTro as $vai_tro)
+                                                <option
+                                                    {{ $vaiTroNguoiDung->contains('id', $vai_tro->id) ? 'selected' : '' }}
+                                                    value="{{ $vai_tro->id }}">{{ $vai_tro->vai_tro }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Bộ phận</label>
-                                        <input type="text" class="form-control"
-                                        value="">
+                                        <label for="my-input">Bộ phận</label>
+                                        <select class="form-control" type="text" name="bo_phan">
+                                            @foreach ($boPhan as $bo_phan)
+                                                @if ($bo_phan->id == $nguoiDung->bo_phan)
+                                                    <option value="{{ $bo_phan->id }}" selected>
+                                                        {{ $bo_phan->bo_phan }} </option>
+                                                @else
+                                                    <option value="{{ $bo_phan->id }}">{{ $bo_phan->bo_phan }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Trạng thái</label>
@@ -123,4 +152,13 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@endsection
+@section('js')
+    <!-- Select2 -->
+    <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script>
+        $('.select2_init').select2({
+            'placeholder': 'Chọn vai trò'
+        })
+    </script>
 @endsection

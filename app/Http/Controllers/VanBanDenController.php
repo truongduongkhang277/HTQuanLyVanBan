@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ChucDanh;
 use App\Models\VanBanDen;
 use Illuminate\Http\Request;
 
@@ -17,6 +16,7 @@ use App\Models\CoQuan;
 use App\Models\HinhThucChuyen;
 use App\Models\HinhThucLuu;
 use App\Models\LinhVuc;
+use App\Models\VaiTro;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -54,7 +54,7 @@ class VanBanDenController extends Controller
         $trangthai      = TrangThai::orderBy('trang_thai', 'ASC')->get();
         $don_vi_ban_hanh= CoQuan::orderBy('ten_co_quan', 'ASC')->get();
         $nguoidung      = User::orderBy('email', 'ASC')->get();
-        $chucdanh       = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        $vaiTro       = VaiTro::orderBy('vai_tro', 'ASC')->get();
         return view('vanBanDen.add', compact(
             'domat', 
             'dokhan', 
@@ -66,7 +66,7 @@ class VanBanDenController extends Controller
             'trangthai', 
             'don_vi_ban_hanh', 
             'nguoidung', 
-            'chucdanh'
+            'vaiTro'
         ));
     }
 
@@ -144,7 +144,7 @@ class VanBanDenController extends Controller
         $trangthai      = TrangThai::orderBy('trang_thai', 'ASC')->get();
         $don_vi_ban_hanh= CoQuan::orderBy('ten_co_quan', 'ASC')->get();
         $nguoidung      = User::orderBy('email', 'ASC')->get();
-        $chucdanh       = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        $vaiTro       = VaiTro::orderBy('vai_tro', 'ASC')->get();
         return view('vanBanDen.show', compact(
             'vanBanDen', 
             'domat', 
@@ -157,7 +157,7 @@ class VanBanDenController extends Controller
             'trangthai', 
             'don_vi_ban_hanh', 
             'nguoidung', 
-            'chucdanh'
+            'vaiTro'
         ));
     }
 
@@ -180,7 +180,7 @@ class VanBanDenController extends Controller
         $trangthai      = TrangThai::orderBy('trang_thai', 'ASC')->get();
         $don_vi_ban_hanh= CoQuan::orderBy('ten_co_quan', 'ASC')->get();
         $nguoidung      = User::orderBy('email', 'ASC')->get();
-        $chucdanh       = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        $vaiTro       = VaiTro::orderBy('vai_tro', 'ASC')->get();
         return view('vanBanDen.edit', compact(
             'vanBanDen', 
             'domat', 
@@ -193,7 +193,7 @@ class VanBanDenController extends Controller
             'trangthai', 
             'don_vi_ban_hanh', 
             'nguoidung', 
-            'chucdanh'
+            'vaiTro'
         ));
     }
 

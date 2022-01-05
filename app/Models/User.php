@@ -32,7 +32,6 @@ class User extends Authenticatable
         'anh',
         'file_path',
         'bo_phan',
-        'chuc_danh',
         'trang_thai',
         'created_by',
     ];
@@ -68,60 +67,15 @@ class User extends Authenticatable
         return $query;
     }
 
-    // lấy các quyền đã gán cho người dùng này
-    public function quyenNguoiDung(){
-        $data = [];
-        foreach($this->getQuyen as $quyen){
-            $ten_quyen = json_decode($quyen->quyen_truy_cap);
-            foreach($ten_quyen as $quyenNguoiDung){
-                if(!in_array($quyenNguoiDung, $data)){
-                    array_push($data, $quyenNguoiDung);
-                }
-            }
-            dd($quyen);
-        }
-        return $data;
+    // tbl: tên bảng sinh ra của 2 model
+    // id_nguoidung : khóa ngoại của model user
+    // id_vaitro: khóa ngoại của model vaitro
+    public function cacVaiTro(){
+        return $this->belongsToMany(VaiTro::class, 'tbl_nguoidung_vaitro', 'id_nguoidung', 'id_vaitro');
     }
 
-    // chức danh của tài khoản
-    public function chucDanh(){
-        return $this->belongsToMany('App\Models\ChucDanh');
-    }
-    // tài khoản có nhiều chức danh (nhiều quyền sử dụng)
-    public function coCacChucDanh($cacChucDanh){
-        if(is_array($cacChucDanh)){
-            foreach($cacChucDanh as $chucDanh){
-                if($this->coChucDanh($chucDanh)){
-                    return true;
-                }
-            }
-        } else {
-            if($this->coChucDanh($cacChucDanh)){
-                return true;
-            }
-        }
-    }
-    // lấy 1 chức danh (1 quyền) của người dùng
-    public function coChucDanh($chucDanh){
-        if($this->chucDanh()->where('ten_quyen', $chucDanh)->first()){
-            return true;
-        }
-        return false;
+    public function boPhan(){
+        return $this->belongsTo('App\Models\BoPhan', 'bo_phan');
     }
 
-
-    //tương tự như trên nhưng code ngắn gọn
-    public function getQuyen(){
-        /*
-            tbl_nguoidung_chucdanh: kết nối giữa bảng user và bảng tbl_chucdanh (bảng trung gian)
-            id_nguoidung: khóa ngoại liên kết đến bảng User
-            id_chucdanh: khóa ngoại đến bảng tbl_chucdanh
-        */
-        return $this->belongsToMany(ChucDanh::class, 'tbl_nguoidung_chucdanh', 'id_nguoidung', 'id_chucdanh');
-    }
-
-    // văn bản đi của tài khoản
-    public function vanBanDi(){
-        return $this->belongsToMany('App\Models\VanBanDi');
-    }
 }

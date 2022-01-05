@@ -33,32 +33,37 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-11 mx-auto">
+                    <div class="col-md-10 mx-auto">
                         <form action="" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="my-input">Số văn bản đi</label>
                                         <input class="form-control" type="text" name="so_vb_di"
                                             value="{{ $vanBanDi->so_vb_di }}" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="my-input">Số kí hiệu</label>
-                                        <input class="form-control" type="text" name="ki_hieu"
-                                            value="{{ $vanBanDi->ki_hieu }}" disabled>
+                                        <label for="my-input">Loại văn bản</label>
+                                        <input class="form-control" type="text" name="loai"
+                                            value="{{ optional($vanBanDi->loaiVB)->ten_loai }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Ngày ban hành</label>
                                         <input class="form-control" type="text" name="ngay_gui"
                                             value="{{ $vanBanDi->ngay_gui }}" disabled>
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label for="my-input">Số trang</label>
+                                        <input class="form-control" type="text" name="so_trang"
+                                            value="{{ $vanBanDi->so_trang }}" disabled>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">                                    
                                     <div class="form-group">
-                                        <label for="my-input">Loại văn bản</label>
-                                        <input class="form-control" type="text" name="loai"
-                                            value="{{ optional($vanBanDi->loaiVB)->ten_loai }}" disabled>
+                                        <label for="my-input">Số kí hiệu</label>
+                                        <input class="form-control" type="text" name="ki_hieu"
+                                            value="{{ $vanBanDi->ki_hieu }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Hình thức văn bản</label>
@@ -69,13 +74,6 @@
                                         <label for="my-input">Lĩnh vực</label>
                                         <input class="form-control" type="text" name="linh_vuc"
                                             value="{{ optional($vanBanDi->linhVuc)->linh_vuc }}" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="my-input">Số trang</label>
-                                        <input class="form-control" type="text" name="so_trang"
-                                            value="{{ $vanBanDi->so_trang }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Số lượng bản phát hành</label>
@@ -89,17 +87,28 @@
                                         <textarea class="form-control" type="text" name="trich_yeu" rows="3" disabled>
                                                 {{ $vanBanDi->trich_yeu }}</textarea>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="my-input">Người ký</label>
-                                        <input class="form-control" type="text" name="nguoi_ky"
-                                            value="{{ optional($vanBanDi->nguoiKy)->name }}" disabled>
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <label for="my-input">Nhân viên phát hành</label>
                                         <input class="form-control" type="text" name="nv_phathanh"
                                             value="{{ optional($vanBanDi->nvPhatHanh)->name }}" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="my-input">Người ký</label>
+                                        <input class="form-control" type="text" name="nguoi_ky"
+                                            value="{{ optional($vanBanDi->nguoiKy)->name }}" disabled>
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label for="my-input">Độ khẩn</label>
+                                        <input class="form-control" type="text" name="do_khan"
+                                            value="{{ optional($vanBanDi->doKhan)->do_khan }}" disabled>
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label for="my-input">Cơ quan nhận</label>
+                                        <input class="form-control" type="text" name="noi_nhan"
+                                            value="{{ optional($vanBanDi->noiNhan)->ten_co_quan }}" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
@@ -107,34 +116,22 @@
                                             value="{{ $vanBanDi->ds_file }}" disabled>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="my-input">Chức vụ người ký</label>
                                         <input class="form-control" type="text" name="chuc_vu"
                                             value="{{ optional($vanBanDi->chucVu)->ten_quyen }}" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="my-input">Cơ quan gửi</label>
-                                        <input class="form-control" type="text" name="noi_gui"
-                                            value="{{ optional($vanBanDi->noiGui)->ten_co_quan }}" disabled>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="my-input">Độ khẩn</label>
-                                        <input class="form-control" type="text" name="do_khan"
-                                            value="{{ optional($vanBanDi->doKhan)->do_khan }}" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
+                                    </div>                                    
                                     <div class="form-group">
                                         <label for="my-input">Hình thức sao lưu</label>
                                         <input class="form-control" type="text" name="hinh_thuc_luu"
                                             value="{{ $vanBanDi->hinh_thuc_luu }}" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="my-input">Cơ quan nhận</label>
-                                        <input class="form-control" type="text" name="noi_nhan"
-                                            value="{{ optional($vanBanDi->noiNhan)->ten_co_quan }}" disabled>
-                                    </div>
+                                        <label for="my-input">Cơ quan gửi</label>
+                                        <input class="form-control" type="text" name="noi_gui"
+                                            value="{{ optional($vanBanDi->noiGui)->ten_co_quan }}" disabled>
+                                    </div>                                    
                                     <div class="form-group">
                                         <label for="my-input">Hạn xử lý</label>
                                         <input class="form-control" type="text" name="han_xu_ly"
@@ -142,7 +139,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-grid gap-2 col-3 mx-auto">
+                            <div class="d-grid gap-2 col-2 mx-auto">
                                 <div class="col">
                                     <a href="{{ url()->previous() }}" class="btn btn-danger">Trở về</a>
                                 </div>

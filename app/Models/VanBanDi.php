@@ -79,9 +79,9 @@ class VanBanDi extends Model
         return $this->belongsTo('App\Models\LinhVuc', 'linh_vuc');
     }
 
-    public function chucVu(){
+    public function vaiTro(){
         // 1 văn bản có 1 đơn vị ban hành
-        return $this->belongsTo('App\Models\ChucDanh', 'chuc_vu');
+        return $this->belongsTo('App\Models\VaiTro', 'chuc_vu');
     }
 
     public function noiGui(){

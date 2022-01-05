@@ -4,6 +4,17 @@
     Thêm tài khoản mới
 @endsection
 
+@section('css')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
+    <style>
+        .select2-selection__choice {
+            background-color: darkcyan !important
+        }
+
+    </style>
+@endsection
+
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -30,7 +41,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-10 mx-auto">
-                        <form action="{{ route('nguoiDung.store') }}" method="POST" role="form" enctype="multipart/form-data">
+                        <form action="{{ route('nguoiDung.store') }}" method="POST" role="form"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-5">
@@ -81,12 +93,24 @@
                                         <input class="form-control-file" type="file" name="anh">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Quyền</label>
-
+                                        <label>Vai trò</label>
+                                        <select name="vai_tro[]" class="form-control select2_init" multiple>
+                                            <option value=""></option>
+                                            @foreach ($vaiTro as $vai_tro)
+                                                <option value="{{ $vai_tro->id }}">{{ $vai_tro->vai_tro }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Bộ phận</label>
-
+                                        <label for="my-input">Bộ phận</label>
+                                        <select class="form-control" type="text" name="bo_phan">
+                                            <option value="">Chọn một</option>
+                                            @foreach ($boPhan as $bo_phan)
+                                                <option value="{{ $bo_phan->id }}">{{ $bo_phan->bo_phan }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Trạng thái</label>
@@ -113,4 +137,13 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@endsection
+@section('js')
+    <!-- Select2 -->
+    <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script>
+        $('.select2_init').select2({
+            'placeholder': 'Chọn vai trò'
+        })
+    </script>
 @endsection

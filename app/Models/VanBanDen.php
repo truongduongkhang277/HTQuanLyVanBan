@@ -78,9 +78,9 @@ class VanBanDen extends Model
         return $this->belongsTo('App\Models\DoKhan', 'do_khan');
     }
 
-    public function chucVu(){
+    public function vaiTro(){
         // 1 văn bản có 1 đơn vị ban hành
-        return $this->belongsTo('App\Models\ChucDanh', 'chuc_vu');
+        return $this->belongsTo('App\Models\VaiTro', 'chuc_vu');
     }
 
     public function hinhThucChuyen(){

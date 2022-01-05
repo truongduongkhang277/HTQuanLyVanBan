@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ChucDanh;
 use App\Models\VanBanDi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -16,6 +15,7 @@ use App\Models\User;
 use App\Models\CoQuan;
 use App\Models\HinhThucLuu;
 use App\Models\LinhVuc;
+use App\Models\VaiTro;
 use App\Traits\StorageFileTrait;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -58,7 +58,7 @@ class VanBanDiController extends Controller
         $theloai = TheLoai::orderBy('ten_loai', 'ASC')->get();
         $trangthai = TrangThai::orderBy('trang_thai', 'ASC')->get();
         $coquan = CoQuan::orderBy('ten_co_quan', 'ASC')->get();
-        $chucdanh = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        $vaiTro = VaiTro::orderBy('vai_tro', 'ASC')->get();
         $nguoidung = User::orderBy('email', 'ASC')->get();
         return view('vanBanDi.add', compact(
             'domat', 
@@ -69,7 +69,7 @@ class VanBanDiController extends Controller
             'theloai', 
             'trangthai', 
             'coquan', 
-            'chucdanh', 
+            'vaiTro', 
             'nguoidung'
         ));
     }
@@ -148,7 +148,7 @@ class VanBanDiController extends Controller
         $theloai = TheLoai::orderBy('ten_loai', 'ASC')->get();
         $trangthai = TrangThai::orderBy('trang_thai', 'ASC')->get();
         $coquan = CoQuan::orderBy('ten_co_quan', 'ASC')->get();
-        $chucdanh = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        $vaiTro = VaiTro::orderBy('vai_tro', 'ASC')->get();
         $nguoidung = User::orderBy('email', 'ASC')->get();
         return view('vanBanDi.show', compact(
             'vanBanDi', 
@@ -160,7 +160,7 @@ class VanBanDiController extends Controller
             'theloai', 
             'trangthai', 
             'coquan', 
-            'chucdanh', 
+            'vaiTro', 
             'nguoidung'
         ));
     }
@@ -182,7 +182,7 @@ class VanBanDiController extends Controller
         $theloai = TheLoai::orderBy('ten_loai', 'ASC')->get();
         $trangthai = TrangThai::orderBy('trang_thai', 'ASC')->get();
         $coquan = CoQuan::orderBy('ten_co_quan', 'ASC')->get();
-        $chucdanh = ChucDanh::orderBy('ten_quyen', 'ASC')->get();
+        $vaiTro = VaiTro::orderBy('vai_tro', 'ASC')->get();
         $nguoidung = User::orderBy('email', 'ASC')->get();
         return view('vanBanDi.edit', compact(
             'vanBanDi', 
@@ -194,7 +194,7 @@ class VanBanDiController extends Controller
             'theloai', 
             'trangthai', 
             'coquan', 
-            'chucdanh', 
+            'vaiTro', 
             'nguoidung'
         ));
     }
