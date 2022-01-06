@@ -28,9 +28,9 @@ class VaiTroPolicy
      * @param  \App\Models\VaiTro  $vaiTro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, VaiTro $vaiTro)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-vai-tro');
     }
 
     /**
@@ -41,7 +41,7 @@ class VaiTroPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-vai-tro');
     }
 
     /**
@@ -51,9 +51,9 @@ class VaiTroPolicy
      * @param  \App\Models\VaiTro  $vaiTro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, VaiTro $vaiTro)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-vai-tro');
     }
 
     /**
@@ -63,9 +63,9 @@ class VaiTroPolicy
      * @param  \App\Models\VaiTro  $vaiTro
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, VaiTro $vaiTro)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-vai-tro');
     }
 
     /**

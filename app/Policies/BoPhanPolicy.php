@@ -30,6 +30,7 @@ class BoPhanPolicy
      */
     public function view(User $user)
     {
+        return $user->checkQuyenTruyCap('danh-sach-bo-phan');
     }
 
     /**
@@ -40,6 +41,7 @@ class BoPhanPolicy
      */
     public function create(User $user)
     {
+        return $user->checkQuyenTruyCap('them-bo-phan');
     }
 
     /**
@@ -51,7 +53,7 @@ class BoPhanPolicy
      */
     public function update(User $user)
     {
-        
+        return $user->checkQuyenTruyCap('sua-bo-phan');
     }
 
     /**
@@ -63,7 +65,7 @@ class BoPhanPolicy
      */
     public function delete(User $user)
     {
-        
+        return $user->checkQuyenTruyCap('xoa-bo-phan');
     }
 
     /**

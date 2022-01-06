@@ -63,7 +63,7 @@ class VanBanDenPolicy
      * @param  \App\Models\VanBanDen  $vanBanDen
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, VanBanDen $vanBanDen)
+    public function delete(User $user)
     {
         return $user->checkQuyenTruyCap('xoa-van-ban-den');
     }

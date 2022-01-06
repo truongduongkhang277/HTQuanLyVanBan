@@ -28,10 +28,11 @@ class CoQuanPolicy
      * @param  \App\Models\CoQuan  $coQuan
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, CoQuan $coQuan)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-co-quan');
     }
+
 
     /**
      * Determine whether the user can create models.
@@ -41,7 +42,7 @@ class CoQuanPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-co-quan');
     }
 
     /**
@@ -51,9 +52,9 @@ class CoQuanPolicy
      * @param  \App\Models\CoQuan  $coQuan
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, CoQuan $coQuan)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-co-quan');
     }
 
     /**
@@ -63,9 +64,9 @@ class CoQuanPolicy
      * @param  \App\Models\CoQuan  $coQuan
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, CoQuan $coQuan)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-co-quan');
     }
 
     /**

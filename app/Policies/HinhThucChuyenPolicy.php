@@ -28,9 +28,9 @@ class HinhThucChuyenPolicy
      * @param  \App\Models\HinhThucChuyen  $hinhThucChuyen
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, HinhThucChuyen $hinhThucChuyen)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-hinh-thuc-chuyen');
     }
 
     /**
@@ -41,7 +41,7 @@ class HinhThucChuyenPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-hinh-thuc-chuyen');
     }
 
     /**
@@ -51,9 +51,9 @@ class HinhThucChuyenPolicy
      * @param  \App\Models\HinhThucChuyen  $hinhThucChuyen
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, HinhThucChuyen $hinhThucChuyen)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-hinh-thuc-chuyen');
     }
 
     /**
@@ -63,9 +63,9 @@ class HinhThucChuyenPolicy
      * @param  \App\Models\HinhThucChuyen  $hinhThucChuyen
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, HinhThucChuyen $hinhThucChuyen)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-hinh-thuc-chuyen');
     }
 
     /**

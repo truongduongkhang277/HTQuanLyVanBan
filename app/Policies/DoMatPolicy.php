@@ -28,9 +28,9 @@ class DoMatPolicy
      * @param  \App\Models\DoMat  $doMat
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, DoMat $doMat)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-do-mat');
     }
 
     /**
@@ -41,7 +41,7 @@ class DoMatPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-do-mat');
     }
 
     /**
@@ -51,9 +51,9 @@ class DoMatPolicy
      * @param  \App\Models\DoMat  $doMat
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, DoMat $doMat)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-do-mat');
     }
 
     /**
@@ -63,9 +63,9 @@ class DoMatPolicy
      * @param  \App\Models\DoMat  $doMat
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, DoMat $doMat)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-do-mat');
     }
 
     /**

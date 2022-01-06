@@ -28,9 +28,9 @@ class TrangThaiPolicy
      * @param  \App\Models\TrangThai  $trangThai
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, TrangThai $trangThai)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-trang-thai');
     }
 
     /**
@@ -41,7 +41,7 @@ class TrangThaiPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-trang-thai');
     }
 
     /**
@@ -51,9 +51,9 @@ class TrangThaiPolicy
      * @param  \App\Models\TrangThai  $trangThai
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, TrangThai $trangThai)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-trang-thai');
     }
 
     /**
@@ -63,9 +63,9 @@ class TrangThaiPolicy
      * @param  \App\Models\TrangThai  $trangThai
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, TrangThai $trangThai)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-trang-thai');
     }
 
     /**

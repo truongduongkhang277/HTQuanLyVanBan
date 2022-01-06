@@ -28,9 +28,9 @@ class DoKhanPolicy
      * @param  \App\Models\DoKhan  $doKhan
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, DoKhan $doKhan)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-do-khan');
     }
 
     /**
@@ -41,7 +41,7 @@ class DoKhanPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-do-khan');
     }
 
     /**
@@ -51,9 +51,9 @@ class DoKhanPolicy
      * @param  \App\Models\DoKhan  $doKhan
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, DoKhan $doKhan)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-do-khan');
     }
 
     /**
@@ -63,9 +63,9 @@ class DoKhanPolicy
      * @param  \App\Models\DoKhan  $doKhan
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, DoKhan $doKhan)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-do-khan');
     }
 
     /**

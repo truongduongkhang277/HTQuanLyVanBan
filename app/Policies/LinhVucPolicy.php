@@ -28,9 +28,9 @@ class LinhVucPolicy
      * @param  \App\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, LinhVuc $linhVuc)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-linh-vuc');
     }
 
     /**
@@ -41,7 +41,7 @@ class LinhVucPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-linh-vuc');
     }
 
     /**
@@ -51,9 +51,9 @@ class LinhVucPolicy
      * @param  \App\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, LinhVuc $linhVuc)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-linh-vuc');
     }
 
     /**
@@ -63,9 +63,9 @@ class LinhVucPolicy
      * @param  \App\Models\LinhVuc  $linhVuc
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, LinhVuc $linhVuc)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-linh-vuc');
     }
 
     /**

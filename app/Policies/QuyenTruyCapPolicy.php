@@ -28,11 +28,10 @@ class QuyenTruyCapPolicy
      * @param  \App\Models\QuyenTruyCap  $quyenTruyCap
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, QuyenTruyCap $quyenTruyCap)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-quyen-truy-cap');
     }
-
     /**
      * Determine whether the user can create models.
      *
@@ -41,7 +40,7 @@ class QuyenTruyCapPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-quyen-truy-cap');
     }
 
     /**
@@ -51,9 +50,9 @@ class QuyenTruyCapPolicy
      * @param  \App\Models\QuyenTruyCap  $quyenTruyCap
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, QuyenTruyCap $quyenTruyCap)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-quyen-truy-cap');
     }
 
     /**
@@ -63,9 +62,9 @@ class QuyenTruyCapPolicy
      * @param  \App\Models\QuyenTruyCap  $quyenTruyCap
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, QuyenTruyCap $quyenTruyCap)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-quyen-truy-cap');
     }
 
     /**

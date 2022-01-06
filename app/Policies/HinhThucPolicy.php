@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\HinhThucChuyen;
+use App\Models\HinhThuc;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class HinhThucChuyen
+class HinhThucPolicy
 {
     use HandlesAuthorization;
 
@@ -25,12 +25,12 @@ class HinhThucChuyen
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HinhThucChuyen  $hinhThucChuyen
+     * @param  \App\Models\HinhThuc  $hinhThuc
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, HinhThucChuyen $hinhThucChuyen)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-hinh-thuc');
     }
 
     /**
@@ -41,41 +41,41 @@ class HinhThucChuyen
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-hinh-thuc');
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HinhThucChuyen  $hinhThucChuyen
+     * @param  \App\Models\HinhThuc  $hinhThuc
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, HinhThucChuyen $hinhThucChuyen)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-hinh-thuc');
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HinhThucChuyen  $hinhThucChuyen
+     * @param  \App\Models\HinhThuc  $hinhThuc
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, HinhThucChuyen $hinhThucChuyen)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-hinh-thuc');
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HinhThucChuyen  $hinhThucChuyen
+     * @param  \App\Models\HinhThuc  $hinhThuc
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, HinhThucChuyen $hinhThucChuyen)
+    public function restore(User $user, HinhThuc $hinhThuc)
     {
         //
     }
@@ -84,10 +84,10 @@ class HinhThucChuyen
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HinhThucChuyen  $hinhThucChuyen
+     * @param  \App\Models\HinhThuc  $hinhThuc
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, HinhThucChuyen $hinhThucChuyen)
+    public function forceDelete(User $user, HinhThuc $hinhThuc)
     {
         //
     }

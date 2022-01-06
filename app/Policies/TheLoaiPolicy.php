@@ -28,9 +28,9 @@ class TheLoaiPolicy
      * @param  \App\Models\TheLoai  $theLoai
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, TheLoai $theLoai)
+    public function view(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('danh-sach-the-loai');
     }
 
     /**
@@ -41,7 +41,7 @@ class TheLoaiPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('them-the-loai');
     }
 
     /**
@@ -51,9 +51,9 @@ class TheLoaiPolicy
      * @param  \App\Models\TheLoai  $theLoai
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, TheLoai $theLoai)
+    public function update(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('sua-the-loai');
     }
 
     /**
@@ -63,9 +63,9 @@ class TheLoaiPolicy
      * @param  \App\Models\TheLoai  $theLoai
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, TheLoai $theLoai)
+    public function delete(User $user)
     {
-        //
+        return $user->checkQuyenTruyCap('xoa-the-loai');
     }
 
     /**
