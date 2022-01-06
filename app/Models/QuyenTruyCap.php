@@ -30,4 +30,9 @@ class QuyenTruyCap extends Model
     public function permissionChildren(){
         return $this->hasMany(QuyenTruyCap::class, 'parent_id');
     }
+
+    public function recusive(){
+        // 1 văn bản có 1 hình thức
+        return $this->belongsTo('App\Models\QuyenTruyCap', 'parent_id');
+    }
 }

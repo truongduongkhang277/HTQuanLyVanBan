@@ -37,7 +37,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{ route('hinhThucLuu.create') }}" class="btn btn-info float-right m-2">Thêm mới </a>
+                        @can('them-hinh-thuc-luu')
+                            <a href="{{ route('hinhThucLuu.create') }}" class="btn btn-info float-right m-2">Thêm mới </a>
+                        @endcan
                     </div>
                     <div class="col-md-12">
                         <table class="table table-hover">
@@ -63,11 +65,15 @@
                                         <td style="text-align: center">
                                             <a href="{{ route('hinhThucLuu.show', ['id' => $hinhThucLuu->id]) }}"
                                                 class="btn btn-info">Xem </a>
-                                            <a href="{{ route('hinhThucLuu.edit', ['id' => $hinhThucLuu->id]) }}"
-                                                class="btn btn-success">Sửa </a>
-                                            <a href="{{ route('hinhThucLuu.delete', ['id' => $hinhThucLuu->id]) }}"
-                                                class="delete btn btn-danger"
-                                                onclick="return confirm('Bạn có muốn xóa hình thức lưu này ?');">Xóa </a>
+                                            @can('sua-hinh-thuc-luu')
+                                                <a href="{{ route('hinhThucLuu.edit', ['id' => $hinhThucLuu->id]) }}"
+                                                    class="btn btn-success">Sửa </a>
+                                            @endcan
+                                            @can('xoa-hinh-thuc-luu')
+                                                <a href="{{ route('hinhThucLuu.delete', ['id' => $hinhThucLuu->id]) }}"
+                                                    class="delete btn btn-danger"
+                                                    onclick="return confirm('Bạn có muốn xóa hình thức lưu này ?');">Xóa </a>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

@@ -69,7 +69,8 @@ class QuyenTruyCapController extends Controller
      */
     public function show(QuyenTruyCap $quyenTruyCap, $id)
     {
-        
+        $quyenTruyCap = QuyenTruyCap::find($id);
+        return view('quyenTruyCap.show', compact('quyenTruyCap'));
     }
 
     /**
@@ -80,7 +81,15 @@ class QuyenTruyCapController extends Controller
      */
     public function edit(QuyenTruyCap $quyenTruyCap, $id)
     {
-        
+        // lấy dữ liệu có từ bảng Quyền truy cập
+        $data = $this->quyenTruyCap->all();
+        // khai báo biến 
+        $recusive = new Recusive($data);
+        // gán biến 
+        $htmlOption = $recusive->permissionRecusive();
+
+        $quyenTruyCap = QuyenTruyCap::find($id);
+        return view('quyenTruyCap.edit', compact('quyenTruyCap', 'htmlOption'));
     }
 
     /**
@@ -92,7 +101,15 @@ class QuyenTruyCapController extends Controller
      */
     public function update(Request $request, QuyenTruyCap $quyenTruyCap, $id)
     {
-        
+        //$quyenTruyCap->find($id)->update($request->only('quyen_truy_cap','parent_id', 'keycode', 'trang_thai', 'updated_at'));
+        $quyenTruyCap->find($id)->update([
+            'quyen_truy_cap' => $request->quyen_truy_cap,
+            'parent_id' => $request->parent_id,
+            'keycode' => Str::slug($request->quyen_truy_cap, '-'),
+            'trang_thai' => $request->trang_thai,
+            'updated_at'
+        ]);
+        return redirect()->route('quyenTruyCap.index');
     }
 
     /**
@@ -103,6 +120,7 @@ class QuyenTruyCapController extends Controller
      */
     public function destroy(QuyenTruyCap $quyenTruyCap, $id)
     {
-        
+        $quyenTruyCap->find($id)->delete();
+        return redirect()->route('quyenTruyCap.index')->with('success','Xóa quyền truy cập thành công');
     }
 }

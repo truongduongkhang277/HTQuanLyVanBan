@@ -37,7 +37,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{ route('coQuan.create') }}" class="btn btn-info float-right m-2">Thêm mới </a>
+                        @can('them-co-quan')
+                            <a href="{{ route('coQuan.create') }}" class="btn btn-info float-right m-2">Thêm mới </a>
+                        @endcan
                     </div>
                     <div class="col-md-12">
                         <table class="table table-hover">
@@ -66,11 +68,15 @@
                                         <td style="text-align: center">
                                             <a href="{{ route('coQuan.show', ['id' => $coquan->id]) }}"
                                                 class="btn btn-info">Xem </a>
-                                            <a href="{{ route('coQuan.edit', ['id' => $coquan->id]) }}"
-                                                class="btn btn-success">Sửa </a>
-                                            <a href="{{ route('coQuan.delete', ['id' => $coquan->id]) }}"
-                                                class="delete btn btn-danger"
-                                                onclick="return confirm('Bạn có muốn xóa cơ quan này ?');">Xóa </a>
+                                            @can('sua-co-quan')
+                                                <a href="{{ route('coQuan.edit', ['id' => $coquan->id]) }}"
+                                                    class="btn btn-success">Sửa </a>
+                                            @endcan
+                                            @can('xoa-co-quan')
+                                                <a href="{{ route('coQuan.delete', ['id' => $coquan->id]) }}"
+                                                    class="delete btn btn-danger"
+                                                    onclick="return confirm('Bạn có muốn xóa cơ quan này ?');">Xóa </a>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach
