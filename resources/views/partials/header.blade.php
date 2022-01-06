@@ -9,7 +9,7 @@
             <a href="{{ route('home') }}" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('lienLac') }}" class="nav-link">Liên lạc</a>
+            <a href="{{ route('contact') }}" class="nav-link">Liên lạc</a>
         </li>
     </ul>
 

@@ -25,8 +25,13 @@ class HomeController extends Controller
     {
         return view('layouts.home');
     }
+    
+    public function profile()
+    {
+        return view('profile');
+    }
 
-    public function lienLac()
+    public function contact()
     {
         return view('contact');
     }

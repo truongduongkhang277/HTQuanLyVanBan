@@ -22,7 +22,8 @@ Route::get('/', [AdminController::class, 'loginAdmin'])->name('login');
 Route::post('/', [AdminController::class, 'postLoginAdmin']);
 Route::get('logout', [AdminController::class, 'logout'])->name('logout');
 
-Route::get('lienLac', [HomeController::class, 'lienLac'])->name('lienLac');
+Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('profile', [HomeController::class, 'profile'])->name('profile');
 
 Route::get('/home', function(){
     return view('home');

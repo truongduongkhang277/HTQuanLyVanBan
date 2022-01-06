@@ -13,16 +13,15 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 @if (!empty(auth()->user()->file_path))
-                <img src="{{ auth()->user()->file_path }}" class="img-circle elevation-2"
-                alt="User Image">
+                    <img src="{{ auth()->user()->file_path }}" class="img-circle elevation-2" alt="User Image">
                 @else
-                <img src="{{ asset('adminlte/dist/img/noimage.png') }}" class="img-circle elevation-2"
-                alt="User Image">
+                    <img src="{{ asset('adminlte/dist/img/noimage.png') }}" class="img-circle elevation-2"
+                        alt="User Image">
                 @endif
-                
+
             </div>
             <div class="info">
-                <a href="{{ route('home') }}" class="d-block">{{ auth()->user()->name }}</a>
+                <a href="{{ route('profile') }}" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -50,42 +49,47 @@
                         <p> Trang chủ </p>
                     </a>
                 </li>
-                <!-- Văn bản đến -->
-                <li class="nav-item">
-                    <a href="{{ route('vanBanDen.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-laptop-code"></i>
-                        <p>
-                            Quản lý văn bản đến
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('vanBanDen.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách văn bản đến</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- Văn bản đi -->
-                <li class="nav-item">
-                    <a href="{{ route('vanBanDi.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-laptop-code"></i>
-                        <p>
-                            Quản lý văn bản đi
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('vanBanDi.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách văn bản đi</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                @can('danh-sach-van-ban-den')
+                    <!-- Văn bản đến -->
+                    <li class="nav-item">
+                        <a href="{{ route('vanBanDen.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-laptop-code"></i>
+                            <p>
+                                Quản lý văn bản đến
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('vanBanDen.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách văn bản đến</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
+
+                @can('danh-sach-van-ban-di')
+                    <!-- Văn bản đi -->
+                    <li class="nav-item">
+                        <a href="{{ route('vanBanDi.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-laptop-code"></i>
+                            <p>
+                                Quản lý văn bản đi
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('vanBanDi.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách văn bản đi</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
                 <!-- Quản lý hệ thống-->
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link">
@@ -95,6 +99,7 @@
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
+                    @can('danh-sach-bo-phan')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('boPhan.index') }}" class="nav-link">
@@ -103,6 +108,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('danh-sach-co-quan')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('coQuan.index') }}" class="nav-link">
@@ -111,6 +118,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('danh-sach-do-khan')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('doKhan.index') }}" class="nav-link">
@@ -119,6 +128,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('danh-sach-do-mat')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('doMat.index') }}" class="nav-link">
@@ -127,6 +138,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('danh-sach-hinh-thuc')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('hinhThuc.index') }}" class="nav-link">
@@ -135,6 +148,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('danh-sach-hinh-thuc-chuyen')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('hinhThucChuyen.index') }}" class="nav-link">
@@ -143,6 +158,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('danh-sach-hinh-thuc-luu')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('hinhThucLuu.index') }}" class="nav-link">
@@ -151,6 +168,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('danh-sach-linh-vuc')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('linhVuc.index') }}" class="nav-link">
@@ -159,7 +178,8 @@
                             </a>
                         </li>
                     </ul>
-                    
+                    @endcan
+                    @can('danh-sach-the-loai')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('theLoai.index') }}" class="nav-link">
@@ -168,6 +188,8 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
+                    @can('danh-sach-trang-thai')
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('trangThai.index') }}" class="nav-link">
@@ -176,25 +198,32 @@
                             </a>
                         </li>
                     </ul>
+                    @endcan
                 </li>
+                @can('danh-sach-tai-khoan')
                 <li class="nav-item">
                     <a href="{{ route('nguoiDung.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p> Danh sách người dùng </p>
                     </a>
                 </li>
+                @endcan
+                @can('danh-sach-vai-tro')
                 <li class="nav-item">
                     <a href="{{ route('vaiTro.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Danh sách vai trò</p>
                     </a>
                 </li>
+                @endcan
+                @can('danh-sach-quyen-truy-cap')
                 <li class="nav-item">
                     <a href="{{ route('quyenTruyCap.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Danh sách quyền</p>
                     </a>
                 </li>
+                @endcan
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
