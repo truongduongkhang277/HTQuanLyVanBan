@@ -228,11 +228,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-grid gap-2 col-4 mx-auto">
-                                <div class="col">
-                                    <button type="submit" class="btn btn-success">Cập nhật</button>
-                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
-                                </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

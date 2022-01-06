@@ -69,7 +69,7 @@
                                             value="{{ $vanBanDi->so_trang }}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">                                    
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="my-input">Số kí hiệu</label>
                                         <input class="form-control" type="text" name="ki_hieu"
@@ -154,7 +154,7 @@
                                                 @endif
                                             @endforeach
                                         </select>
-                                    </div>                                    
+                                    </div>
                                     <div class="form-group">
                                         <label for="my-input">Cơ quan nhận</label>
                                         <select class="form-control" type="text" name="noi_nhan">
@@ -168,7 +168,7 @@
                                                 @endif
                                             @endforeach
                                         </select>
-                                    </div>  
+                                    </div>
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
                                         <input class="form-control-file" type="file" name="ds_file">
@@ -190,7 +190,7 @@
                                                 @endif
                                             @endforeach
                                         </select>
-                                    </div>                                    
+                                    </div>
                                     <div class="form-group">
                                         <label for="my-input">Hình thức sao lưu</label>
                                         <select class="form-control" type="text" name="hinh_thuc_luu" required>
@@ -219,7 +219,7 @@
                                                 @endif
                                             @endforeach
                                         </select>
-                                    </div>                                  
+                                    </div>
                                     <div class="form-group">
                                         <label for="my-input">Hạn xử lý</label>
                                         <input class="form-control" type="text" name="han_xu_ly"
@@ -227,11 +227,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-grid gap-2 col-3 mx-auto">
-                                <div class="col">
-                                    <button type="submit" class="btn btn-success">Cập nhật</button>
-                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
-                                </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

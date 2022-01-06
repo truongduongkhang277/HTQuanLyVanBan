@@ -62,7 +62,7 @@
                                             <td style="text-align: center; color:red"> Ngừng hoạt động</td>
                                         @endif
 
-                                        <td style="text-align: center">
+                                        <td class="text-center">
                                             <a href="{{ route('quyenTruyCap.show', ['id' => $quyenTruyCap->id]) }}"
                                                 class="btn btn-info">Xem </a>
                                             @can('sua-quyen-truy-cap')
@@ -80,10 +80,8 @@
                             </tbody>
                         </table>
                         <hr>
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <div class="col">
-                                {{ $data->appends(request()->all())->links() }}
-                            </div>
+                        <div class="pagination justify-content-center">
+                            {{ $data->appends(request()->all())->links() }}
                         </div>
                     </div>
                 </div>

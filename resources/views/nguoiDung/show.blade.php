@@ -61,10 +61,10 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Giới tính</label>
-                                        <input type="text" class="form-control" name="gioi_tinh"
-                                        @if ($nguoiDung->gioi_tinh == 1) : value="Nam" @else value="Nữ" @endif disabled>
+                                        <input type="text" class="form-control" name="gioi_tinh" @if ($nguoiDung->gioi_tinh == 1) : value="Nam" @else value="Nữ" @endif
+                                            disabled>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="">Địa chỉ</label>
                                         <input type="text" class="form-control" name="dia_chi"
@@ -73,8 +73,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Ảnh đại diện</label><br/>
-                                        <img src="{{ $nguoiDung->file_path }}" alt="{{ $nguoiDung->anh }}" style="width: 200px; height= 200px;" disabled>
+                                        <label for="exampleInputFile">Ảnh đại diện</label><br />
+                                        <img src="{{ $nguoiDung->file_path }}" alt="{{ $nguoiDung->anh }}"
+                                            style="width: 200px; height= 200px;" disabled>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Quyền</label>
@@ -88,14 +89,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Trạng thái</label>
-                                        <input type="text" class="form-control" name="trang_thai"
-                                        @if ($nguoiDung->trang_thai == 1) : value="Kích hoạt" @else value="Ngừng hoạt động" @endif disabled>
+                                        <input type="text" class="form-control" name="trang_thai" @if ($nguoiDung->trang_thai == 1) : value="Kích hoạt" @else value="Ngừng hoạt động" @endif
+                                            disabled>
                                     </div>
                                 </div>
-                                <div class="d-grid gap-2 col-2 mx-auto">
-                                    <div class="col">
-                                        <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
-                                    </div>
+                                <div class="text-center">
+                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                                 </div>
                         </form>
                     </div>

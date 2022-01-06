@@ -41,7 +41,8 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="">Vai trò</label>
-                                    <input type="text" class="form-control" name="vai_tro" value="{{ $vaiTro->vai_tro }}">
+                                    <input type="text" class="form-control" name="vai_tro"
+                                        value="{{ $vaiTro->vai_tro }}">
                                     @error('vai_tro')
                                         <small class="help-block">{{ $message }}</small>
                                     @enderror
@@ -55,7 +56,8 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="">Ghi chú</label>
-                                    <input type="text" class="form-control" name="ghi_chu" value="{{ $vaiTro->ghi_chu }}">
+                                    <input type="text" class="form-control" name="ghi_chu"
+                                        value="{{ $vaiTro->ghi_chu }}">
                                     @error('ghi_chu')
                                         <small class="help-block">{{ $message }}</small>
                                     @enderror
@@ -92,11 +94,9 @@
                                 </div>
                                 <!-- /.card -->
                             </div>
-                            <div class="d-grid gap-2 col-2 mx-auto">
-                                <div class="col">
-                                    <button type="submit" class="btn btn-success">Lưu</button>
-                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
-                                </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success">Lưu</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

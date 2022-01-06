@@ -52,14 +52,14 @@
                                         <label for="my-input">Ngày ban hành</label>
                                         <input class="form-control" type="text" name="ngay_gui"
                                             value="{{ $vanBanDi->ngay_gui }}" disabled>
-                                    </div>                                    
+                                    </div>
                                     <div class="form-group">
                                         <label for="my-input">Số trang</label>
                                         <input class="form-control" type="text" name="so_trang"
                                             value="{{ $vanBanDi->so_trang }}" disabled>
                                     </div>
                                 </div>
-                                <div class="col-md-6">                                    
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="my-input">Số kí hiệu</label>
                                         <input class="form-control" type="text" name="ki_hieu"
@@ -85,9 +85,9 @@
                                     <div class="form-group">
                                         <label for="my-input">Trích yếu</label>
                                         <textarea class="form-control" type="text" name="trich_yeu" rows="3" disabled>
-                                                {{ $vanBanDi->trich_yeu }}</textarea>
+                                                    {{ $vanBanDi->trich_yeu }}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="my-input">Nhân viên phát hành</label>
                                         <input class="form-control" type="text" name="nv_phathanh"
@@ -99,12 +99,12 @@
                                         <label for="my-input">Người ký</label>
                                         <input class="form-control" type="text" name="nguoi_ky"
                                             value="{{ optional($vanBanDi->nguoiKy)->name }}" disabled>
-                                    </div>                                    
+                                    </div>
                                     <div class="form-group">
                                         <label for="my-input">Độ khẩn</label>
                                         <input class="form-control" type="text" name="do_khan"
                                             value="{{ optional($vanBanDi->doKhan)->do_khan }}" disabled>
-                                    </div>                                    
+                                    </div>
                                     <div class="form-group">
                                         <label for="my-input">Cơ quan nhận</label>
                                         <input class="form-control" type="text" name="noi_nhan"
@@ -121,7 +121,7 @@
                                         <label for="my-input">Chức vụ người ký</label>
                                         <input class="form-control" type="text" name="chuc_vu"
                                             value="{{ optional($vanBanDi->chucVu)->ten_quyen }}" disabled>
-                                    </div>                                    
+                                    </div>
                                     <div class="form-group">
                                         <label for="my-input">Hình thức sao lưu</label>
                                         <input class="form-control" type="text" name="hinh_thuc_luu"
@@ -131,7 +131,7 @@
                                         <label for="my-input">Cơ quan gửi</label>
                                         <input class="form-control" type="text" name="noi_gui"
                                             value="{{ optional($vanBanDi->noiGui)->ten_co_quan }}" disabled>
-                                    </div>                                    
+                                    </div>
                                     <div class="form-group">
                                         <label for="my-input">Hạn xử lý</label>
                                         <input class="form-control" type="text" name="han_xu_ly"
@@ -139,10 +139,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-grid gap-2 col-2 mx-auto">
-                                <div class="col">
-                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Trở về</a>
-                                </div>
+                            <div class="text-center">
+                                <a href="{{ url()->previous() }}" class="btn btn-danger">Trở về</a>
                             </div>
                         </form>
                     </div>

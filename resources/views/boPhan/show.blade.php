@@ -57,10 +57,8 @@
                                 <input type="text" class="form-control" name="ghi_chu" value="{{ $boPhan->ghi_chu }}"
                                     disabled>
                             </div>
-                            <div class="d-grid gap-2 col-4 mx-auto">
-                                <div class="col">
-                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
-                                </div>
+                            <div class="text-center">
+                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

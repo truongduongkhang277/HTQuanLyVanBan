@@ -44,18 +44,16 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
-                                <input type="text" class="form-control" name="trang_thai"
-                                 disabled @if ($coQuan->trang_thai == 1) : value="Kích hoạt" @else value="Ngừng hoạt động" @endif>
+                                <input type="text" class="form-control" name="trang_thai" disabled
+                                    @if ($coQuan->trang_thai == 1) : value="Kích hoạt" @else value="Ngừng hoạt động" @endif>
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>
                                 <input type="text" class="form-control" name="ghi_chu" value="{{ $coQuan->ghi_chu }}"
                                     disabled>
                             </div>
-                            <div class="d-grid gap-2 col-2 mx-auto">
-                                <div class="col">
-                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
-                                </div>
+                            <div class="text-center">
+                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

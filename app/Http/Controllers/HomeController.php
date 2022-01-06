@@ -26,8 +26,13 @@ class HomeController extends Controller
         return view('layouts.home');
     }
 
-    public function error_page()
+    public function lienLac()
     {
-        return view('errors.404');
+        return view('contact');
     }
+
+    // public function error_page()
+    // {
+    //     return view('errors.404');
+    // }
 }
