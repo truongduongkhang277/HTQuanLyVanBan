@@ -280,33 +280,33 @@ Route::prefix('vanBanDen')->group(function(){
     // danh sách văn bản đến, phương thức hiển thị
     Route::get('/',[VanBanDenController::class, 'index'])->name('vanBanDen.index')->middleware('can:danh-sach-van-ban-den');
     // thêm mới văn bản đến, phương thức thêm
-    Route::get('/create',[VanBanDenController::class, 'create'])->name('vanBanDen.create');
+    Route::get('/create',[VanBanDenController::class, 'create'])->name('vanBanDen.create')->middleware('can:them-van-ban-den');
     // lưu trữ văn bản đến vừa thêm, phương thức thêm
     Route::post('/store',[VanBanDenController::class, 'store'])->name('vanBanDen.store');
     // hiển thị văn bản đến, phương thức hiển thị
     Route::get('/show/{id}',[VanBanDenController::class, 'show'])->name('vanBanDen.show'); 
     // chỉnh sửa văn bản đến, phương thức chỉnh sửa
-    Route::get('/edit/{id}',[VanBanDenController::class, 'edit'])->name('vanBanDen.edit');    
+    Route::get('/edit/{id}',[VanBanDenController::class, 'edit'])->name('vanBanDen.edit')->middleware('can:sua-van-ban-den');    
     // lưu thông tin văn bản đến vừa chỉnh sửa, phương thức chỉnh sửa
     Route::put('/update/{id}',[VanBanDenController::class, 'update'])->name('vanBanDen.update');
     // xóa văn bản đến, phương thức xóa
-    Route::get('/delete/{id}',[VanBanDenController::class, 'destroy'])->name('vanBanDen.delete');
+    Route::get('/delete/{id}',[VanBanDenController::class, 'destroy'])->name('vanBanDen.delete')->middleware('can:xoa-van-ban-den');
 });
 
 // khi truy cập các mục liên quan đến văn bản đi thì dùng route này
 Route::prefix('vanBanDi')->group(function(){    
     // danh sách văn bản đi, phương thức hiển thị
-    Route::get('/',[VanBanDiController::class, 'index'])->name('vanBanDi.index');
+    Route::get('/',[VanBanDiController::class, 'index'])->name('vanBanDi.index')->middleware('can:danh-sach-van-ban-den');
     // thêm mới văn bản đi, phương thức thêm
-    Route::get('/create',[VanBanDiController::class, 'create'])->name('vanBanDi.create');
+    Route::get('/create',[VanBanDiController::class, 'create'])->name('vanBanDi.create')->middleware('can:them-van-ban-den');
     // lưu trữ văn bản đi vừa thêm, phương thức thêm
     Route::post('/store',[VanBanDiController::class, 'store'])->name('vanBanDi.store');
     // hiển thị văn bản đi, phương thức hiển thị
     Route::get('/show/{id}',[VanBanDiController::class, 'show'])->name('vanBanDi.show');  
     // chỉnh sửa văn bản đi, phương thức chỉnh sửa
-    Route::get('/edit/{id}',[VanBanDiController::class, 'edit'])->name('vanBanDi.edit');    
+    Route::get('/edit/{id}',[VanBanDiController::class, 'edit'])->name('vanBanDi.edit')->middleware('can:sua-van-ban-den');    
     // lưu thông tin văn bản đi vừa chỉnh sửa, phương thức cập nhật
     Route::put('/update/{id}',[VanBanDiController::class, 'update'])->name('vanBanDi.update');
     // xóa văn bản đi, phương thức xóa
-    Route::get('/delete/{id}',[VanBanDiController::class, 'destroy'])->name('vanBanDi.delete');
+    Route::get('/delete/{id}',[VanBanDiController::class, 'destroy'])->name('vanBanDi.delete')->middleware('can:xoa-van-ban-den');
 });

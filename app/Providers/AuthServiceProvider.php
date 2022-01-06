@@ -25,8 +25,22 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('danh-sach-van-ban-den', function($user){
-            return $user->checkQuyenTruyCap(config('quyenTruyCap.access.danh-sach-van-ban-den'));
-        });
+        $this->defineGateVanBanDen();
+
+        $this->defineGateVanBanDi();
+    }
+
+    public function defineGateVanBanDen(){
+        Gate::define('danh-sach-van-ban-den', 'App\Policies\VanBanDenPolicy@view');
+        Gate::define('them-van-ban-den', 'App\Policies\VanBanDenPolicy@create');
+        Gate::define('sua-van-ban-den', 'App\Policies\VanBanDenPolicy@update');
+        Gate::define('xoa-van-ban-den', 'App\Policies\VanBanDenPolicy@delete');
+    }
+
+    public function defineGateVanBanDi(){
+        Gate::define('danh-sach-van-ban-di', 'App\Policies\VanBanDiPolicy@view');
+        Gate::define('them-van-ban-di', 'App\Policies\VanBanDiPolicy@create');
+        Gate::define('sua-van-ban-di', 'App\Policies\VanBanDiPolicy@update');
+        Gate::define('xoa-van-ban-di', 'App\Policies\VanBanDiPolicy@delete');
     }
 }

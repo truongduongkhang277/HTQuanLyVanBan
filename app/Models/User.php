@@ -78,12 +78,11 @@ class User extends Authenticatable
         //b1 lấy được tất cả các quyền truy cập của user đang trong hệ thống
         $cacVaiTro = auth()->user()->cacVaiTro;
         foreach($cacVaiTro as $vaiTro){
-            $quyenTruyCap = $vaiTro->cacQuyenTruyCap;
+            $cacQuyenTruyCap = $vaiTro->cacQuyenTruyCap;
             //b2 so sánh giá trị với dữ liệu có tồn tại hay không
-            if($quyenTruyCap.contains('keycode', $kiemTraQuyen)) {
+            if($cacQuyenTruyCap->contains('keycode', $kiemTraQuyen)) {
                 return true;
             }
-            
         }
         return false;
     }
