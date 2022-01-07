@@ -44,27 +44,52 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <form action="{{ route('nguoiDung.updatePassword', $nguoiDung->id) }}" method="POST" role="form"
-                            enctype="multipart/form-data">
-                            @csrf @method('PUT')                                    
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if ($errors)
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger">{{ $error }}</div>
+                            @endforeach
+                        @endif
+                        <form class="form-horizontal" method="POST" action="{{ route('nguoiDung.updatePassword') }}">
+                            @csrf @method('PUT')
                             @include('partials.alert')
-                            <div class="col-md-8 mx-auto">                                
-                                <div class="form-group">
-                                    <label>Mật khẩu cũ</label>
-                                    <input type="password" class="form-control" name="name">
+                            <div class="col-md-8 mx-auto">
+                                <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
+                                    <label for="new-password" class="control-label">Mật khẩu cũ</label>
+                                    <input id="current-password" type="password" class="form-control"
+                                        name="current-password" required>
+
+                                    @if ($errors->has('current-password'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('current-password') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="form-group">
-                                    <label>Mật khẩu mới</label>
-                                    <input type="password" class="form-control" name="email">
+                                <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
+                                    <label for="new-password" class="control-label">Mật khẩu mới</label>
+        
+                                        <input id="new-password" type="password" class="form-control" name="new-password" required>
+        
+                                        @if ($errors->has('new-password'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('new-password') }}</strong>
+                                            </span>
+                                        @endif
                                 </div>
+        
                                 <div class="form-group">
-                                    <label>Nhập lại mật khẩu mới</label>
-                                    <input type="password" class="form-control" name="password">
+                                    <label for="new-password-confirm" class="control-label">Nhập lại mật khẩu mới</label>
+        
+                                        <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
                                 </div>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success">Cập nhật</button>
-                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                                <a href="{{ route('profile') }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

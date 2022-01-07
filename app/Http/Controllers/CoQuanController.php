@@ -42,7 +42,11 @@ class CoQuanController extends Controller
         $request->validate([
             'ten_co_quan' => 'required',
             'dia_chi' => 'required',
+        ], [
+            'ten_co_quan.required' => 'Tên cơ quan không được để trống !!',
+            'dia_chi.required' => 'Địa chỉ cơ quan không được để trống !!',
         ]);
+
 
         //store
         $add = CoQuan::create($request->all());
@@ -87,8 +91,20 @@ class CoQuanController extends Controller
      */
     public function update(Request $request, CoQuan $coQuan, $id)
     {
-        $coQuan->find($id)->update($request->only('ten_co_quan', 'dia_chi', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('coQuan.index')->with('success', 'Cập nhật thành công');;
+        //validate
+        $request->validate([
+            'ten_co_quan' => 'required',
+            'dia_chi' => 'required',
+        ], [
+            'ten_co_quan.required' => 'Tên cơ quan không được để trống !!',
+            'dia_chi.required' => 'Địa chỉ cơ quan không được để trống !!',
+        ]);
+        
+        $update = $coQuan->find($id)->update($request->only('ten_co_quan', 'dia_chi', 'trang_thai', 'ghi_chu', 'updated_at'));
+        if($update){
+            return redirect()->route('coQuan.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**

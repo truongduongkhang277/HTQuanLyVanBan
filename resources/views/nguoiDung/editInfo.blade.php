@@ -120,7 +120,7 @@
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success">Cập nhật</button>
-                                <a href="{{ route('nguoiDung.editInfo') }}" class="btn btn-danger">Hủy</a>
+                                <a href="{{ route('profile') }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

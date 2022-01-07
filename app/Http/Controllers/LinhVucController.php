@@ -41,6 +41,8 @@ class LinhVucController extends Controller
         //validate
         $request->validate([
             'linh_vuc' => 'required'
+        ], [
+            'linh_vuc.required' => 'Tên lĩnh vực không được để trống !!',
         ]);
 
         //store
@@ -86,8 +88,18 @@ class LinhVucController extends Controller
      */
     public function update(Request $request, LinhVuc $linhVuc, $id)
     {
-        $linhVuc->find($id)->update($request->only('linh_vuc', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('linhVuc.index')->with('success', 'Cập nhật thành công');;
+        //validate
+        $request->validate([
+            'linh_vuc' => 'required'
+        ], [
+            'linh_vuc.required' => 'Tên lĩnh vực không được để trống !!',
+        ]);
+        
+        $update = $linhVuc->find($id)->update($request->only('linh_vuc', 'trang_thai', 'ghi_chu', 'updated_at'));
+        if($update){
+            return redirect()->route('linhVuc.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**

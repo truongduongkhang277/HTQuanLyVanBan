@@ -84,9 +84,23 @@ class VanBanDiController extends Controller
     {
 
         //validate
-        // $request->validate([
-        //     'trang_thai' => 'required',
-        // ]);
+        $request->validate([
+            'so_vb_di' => 'required',
+            'ki_hieu' => 'required',
+            'ngay_gui' => 'required',
+            'noi_nhan' => 'required',
+            'trich_yeu' => 'required',
+            'nguoi_ky' => 'required',            
+            'ds_file' => 'required',
+        ], [
+            'so_vb_di.required'        => 'Số văn bản đi không được để trống !!',
+            'ki_hieu.required'          => 'Kí hiệu không được để trống !!',
+            'ngay_gui.required'        => 'Ngày nhận không được để trống !!',
+            'noi_nhan.required'  => 'Đơn vị nhận văn bản không được để trống !!',
+            'trich_yeu.required'        => 'Trích yếu không được để trống !!',
+            'nguoi_ky.required'         => 'Tên trạng thái không được để trống !!',
+            'ds_file.required'         => 'Cần có file đính kèm không được để trống !!',
+        ]);
         // tránh commit 1 dữ liệu 2 lần
         try{
             DB::beginTransaction();
@@ -208,6 +222,24 @@ class VanBanDiController extends Controller
      */
     public function update(Request $request, VanBanDi $vanBanDi, $id)
     {
+        //validate
+        $request->validate([
+            'so_vb_di' => 'required',
+            'ki_hieu' => 'required',
+            'ngay_gui' => 'required',
+            'noi_nhan' => 'required',
+            'trich_yeu' => 'required',
+            'nguoi_ky' => 'required',            
+            'ds_file' => 'required',
+        ], [
+            'so_vb_di.required'        => 'Số văn bản đi không được để trống !!',
+            'ki_hieu.required'          => 'Kí hiệu không được để trống !!',
+            'ngay_gui.required'        => 'Ngày nhận không được để trống !!',
+            'noi_nhan.required'  => 'Đơn vị nhận văn bản không được để trống !!',
+            'trich_yeu.required'        => 'Trích yếu không được để trống !!',
+            'nguoi_ky.required'         => 'Tên trạng thái không được để trống !!',
+            'ds_file.required'         => 'Cần có file đính kèm không được để trống !!',
+        ]);
         try{
             DB::beginTransaction();
             $data = [

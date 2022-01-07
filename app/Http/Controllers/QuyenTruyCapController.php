@@ -52,13 +52,27 @@ class QuyenTruyCapController extends Controller
      */
     public function store(Request $request)
     {
-        QuyenTruyCap::create([
+        //validate
+        $request->validate([
+            'quyen_truy_cap' => 'required',
+            'parent_id' => 'required',
+        ], [
+            'quyen_truy_cap.required' => 'Tên quyền truy cập không được để trống !!',
+            'parent_id.required' => 'Tên thư mục cha không được để trống !!',
+        ]);
+
+        $add = QuyenTruyCap::create([
             'quyen_truy_cap' => $request->quyen_truy_cap,
             'parent_id' => $request->parent_id,
             'keycode' => Str::slug($request->quyen_truy_cap, '-'),
             'trang_thai' => $request->trang_thai
         ]);
-        return redirect()->route('quyenTruyCap.index')->with('success', 'Thêm mới thành công');;
+
+        if($add){
+            return redirect()->route('quyenTruyCap.index')->with('success', 'Thêm mới thành công');
+        }
+
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**
@@ -101,15 +115,27 @@ class QuyenTruyCapController extends Controller
      */
     public function update(Request $request, QuyenTruyCap $quyenTruyCap, $id)
     {
+        //validate
+        $request->validate([
+            'quyen_truy_cap' => 'required',
+            'parent_id' => 'required',
+        ], [
+            'quyen_truy_cap.required' => 'Tên quyền truy cập không được để trống !!',
+            'parent_id.required' => 'Tên thư mục cha không được để trống !!',
+        ]);
+        
         //$quyenTruyCap->find($id)->update($request->only('quyen_truy_cap','parent_id', 'keycode', 'trang_thai', 'updated_at'));
-        $quyenTruyCap->find($id)->update([
+        $update = $quyenTruyCap->find($id)->update([
             'quyen_truy_cap' => $request->quyen_truy_cap,
             'parent_id' => $request->parent_id,
             'keycode' => Str::slug($request->quyen_truy_cap, '-'),
             'trang_thai' => $request->trang_thai,
             'updated_at'
         ]);
-        return redirect()->route('quyenTruyCap.index')->with('success', 'Cập nhật thành công');;
+        if($update){
+            return redirect()->route('quyenTruyCap.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**

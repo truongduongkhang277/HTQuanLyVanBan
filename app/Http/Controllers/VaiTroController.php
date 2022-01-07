@@ -62,7 +62,11 @@ class VaiTroController extends Controller
 
         $vaiTro->cacQuyenTruyCap()->attach($request->quyenTruyCap_id);
 
-        return redirect()->route('vaiTro.index')->with('success', 'Thêm mới thành công');;
+        if($vaiTro){
+            return redirect()->route('vaiTro.index')->with('success', 'Thêm mới thành công');
+        }
+
+        return redirect()->back()->with('error', 'Thêm mới không thành công');
     }
 
     /**
@@ -108,18 +112,18 @@ class VaiTroController extends Controller
         
         $vaiTro = VaiTro::find($id);
         //store
-        $vaiTro->update([
+        
+        $vaiTro->cacQuyenTruyCap()->sync($request->quyenTruyCap_id);
+
+        $update = $vaiTro->update([
             'vai_tro' => $request->vai_tro,
             'trang_thai' => $request->trang_thai,
             'ghi_chu' => $request->ghi_chu
         ]);
-        $vaiTro->cacQuyenTruyCap()->sync($request->quyenTruyCap_id);
-
-        return redirect()->route('vaiTro.index');
-
-
-        $vaiTro->find($id)->update($request->only('vai_tro', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('vaiTro.index')->with('success', 'Cập nhật thành công');;
+        if($update){
+            return redirect()->route('vaiTro.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**

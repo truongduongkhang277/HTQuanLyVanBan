@@ -41,6 +41,8 @@ class HinhThucLuuController extends Controller
         //validate
         $request->validate([
             'hinh_thuc_luu' => 'required'
+        ], [
+            'hinh_thuc_luu.required' => 'Tên hình thức lưu không được để trống !!',
         ]);
 
         //store
@@ -86,8 +88,18 @@ class HinhThucLuuController extends Controller
      */
     public function update(Request $request, HinhThucLuu $hinhThucLuu, $id)
     {
-        $hinhThucLuu->find($id)->update($request->only('hinh_thuc_luu', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('hinhThucLuu.index')->with('success', 'Cập nhật thành công');;
+        //validate
+        $request->validate([
+            'hinh_thuc_luu' => 'required'
+        ], [
+            'hinh_thuc_luu.required' => 'Tên hình thức lưu không được để trống !!',
+        ]);
+        
+        $update = $hinhThucLuu->find($id)->update($request->only('hinh_thuc_luu', 'trang_thai', 'ghi_chu', 'updated_at'));
+        if($update){
+            return redirect()->route('hinhThucLuu.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**

@@ -41,6 +41,8 @@ class DoMatController extends Controller
         //validate
         $request->validate([
             'do_mat' => 'required'
+        ], [
+            'do_mat.required' => 'Tên độ mật không được để trống !!',
         ]);
 
         //store
@@ -86,8 +88,18 @@ class DoMatController extends Controller
      */
     public function update(Request $request, DoMat $doMat, $id)
     {
-        $doMat->find($id)->update($request->only('do_mat', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('doMat.index')->with('success', 'Cập nhật thành công');;
+        //validate
+        $request->validate([
+            'do_mat' => 'required'
+        ], [
+            'do_mat.required' => 'Tên độ mật không được để trống !!',
+        ]);
+        
+        $update = $doMat->find($id)->update($request->only('do_mat', 'trang_thai', 'ghi_chu', 'updated_at'));
+        if($update){
+            return redirect()->route('doMat.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**

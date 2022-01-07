@@ -79,9 +79,25 @@ class VanBanDenController extends Controller
     public function store(Request $request)
     {
         //validate
-        // $request->validate([
-        //     'trang_thai' => 'required',
-        // ]);
+        $request->validate([
+            'so_vb_den' => 'required',
+            'ki_hieu' => 'required',
+            'ngay_nhan' => 'required',
+            'don_vi_ban_hanh' => 'required',
+            'ngay_vb' => 'required',
+            'trich_yeu' => 'required',
+            'nguoi_ky' => 'required',
+            'ds_file' => 'required',
+        ], [
+            'so_vb_den.required'        => 'Số văn bản đến không được để trống !!',
+            'ki_hieu.required'          => 'Kí hiệu không được để trống !!',
+            'ngay_nhan.required'        => 'Ngày nhận không được để trống !!',
+            'don_vi_ban_hanh.required'  => 'Đơn vị ban hành không được để trống !!',
+            'ngay_vb.required'          => 'Ngày văn bản không được để trống !!',
+            'trich_yeu.required'        => 'Trích yếu không được để trống !!',
+            'nguoi_ky.required'         => 'Tên trạng thái không được để trống !!',
+            'ds_file.required'         => 'Cần có file đính kèm không được để trống !!',
+        ]);
         // tránh commit 1 dữ liệu 2 lần
         try{
             DB::beginTransaction();
@@ -197,7 +213,6 @@ class VanBanDenController extends Controller
         ));
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -207,6 +222,27 @@ class VanBanDenController extends Controller
      */
     public function update(Request $request, VanBanDen $vanBanDen, $id)
     {
+        //validate
+        $request->validate([
+            'so_vb_den' => 'required',
+            'ki_hieu' => 'required',
+            'ngay_nhan' => 'required',
+            'don_vi_ban_hanh' => 'required',
+            'ngay_vb' => 'required',
+            'trich_yeu' => 'required',
+            'nguoi_ky' => 'required',
+            'ds_file' => 'required',
+        ], [
+            'so_vb_den.required'        => 'Số văn bản đến không được để trống !!',
+            'ki_hieu.required'          => 'Kí hiệu không được để trống !!',
+            'ngay_nhan.required'        => 'Ngày nhận không được để trống !!',
+            'don_vi_ban_hanh.required'  => 'Đơn vị ban hành không được để trống !!',
+            'ngay_vb.required'          => 'Ngày văn bản không được để trống !!',
+            'trich_yeu.required'        => 'Trích yếu không được để trống !!',
+            'nguoi_ky.required'         => 'Tên trạng thái không được để trống !!',
+            'ds_file.required'         => 'Cần có file đính kèm không được để trống !!',
+        ]);
+
         try{
             DB::beginTransaction();
             $dataUpdate = [

@@ -44,10 +44,12 @@ class BoPhanController extends Controller
         //validate
         $request->validate([
             'bo_phan' => 'required',
-            'ki_hieu' => 'required',
+            'ki_hieu' => 'required|unique:tbl_bo_phan',
             'truong_bo_phan' => 'required',
         ], [
-            
+            'bo_phan.required' => 'Tên bộ phận không được để trống !!',
+            'ki_hieu.required' => 'Kí hiệu không được để trống !!',
+            'truong_bo_phan.required' => 'Trưởng bộ phận không được để trống !!',
         ]);
 
         //store
@@ -97,8 +99,22 @@ class BoPhanController extends Controller
      */
     public function update(Request $request, BoPhan $boPhan, $id)
     {
-        $boPhan->find($id)->update($request->only('bo_phan', 'ki_hieu', 'truong_bo_phan', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('boPhan.index')->with('success', 'Cập nhật thành công');
+        //validate
+        $request->validate([
+            'bo_phan' => 'required',
+            'ki_hieu' => 'required',
+            'truong_bo_phan' => 'required',
+        ], [
+            'bo_phan.required' => 'Tên bộ phận không được để trống !!',
+            'ki_hieu.required' => 'Kí hiệu không được để trống !!',
+            'truong_bo_phan.required' => 'Trưởng bộ phận không được để trống !!',
+        ]);
+        
+        $update = $boPhan->find($id)->update($request->only('bo_phan', 'ki_hieu', 'truong_bo_phan', 'trang_thai', 'ghi_chu', 'updated_at'));
+        if($update){
+            return redirect()->route('boPhan.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**

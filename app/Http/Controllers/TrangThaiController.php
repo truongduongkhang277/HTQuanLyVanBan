@@ -40,7 +40,9 @@ class TrangThaiController extends Controller
     {
         //validate
         $request->validate([
-            'trang_thai' => 'required'
+            'ten_trang_thai' => 'required'
+        ], [
+            'ten_trang_thai.required' => 'Tên trạng thái không được để trống !!',
         ]);
 
         //store
@@ -85,8 +87,18 @@ class TrangThaiController extends Controller
      */
     public function update(Request $request, TrangThai $trangThai, $id)
     {
-        $trangThai->find($id)->update($request->only('trang_thai', 'status', 'ghi_chu', 'updated_at'));
-        return redirect()->route('trangThai.index')->with('success', 'Cập nhật thành công');;
+        //validate
+        $request->validate([
+            'ten_trang_thai' => 'required'
+        ], [
+            'ten_trang_thai.required' => 'Tên trạng thái không được để trống !!',
+        ]);
+        
+        $update = $trangThai->find($id)->update($request->only('ten_trang_thai', 'trang_thai', 'ghi_chu', 'updated_at'));
+        if($update){
+            return redirect()->route('trangThai.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**

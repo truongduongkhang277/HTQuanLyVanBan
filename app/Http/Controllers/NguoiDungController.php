@@ -59,6 +59,25 @@ class NguoiDungController extends Controller
      */
     public function store(Request $request)
     {
+        //validate
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',            
+            'password' => 'required|min:6|max:50',
+            'ngay_sinh' => 'required',            
+            'gioi_tinh' => 'required',
+            'dia_chi' => 'required',
+        ], [
+            'name.required'      => 'Tên người dùng không được để trống !!',
+            'email.required'     => 'Tên đăng nhập không được để trống !!',
+            'password.required'  => 'Mật khẩu không được để trống !!',
+            'password.min'       => 'Mật khẩu dài tối thiểu 6 kí tự !!',
+            'password.max'       => 'Mật khẩu dài tối đa 50 kí tự !!',
+            'ngay_sinh.required' => 'Ngày sinh không được để trống !!',
+            'gioi_tinh.required' => 'Giới tính không được để trống !!',
+            'dia_chi.required'   => 'Địa chỉ không được để trống !!',
+        ]);
+
         try{
             DB::beginTransaction();
             $password = $request->password;
@@ -135,6 +154,28 @@ class NguoiDungController extends Controller
      */
     public function update(Request $request, User $nguoiDung, $id)
     {
+        //validate
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',            
+            'password' => 'required|min:6|max:50',
+            'ngay_sinh' => 'required',            
+            'gioi_tinh' => 'required',
+            'dia_chi' => 'required',
+            'so_dt' => 'required',
+            'bo_phan' => 'required',
+        ], [
+            'name.required'      => 'Tên người dùng không được để trống !!',
+            'email.required'     => 'Tên đăng nhập không được để trống !!',
+            'password.required'  => 'Mật khẩu không được để trống !!',
+            'password.min'       => 'Mật khẩu dài tối thiểu 6 kí tự !!',
+            'password.max'       => 'Mật khẩu dài tối đa 50 kí tự !!',
+            'ngay_sinh.required' => 'Ngày sinh không được để trống !!',
+            'gioi_tinh.required' => 'Giới tính không được để trống !!',
+            'dia_chi.required'   => 'Địa chỉ không được để trống !!',
+            'so_dt.required'     => 'Số điện thoại không được để trống !!',
+            'bo_phan.required'     => 'Bộ phận không được để trống !!',
+        ]);
 
         try{
             DB::beginTransaction();
@@ -186,7 +227,22 @@ class NguoiDungController extends Controller
     }
 
     public function updateInfo(Request $request, User $nguoiDung){
-
+//validate
+        $request->validate([
+            'name' => 'required',          
+            'ngay_sinh' => 'required',            
+            'gioi_tinh' => 'required',
+            'dia_chi' => 'required',
+            'so_dt' => 'required',
+            'bo_phan' => 'required',
+        ], [
+            'name.required'      => 'Tên người dùng không được để trống !!',
+            'ngay_sinh.required' => 'Ngày sinh không được để trống !!',
+            'gioi_tinh.required' => 'Giới tính không được để trống !!',
+            'dia_chi.required'   => 'Địa chỉ không được để trống !!',
+            'so_dt.required'     => 'Số điện thoại không được để trống !!',
+            'bo_phan.required'     => 'Bộ phận không được để trống !!',
+        ]);
         try{
             DB::beginTransaction();
             $data = [
@@ -209,7 +265,7 @@ class NguoiDungController extends Controller
             $nguoiDung->update($data);
 
             DB::commit();
-            return redirect()->route('nguoiDung.index')->with('success', 'Cập nhật thành công');
+            return redirect()->route('profile')->with('success', 'Cập nhật thành công');
         } catch (Exception $e) {
             DB::rollback();
             return redirect()->back()->with('error', 'Cập nhật không thành công');
@@ -223,6 +279,30 @@ class NguoiDungController extends Controller
     }
 
     public function updatePassword(Request $request){        
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Mật khẩu không đúng. Vui lòng thử lại");
+        }
 
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+            // Current password and new password same
+            return redirect()->back()->with("error","Mật khẩu mới không thể giống mật khẩu cũ. Vui lòng thử lại.");
+        }
+
+        $validatedData = $request->validate([
+            'current-password' => 'required',
+            'new-password' => 'required|string|min:8|confirmed',
+        ], [
+            'current-password.required' => 'Mật khẩu hiện tại không được để trống !!!',
+            'new-password.required' => 'Mật khẩu mới không được để trống !!!',
+            'new-password.min' => 'Mật khẩu mới dài tối thiểu 8 kí tự !!!',
+            'new-password.confirmed' => 'Mật khẩu mới không trùng nhau !!!',
+        ]);
+
+        //Change Password
+        $newpassword = bcrypt($request->get('new-password'));
+        User::find(auth()->user()->id)->update(['password'=>$newpassword]);
+
+        return redirect()->route('profile')->with('success', 'Cập nhật mật khẩu thành công');
     }
 }

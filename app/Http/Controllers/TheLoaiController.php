@@ -41,6 +41,8 @@ class TheLoaiController extends Controller
         //validate
         $request->validate([
             'ten_loai' => 'required'
+        ], [
+            'ten_loai.required' => 'Tên thể loại không được để trống !!',
         ]);
 
         //store
@@ -86,8 +88,18 @@ class TheLoaiController extends Controller
      */
     public function update(Request $request, TheLoai $theLoai, $id)
     {
-        $theLoai->find($id)->update($request->only('ten_loai', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('theLoai.index')->with('success', 'Cập nhật thành công');;
+        //validate
+        $request->validate([
+            'ten_loai' => 'required'
+        ], [
+            'ten_loai.required' => 'Tên thể loại không được để trống !!',
+        ]);
+        
+        $update = $theLoai->find($id)->update($request->only('ten_loai', 'trang_thai', 'ghi_chu', 'updated_at'));
+        if($update){
+            return redirect()->route('theLoai.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**

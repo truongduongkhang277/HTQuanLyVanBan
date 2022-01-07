@@ -41,6 +41,8 @@ class DoKhanController extends Controller
         //validate
         $request->validate([
             'do_khan' => 'required'
+        ], [
+            'do_khan.required' => 'Tên độ khẩn không được để trống !!',
         ]);
 
         //store
@@ -87,8 +89,18 @@ class DoKhanController extends Controller
      */
     public function update(Request $request, DoKhan $doKhan, $id)
     {
-        $doKhan->find($id)->update($request->only('do_khan', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('doKhan.index')->with('success', 'Cập nhật thành công');;
+        //validate
+        $request->validate([
+            'do_khan' => 'required'
+        ], [
+            'do_khan.required' => 'Tên độ khẩn không được để trống !!',
+        ]);
+
+        $update = $doKhan->find($id)->update($request->only('do_khan', 'trang_thai', 'ghi_chu', 'updated_at'));
+        if($update){
+            return redirect()->route('doKhan.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
 

@@ -31,33 +31,20 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2">
-
+                    <div class="col-md-3">
                         <!-- Profile Image -->
-                        <div class="card card-primary card-outline">
-                            <div class="card-body box-profile">
-                                <div class="text-center">
-                                    @if (!empty(auth()->user()->file_path))
-                                        <img src="{{ auth()->user()->file_path }}"
-                                            class="profile-user-img img-fluid img-circle" alt="User Image">
-                                    @else
-                                        <img src="{{ asset('adminlte/dist/img/noimage.png') }}"
-                                            class="profile-user-img img-fluid img-circle" alt="User Image">
-                                    @endif
-                                </div>
-
-                                <h3 class="profile-username text-center">{{ auth()->user()->name }}</h3>
-
-                                <a href="#" class="btn btn-primary btn-block"><b>Đổi ảnh đại diện</b></a>
-                            </div>
-                            <!-- /.card-body -->
+                        <div class="text-center">
+                            @if (!empty(auth()->user()->file_path))
+                                <img src="{{ auth()->user()->file_path }}"
+                                    class="img-thumbnail" alt="User Image">
+                            @else
+                                <img src="{{ asset('adminlte/dist/img/noimage.png') }}"
+                                    class="profile-user-img img-fluid img-circle" alt="User Image">
+                            @endif
                         </div>
-                        <!-- /.card -->
-
-                        <!-- /.card -->
                     </div>
                     <!-- /.col -->
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">

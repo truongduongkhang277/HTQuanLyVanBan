@@ -61,7 +61,7 @@
                 </form>
                 <hr/>
                 <p class="mb-1">
-                    <a href="forgot-password.html" class="btn btn-info">Quên mật khẩu</a>
+                    <a href="{{ route('ForgetPasswordGet') }}" class="btn btn-info">Quên mật khẩu</a>
                 </p>
             </div>
             <!-- /.card-body -->

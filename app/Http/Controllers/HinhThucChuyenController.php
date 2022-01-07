@@ -41,6 +41,8 @@ class HinhThucChuyenController extends Controller
         //validate
         $request->validate([
             'hinh_thuc_chuyen' => 'required'
+        ], [
+            'hinh_thuc_chuyen.required' => 'Tên hình thức chuyển không được để trống !!',
         ]);
 
         //store
@@ -86,8 +88,18 @@ class HinhThucChuyenController extends Controller
      */
     public function update(Request $request, HinhThucChuyen $hinhThucChuyen, $id)
     {
-        $hinhThucChuyen->find($id)->update($request->only('hinh_thuc_chuyen', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('hinhThucChuyen.index')->with('success', 'Cập nhật thành công');;
+        //validate
+        $request->validate([
+            'hinh_thuc_chuyen' => 'required'
+        ], [
+            'hinh_thuc_chuyen.required' => 'Tên hình thức chuyển không được để trống !!',
+        ]);
+        
+        $update = $hinhThucChuyen->find($id)->update($request->only('hinh_thuc_chuyen', 'trang_thai', 'ghi_chu', 'updated_at'));
+        if($update){
+            return redirect()->route('hinhThucChuyen.index')->with('success', 'Cập nhật thành công');
+        }
+        return redirect()->back()->with('error', 'Cập nhật không thành công');
     }
 
     /**
