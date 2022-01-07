@@ -30,6 +30,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 mx-auto">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form action="{{ route('boPhan.update', $boPhan->id) }}" method="POST" role="form">
                             @csrf @method('PUT')                                    
                             @include('partials.alert')
@@ -77,7 +82,7 @@
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success">Cập nhật</button>
-                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                                <a href="{{ route('boPhan.index') }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

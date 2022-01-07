@@ -39,6 +39,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-10 mx-auto">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form action="{{ route('nguoiDung.updateInfo', $nguoiDung->id) }}" method="POST" role="form"
                             enctype="multipart/form-data">
                             @csrf @method('PUT')
@@ -115,7 +120,7 @@
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success">Cập nhật</button>
-                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                                <a href="{{ route('nguoiDung.editInfo') }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

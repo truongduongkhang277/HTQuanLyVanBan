@@ -42,9 +42,14 @@
                         @endcan
                     </div>
                     <div class="col-md-12">
-                        @if (session()->has('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session()->get('success') }}
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
                             </div>
                         @endif
                         <table class="table table-hover">

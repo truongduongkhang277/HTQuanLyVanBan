@@ -36,6 +36,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-11 mx-auto">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form action="{{ route('vaiTro.update', $vaiTro->id) }}" method="POST" role="form">
                             @csrf @method('PUT')                                    
                             @include('partials.alert')
@@ -97,7 +102,7 @@
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success">Lưu</button>
-                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                                <a href="{{ route('vaiTro.index') }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

@@ -180,13 +180,12 @@ class NguoiDungController extends Controller
     }
 
     public function editInfo(User $nguoiDung){
-        $id = auth()->user()->id;
-        $nguoiDung = User::find($id);
+        $nguoiDung = User::find(auth()->user()->id);
         $boPhan   = BoPhan::orderBy('bo_phan', 'ASC')->get();
         return view('nguoiDung.editInfo', compact('nguoiDung', 'boPhan'));
     }
 
-    public function updateInfo(Request $request, User $nguoiDung, $id ){
+    public function updateInfo(Request $request, User $nguoiDung){
 
         try{
             DB::beginTransaction();
@@ -196,7 +195,6 @@ class NguoiDungController extends Controller
                 'so_dt'       => $request->so_dt,
                 'gioi_tinh'   => $request->gioi_tinh,
                 'dia_chi'     => $request->dia_chi,
-                'trang_thai'  => $request->trang_thai,
                 'bo_phan'     => $request->bo_phan,
             ];
             
@@ -206,11 +204,10 @@ class NguoiDungController extends Controller
                 $data['anh'] = $fileUpload['file_name'];
                 $data['file_path'] = $fileUpload['file_path'];
             }
-            $nguoiDung = User::find($id);
+            $nguoiDung = User::find(auth()->user()->id);
             
             $nguoiDung->update($data);
 
-            $nguoiDung->cacVaiTro()->sync($request->vai_tro);
             DB::commit();
             return redirect()->route('nguoiDung.index')->with('success', 'Cập nhật thành công');
         } catch (Exception $e) {
@@ -221,8 +218,7 @@ class NguoiDungController extends Controller
     }
 
     public function changePassword(User $nguoiDung){
-        $id = auth()->user()->id;
-        $nguoiDung = User::find($id);
+        $nguoiDung = User::find(auth()->user()->id);
         return view('nguoiDung.changePassword', compact('nguoiDung'));
     }
 

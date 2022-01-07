@@ -48,7 +48,7 @@
                                     value="{{ $hinhThucLuu->ghi_chu }}" disabled>
                             </div>
                             <div class="text-center">
-                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                                <a href="{{ route('hinhThucLuu.index') }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

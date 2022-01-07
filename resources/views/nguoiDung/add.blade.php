@@ -41,12 +41,17 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-10 mx-auto">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form action="{{ route('nguoiDung.store') }}" method="POST" role="form"
                             enctype="multipart/form-data">
-                            @csrf                                    
+                            @csrf
                             @include('partials.alert')
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Họ và tên</label>
                                         <input type="text" class="form-control" name="name">
@@ -73,6 +78,10 @@
                                         <label for="">Số điện thoại</label>
                                         <input type="text" class="form-control" name="so_dt">
                                     </div>
+                                    
+
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Giới tính</label>
                                         <select class="form-control select2" name="gioi_tinh" id="input"
@@ -80,14 +89,6 @@
                                             <option selected="selected" value="1">[M] Nam</option>
                                             <option value="0"> [F] Nữ</option>
                                         </select>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-1"></div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label for="">Địa chỉ</label>
-                                        <input type="text" class="form-control" name="dia_chi">
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Ảnh đại diện</label>
@@ -122,11 +123,17 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="">Địa chỉ</label>
+                                        <input type="text" class="form-control" name="dia_chi">
+                                    </div>
+                                </div>
                                 
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success">Lưu</button>
-                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                                <a href="{{ route('nguoiDung.index') }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

@@ -39,6 +39,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-10 mx-auto">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form action="{{ route('nguoiDung.updatePassword', $nguoiDung->id) }}" method="POST" role="form"
                             enctype="multipart/form-data">
                             @csrf @method('PUT')                                    

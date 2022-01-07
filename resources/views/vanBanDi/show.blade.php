@@ -140,7 +140,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <a href="{{ url()->previous() }}" class="btn btn-danger">Trở về</a>
+                                <a href="{{ route('vanBanDi.index') }}" class="btn btn-danger">Trở về</a>
                             </div>
                         </form>
                     </div>
