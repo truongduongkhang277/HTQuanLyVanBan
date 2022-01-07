@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Chỉnh sửa thông tin tài khoản
+    Chỉnh sửa thông tin cá nhân
 @endsection
 @section('css')
     <!-- Select2 -->
@@ -21,12 +21,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Chỉnh sửa thông tin tài khoản</h1>
+                        <h1 class="m-0">Chỉnh sửa thông tin cá nhân</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
-                            <li class="breadcrumb-item active">Chỉnh sửa thông tin tài khoản</li>
+                            <li class="breadcrumb-item active">Chỉnh sửa thông tin cá nhân</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -39,21 +39,16 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-10 mx-auto">
-                        <form action="{{ route('nguoiDung.update', $nguoiDung->id) }}" method="POST" role="form"
+                        <form action="{{ route('nguoiDung.updateInfo', $nguoiDung->id) }}" method="POST" role="form"
                             enctype="multipart/form-data">
-                            @csrf @method('PUT')                                    
+                            @csrf @method('PUT')
                             @include('partials.alert')
-                            <div class="row">                                
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Họ và tên</label>
                                         <input type="text" class="form-control" name="name"
                                             value="{{ $nguoiDung->name }}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Tên đăng nhập</label>
-                                        <input type="text" class="form-control" name="email"
-                                            value="{{ $nguoiDung->email }}" disabled>
                                     </div>
                                     <!-- Date dd/mm/yyyy -->
                                     <div class="form-group">
@@ -78,12 +73,6 @@
                                             <option value="0"> [F] Nữ</option>
                                         </select>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="">Địa chỉ</label>
-                                        <input type="text" class="form-control" name="dia_chi"
-                                            value="{{ $nguoiDung->dia_chi }}">
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -96,23 +85,10 @@
                                                         src="{{ $nguoiDung->file_path }}" alt="{{ $nguoiDung->anh }}">
                                                 @else
                                                     <img style="width: 180px; height= 180px; object-fit:cover"
-                                                        src="{{ asset('adminlte/dist/img/noimage.png') }}"
-                                                        alt="No Image">
+                                                        src="{{ asset('adminlte/dist/img/noimage.png') }}" alt="No Image">
                                                 @endif
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Vai trò</label>
-                                        <select name="vai_tro[]" class="form-control select2_init" multiple>
-                                            <option value=""></option>
-                                            @foreach ($vaiTro as $vai_tro)
-                                                <option
-                                                    {{ $vaiTroNguoiDung->contains('id', $vai_tro->id) ? 'selected' : '' }}
-                                                    value="{{ $vai_tro->id }}">{{ $vai_tro->vai_tro }}
-                                                </option>
-                                            @endforeach
-                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">Bộ phận</label>
@@ -128,13 +104,12 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                </div>
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="">Trạng thái</label>
-                                        <select class="form-control select2" name="trang_thai" id="input"
-                                            style="width: 100%;">
-                                            <option selected="selected" value="1">Kích hoạt</option>
-                                            <option value="0"> Ngừng sử dụng</option>
-                                        </select>
+                                        <label for="">Địa chỉ</label>
+                                        <input type="text" class="form-control" name="dia_chi"
+                                            value="{{ $nguoiDung->dia_chi }}">
                                     </div>
                                 </div>
                             </div>

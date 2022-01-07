@@ -31,7 +31,8 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto">
                         <form action="{{ route('doMat.update', $doMat->id) }}" method="POST" role="form">
-                            @csrf @method('PUT')
+                            @csrf @method('PUT')                                    
+                            @include('partials.alert')
                             <div class="form-group">
                                 <label for="">Độ mật</label>
                                 <input type="text" class="form-control" name="do_mat" value="{{ $doMat->do_mat }}">

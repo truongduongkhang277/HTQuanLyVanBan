@@ -53,7 +53,7 @@
                     <!-- Văn bản đến -->
                     <li class="nav-item">
                         <a href="{{ route('vanBanDen.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-laptop-code"></i>
+                            <i class="nav-icon fas fa-envelope-open-text"></i>
                             <p>
                                 Quản lý văn bản đến
                                 <i class="fas fa-angle-left right"></i>
@@ -74,7 +74,7 @@
                     <!-- Văn bản đi -->
                     <li class="nav-item">
                         <a href="{{ route('vanBanDi.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-laptop-code"></i>
+                            <i class="nav-icon fas fa-external-link-alt"></i>
                             <p>
                                 Quản lý văn bản đi
                                 <i class="fas fa-angle-left right"></i>
@@ -203,7 +203,7 @@
                 @can('danh-sach-tai-khoan')
                 <li class="nav-item">
                     <a href="{{ route('nguoiDung.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p> Danh sách người dùng </p>
                     </a>
                 </li>
@@ -211,7 +211,7 @@
                 @can('danh-sach-vai-tro')
                 <li class="nav-item">
                     <a href="{{ route('vaiTro.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-user-shield"></i>
                         <p>Danh sách vai trò</p>
                     </a>
                 </li>
@@ -219,14 +219,14 @@
                 @can('danh-sach-quyen-truy-cap')
                 <li class="nav-item">
                     <a href="{{ route('quyenTruyCap.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-id-badge"></i>
                         <p>Danh sách quyền</p>
                     </a>
                 </li>
                 @endcan
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p> Đăng xuất </p>
                     </a>
                 </li>

@@ -31,7 +31,8 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto">
                         <form action="{{ route('coQuan.store') }}" method="POST" role="form">
-                            @csrf
+                            @csrf                                    
+                            @include('partials.alert')
                             <div class="form-group">
                                 <label for="">Tên cơ quan</label>
                                 <input type="text" class="form-control" name="ten_co_quan" placeholder="Nhập tên cơ quan">

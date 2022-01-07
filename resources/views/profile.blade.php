@@ -31,7 +31,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
 
                         <!-- Profile Image -->
                         <div class="card card-primary card-outline">
@@ -57,86 +57,63 @@
                         <!-- /.card -->
                     </div>
                     <!-- /.col -->
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-header p-2">
-                                <ul class="nav nav-pills">
-                                    <li class="nav-item"><a class="nav-link active" href="#info"
-                                            data-toggle="tab">Thông tin cá nhân</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#change_password"
-                                            data-toggle="tab">Đổi mật khẩu</a></li>
-                                </ul>
-                            </div><!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="tab-content">
-                                    <div class="active tab-pane" id="info">
-                                        <form class="form-horizontal" method="POST"
-                                            action="{{ route('nguoiDung.updateInfo') }}" id="infoForm">
-                                            @csrf @method('PUT')                                            
-                                            @include('partials.alert')
-                                            <div class="form-group row">
-                                                <label for="my-input" class="col-sm-2 col-form-label">Họ và tên</label>
-                                                <div class="col-sm-10">
-                                                    <input class="form-control" type="text" name="name"
-                                                        value="{{ auth()->user()->name }}">
-                                                    <span class="text-danger error-text name_error"></span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="my-input" class="col-sm-2 col-form-label">Email</label>
-                                                <div class="col-sm-10"><input class="form-control" type="email"
-                                                        name="email" value="{{ auth()->user()->email }}">
-                                                    <span class="text-danger error-text email_error"></span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="my-input" class="col-sm-2 col-form-label">Sđt</label>
-                                                <div class="col-sm-10"><input class="form-control" type="text"
-                                                        name="so_dt" value="{{ auth()->user()->so_dt }}">
-                                                    <span class="text-danger error-text so_dt_error"></span>
-                                                </div>
-                                            </div>
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-success">Cập nhật thông tin</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- /.tab-pane -->
-                                    <div class="tab-pane" id="change_password">
-                                        <form class="form-horizontal">
-                                            <div class="form-group row">
-                                                <label for="my-input" class="col-sm-3 col-form-label">Mật khẩu hiện
-                                                    tại</label>
-                                                <div class="col-sm-9"><input class="form-control" type="password"
-                                                        name="password">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="my-input" class="col-sm-3 col-form-label">Mật khẩu mới</label>
-                                                <div class="col-sm-9"><input class="form-control" type="password"
-                                                        name="new_password">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="my-input" class="col-sm-3 col-form-label">Nhập lại mật khẩu
-                                                    mới</label>
-                                                <div class="col-sm-9"><input class="form-control" type="password"
-                                                        name="confirm_password">
-                                                </div>
-                                            </div>
-                                            <div class="text-center">
-                                                <button type="submit" class="btn btn-success">Cập nhật mật khẩu</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- /.tab-pane -->
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Họ và tên</label>
+                                    <input type="text" class="form-control" name="name"
+                                        value="{{ auth()->user()->name }}" disabled>
                                 </div>
-                                <!-- /.tab-content -->
-                            </div><!-- /.card-body -->
+                                <div class="form-group">
+                                    <label>Tên đăng nhập</label>
+                                    <input type="text" class="form-control" name="email"
+                                        value="{{ auth()->user()->email }}" disabled>
+                                </div>
+                                <!-- Date dd/mm/yyyy -->
+                                <div class="form-group">
+                                    <label>Ngày sinh</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="ngay_sinh"
+                                            value="{{ auth()->user()->ngay_sinh }}" disabled>
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <!-- /.form group -->
+                                <div class="form-group">
+                                    <label for="">Số điện thoại</label>
+                                    <input type="text" class="form-control" name="so_dt"
+                                        value="{{ auth()->user()->so_dt }}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Bộ phận</label>
+                                    <input type="text" class="form-control" name="bo_phan"
+                                        value="{{ optional(auth()->user()->boPhan)->bo_phan }}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Giới tính</label>
+                                    <input type="text" class="form-control" name="gioi_tinh" @if (auth()->user()->gioi_tinh == 1) : value="Nam" @else value="Nữ" @endif
+                                        disabled>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.card -->
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <div class="form-group">
+                                    <label for="">Địa chỉ</label>
+                                    <input type="text" class="form-control" name="dia_chi"
+                                        value="{{ auth()->user()->dia_chi }}" disabled>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.col -->
+                </div>
+                <div class="text-center">
+                    <a href="{{ route('nguoiDung.editInfo') }}" class="btn btn-success">Cập nhật thông tin</a>
+                    <a href="{{ route('nguoiDung.changePassword') }}" class="btn btn-danger">Đổi mật khẩu</a>
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->

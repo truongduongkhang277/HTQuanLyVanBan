@@ -31,7 +31,8 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto">
                         <form action="{{ route('theLoai.store') }}" method="POST" role="form">
-                            @csrf
+                            @csrf                                    
+                            @include('partials.alert')
                             <div class="form-group">
                                 <label for="">Thể loại</label>
                                 <input type="text" class="form-control" name="ten_loai" placeholder="Nhập thể loại">

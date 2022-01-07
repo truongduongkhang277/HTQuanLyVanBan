@@ -31,7 +31,8 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto">
                         <form action="{{ route('hinhThucChuyen.store') }}" method="POST" role="form">
-                            @csrf
+                            @csrf                                    
+                            @include('partials.alert')
                             <div class="form-group">
                                 <label for="">Hình thức chuyển</label>
                                 <input type="text" class="form-control" name="hinh_thuc_chuyen"

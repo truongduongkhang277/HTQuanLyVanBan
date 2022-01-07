@@ -43,7 +43,8 @@
                     <div class="col-md-10 mx-auto">
                         <form action="{{ route('nguoiDung.store') }}" method="POST" role="form"
                             enctype="multipart/form-data">
-                            @csrf
+                            @csrf                                    
+                            @include('partials.alert')
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="form-group">

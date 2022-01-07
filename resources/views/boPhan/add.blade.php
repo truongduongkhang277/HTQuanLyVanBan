@@ -30,7 +30,8 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto">
                         <form action="{{ route('boPhan.store') }}" method="POST" role="form">
-                            @csrf
+                            @csrf                                    
+                            @include('partials.alert')
                             <div class="form-group">
                                 <label for="">Tên bộ phận</label>
                                 <input type="text" class="form-control" name="bo_phan" placeholder="Nhập tên bộ phận">

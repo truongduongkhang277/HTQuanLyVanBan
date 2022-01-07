@@ -179,24 +179,54 @@ class NguoiDungController extends Controller
         return redirect()->route('nguoiDung.index')->with('success','Xóa tài khoản thành công');
     }
 
-    public function editInfo(Request $request){
-        return view('profile');
+    public function editInfo(User $nguoiDung){
+        $id = auth()->user()->id;
+        $nguoiDung = User::find($id);
+        $boPhan   = BoPhan::orderBy('bo_phan', 'ASC')->get();
+        return view('nguoiDung.editInfo', compact('nguoiDung', 'boPhan'));
     }
 
-    public function updateInfo(Request $request){
+    public function updateInfo(Request $request, User $nguoiDung, $id ){
 
-        $request->validate([
-            'name'=>'required',
-            'email'=>'required|email',
-            'so_dt'=>'required',
-        ]);
+        try{
+            DB::beginTransaction();
+            $data = [
+                'name'        => $request->name, 
+                'ngay_sinh'   => $request->ngay_sinh,
+                'so_dt'       => $request->so_dt,
+                'gioi_tinh'   => $request->gioi_tinh,
+                'dia_chi'     => $request->dia_chi,
+                'trang_thai'  => $request->trang_thai,
+                'bo_phan'     => $request->bo_phan,
+            ];
+            
+            $fileUpload = $this->storageTraitUpload($request, 'anh', 'avatar');
+            
+            if(!empty($fileUpload)){                
+                $data['anh'] = $fileUpload['file_name'];
+                $data['file_path'] = $fileUpload['file_path'];
+            }
+            $nguoiDung = User::find($id);
+            
+            $nguoiDung->update($data);
 
-        $user = auth()->user();
+            $nguoiDung->cacVaiTro()->sync($request->vai_tro);
+            DB::commit();
+            return redirect()->route('nguoiDung.index')->with('success', 'Cập nhật thành công');
+        } catch (Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Cập nhật không thành công');
+        }
 
-        // $user->update([
-        //     'name'=>$request->name,
-        //     'email'=>$request->email,
-        //     'so_dt'=>$request->do_dt
-        // ]);
+    }
+
+    public function changePassword(User $nguoiDung){
+        $id = auth()->user()->id;
+        $nguoiDung = User::find($id);
+        return view('nguoiDung.changePassword', compact('nguoiDung'));
+    }
+
+    public function updatePassword(Request $request){        
+
     }
 }

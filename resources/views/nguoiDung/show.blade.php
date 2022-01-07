@@ -93,9 +93,10 @@
                                             disabled>
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
-                                </div>
+                            </div>
+                            <div class="text-center">
+                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+                            </div>
                         </form>
                     </div>
                 </div>

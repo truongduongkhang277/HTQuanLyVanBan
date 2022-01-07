@@ -37,7 +37,8 @@
                 <div class="row">
                     <div class="col-md-11 mx-auto">
                         <form action="{{ route('vaiTro.store') }}" method="POST" role="form">
-                            @csrf
+                            @csrf                                    
+                            @include('partials.alert')
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="">Vai trò</label>

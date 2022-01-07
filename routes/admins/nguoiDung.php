@@ -19,7 +19,13 @@ use App\Http\Controllers\NguoiDungController;
         Route::put('/update/{id}',[NguoiDungController::class, 'update'])->name('nguoiDung.update');
         // xóa tài khoản người dùng, phương thức xóa
         Route::get('/delete/{id}',[NguoiDungController::class, 'destroy'])->name('nguoiDung.delete')->middleware('can:xoa-nguoi-dung');
+        // chỉnh sửa tài khoản người dùng, phương thức chỉnh sửa
         Route::get('editInfo', [NguoiDungController::class, 'editInfo'])->name('nguoiDung.editInfo');
+        // lưu thông tin tài khoản người dùng vừa chỉnh sửa, phương thức chỉnh sửa
         Route::put('updateInfo', [NguoiDungController::class, 'updateInfo'])->name('nguoiDung.updateInfo');
+        // chỉnh sửa mật khẩu người dùng, phương thức chỉnh sửa
+        Route::get('changePassword', [NguoiDungController::class, 'changePassword'])->name('nguoiDung.changePassword');
+        // lưu thông tin mật khẩu người dùng vừa chỉnh sửa, phương thức chỉnh sửa
+        Route::put('updatePassword', [NguoiDungController::class, 'updatePassword'])->name('nguoiDung.updatePassword');
     });
 ?>

@@ -31,7 +31,8 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto">
                         <form action="{{ route('boPhan.update', $boPhan->id) }}" method="POST" role="form">
-                            @csrf @method('PUT')
+                            @csrf @method('PUT')                                    
+                            @include('partials.alert')
                             <div class="form-group">
                                 <label for="">Tên bộ phận</label>
                                 <input type="text" class="form-control" name="bo_phan" value="{{ $boPhan->bo_phan }}">

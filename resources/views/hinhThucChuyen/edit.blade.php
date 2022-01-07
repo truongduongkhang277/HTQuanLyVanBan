@@ -32,7 +32,8 @@
                     <div class="col-md-6 mx-auto">
                         <form action="{{ route('hinhThucChuyen.update', $hinhThucChuyen->id) }}" method="POST"
                             role="form">
-                            @csrf @method('PUT')
+                            @csrf @method('PUT')                                    
+                            @include('partials.alert')
                             <div class="form-group">
                                 <label for="">Hình thức chuyển</label>
                                 <input type="text" class="form-control" name="hinh_thuc_chuyen"

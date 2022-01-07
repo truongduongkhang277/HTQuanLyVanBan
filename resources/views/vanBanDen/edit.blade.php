@@ -36,7 +36,8 @@
                     <div class="col-md-10 mx-auto">
                         <form action="{{ route('vanBanDen.update', $vanBanDen->id) }}" method="POST"
                             enctype="multipart/form-data">
-                            @csrf @method("PUT")
+                            @csrf @method("PUT")                                    
+                            @include('partials.alert')
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

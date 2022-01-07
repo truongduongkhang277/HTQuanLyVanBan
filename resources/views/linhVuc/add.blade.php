@@ -31,7 +31,8 @@
                 <div class="row">
                     <div class="col-md-6 mx-auto">
                         <form action="{{ route('linhVuc.store') }}" method="POST" role="form">
-                            @csrf
+                            @csrf                                    
+                            @include('partials.alert')
                             <div class="form-group">
                                 <label for="">Lĩnh vực</label>
                                 <input type="text" class="form-control" name="linh_vuc" placeholder="Nhập lĩnh vực">

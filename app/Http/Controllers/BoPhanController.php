@@ -46,6 +46,8 @@ class BoPhanController extends Controller
             'bo_phan' => 'required',
             'ki_hieu' => 'required',
             'truong_bo_phan' => 'required',
+        ], [
+            
         ]);
 
         //store
