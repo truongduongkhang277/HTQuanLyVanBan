@@ -54,7 +54,7 @@
                                     <th style="width: 18%">Nơi nhận</th>
                                     <th>Ký hiệu</th>
                                     <th style="width: 20%">Trích yếu</th>
-                                    <th style="width: 12%">Danh sách file</th>
+                                    <th>Danh sách file</th>
                                     <th>Người kí</th>
                                     <th style="width: 18%">Thao tác</th>
                                 </tr>
