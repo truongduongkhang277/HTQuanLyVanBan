@@ -85,6 +85,8 @@
                                                     class="delete btn btn-danger"
                                                     onclick="return confirm('Bạn có muốn xóa văn bản này ?');">Xóa </a>
                                             @endcan
+                                            <a href="{{ route('vanBanDi.handleGet', ['id' => $vanbandi->id]) }}"
+                                                class="btn btn-primary">Chuyển xử lý</a>
                                         </td>
                                     </tr>
                                 @endforeach

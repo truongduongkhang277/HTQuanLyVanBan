@@ -19,5 +19,10 @@ use App\Http\Controllers\VanBanDenController;
         Route::put('/update/{id}',[VanBanDenController::class, 'update'])->name('vanBanDen.update');
         // xóa văn bản đến, phương thức xóa
         Route::get('/delete/{id}',[VanBanDenController::class, 'destroy'])->name('vanBanDen.delete')->middleware('can:xoa-van-ban-den');
+
+        // chuyển xử lý văn bản đến
+        Route::get('/handleGet/{id}',[VanBanDenController::class, 'handleGet'])->name('vanBanDen.handleGet');
+        // xử lý văn bản đến
+        Route::put('/handlePost/{id}',[VanBanDenController::class, 'handlePost'])->name('vanBanDen.handlePost');
     });
 ?>

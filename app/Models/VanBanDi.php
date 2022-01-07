@@ -98,4 +98,11 @@ class VanBanDi extends Model
         // 1 văn bản có 1 đơn vị ban hành
         return $this->belongsTo('App\Models\DoKhan', 'do_khan');
     }
+
+    // tbl: tên bảng sinh ra của 2 model
+    // id_vanbanden : khóa ngoại của model vanbanden
+    // id_nguoidung: khóa ngoại của model user
+    public function cacNguoiDung(){
+        return $this->belongsToMany(User::class, 'tbl_vbdi_nguoidung', 'id_vanbandi', 'id_nguoidung')->withPivot('id_nguoidung_xuly');
+    }
 }

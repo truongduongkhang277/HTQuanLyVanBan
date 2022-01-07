@@ -79,6 +79,7 @@
                                         <td style="text-align: center">
                                             <a href="{{ route('vanBanDen.show', ['id' => $vanbanden->id]) }}"
                                                 class="btn btn-info">Xem</a>
+                                            
                                             @can('sua-van-ban-den')
                                                 <a href="{{ route('vanBanDen.edit', ['id' => $vanbanden->id]) }}"
                                                     class="btn btn-success">Sửa </a>
@@ -88,6 +89,8 @@
                                                     class="delete btn btn-danger"
                                                     onclick="return confirm('Bạn có muốn xóa văn bản này ?');">Xóa </a>
                                             @endcan
+                                            <a href="{{ route('vanBanDen.handleGet', ['id' => $vanbanden->id]) }}"
+                                                class="btn btn-primary">Chuyển xử lý</a>
                                         </td>
                                     </tr>
                                 @endforeach

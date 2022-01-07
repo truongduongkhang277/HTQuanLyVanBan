@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BoPhan;
 use App\Models\VanBanDen;
 use Illuminate\Http\Request;
 
@@ -32,9 +33,28 @@ class VanBanDenController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model vanBanDen để rút gọn code
+        
         $data = VanBanDen::orderBy('created_at', 'ASC')->search()->paginate(5);
 
         return view('vanBanDen.index', compact('data'));
+    }
+
+    public function handleGet(VanBanDen $vanBanDen, $id)
+    {
+        // trỏ đến hàm scopeSearch trong model vanBanDen để rút gọn code
+        $boPhan = BoPhan::orderBy('bo_phan', 'ASC')->get();
+
+        $nguoiDung = User::orderBy('bo_phan', 'ASC')->get();
+
+        $vanBanDen = VanBanDen::find($id);
+        return view('vanBanDen.handle', compact('boPhan', 'nguoiDung', 'vanBanDen'));
+    }
+
+    public function handlePost(Request $request, $id)
+    {
+        VanBanDen::find($id)->cacNguoiDung()->attach(auth()->user()->id, ['id_nguoidung_xuly'=>$request->nguoi_dung]);
+
+        return redirect()->route('vanBanDen.index');
     }
 
     /**
@@ -95,7 +115,7 @@ class VanBanDenController extends Controller
             'don_vi_ban_hanh.required'  => 'Đơn vị ban hành không được để trống !!',
             'ngay_vb.required'          => 'Ngày văn bản không được để trống !!',
             'trich_yeu.required'        => 'Trích yếu không được để trống !!',
-            'nguoi_ky.required'         => 'Tên trạng thái không được để trống !!',
+            'nguoi_ky.required'         => 'Tên người kí không được để trống !!',
             'ds_file.required'         => 'Cần có file đính kèm không được để trống !!',
         ]);
         // tránh commit 1 dữ liệu 2 lần
@@ -128,7 +148,9 @@ class VanBanDenController extends Controller
                 $data['ds_file'] = $fileUpload['file_name'];
                 $data['file_path'] = $fileUpload['file_path'];
             }
-            $add = VanBanDen::create($data);
+            
+            $add = VanBanDen::create($data);           
+
             DB::commit();
             if($add){
                 return redirect()->route('vanBanDen.index')->with('success', 'Thêm mới thành công');
@@ -224,23 +246,19 @@ class VanBanDenController extends Controller
     {
         //validate
         $request->validate([
-            'so_vb_den' => 'required',
             'ki_hieu' => 'required',
             'ngay_nhan' => 'required',
             'don_vi_ban_hanh' => 'required',
             'ngay_vb' => 'required',
             'trich_yeu' => 'required',
             'nguoi_ky' => 'required',
-            'ds_file' => 'required',
         ], [
-            'so_vb_den.required'        => 'Số văn bản đến không được để trống !!',
             'ki_hieu.required'          => 'Kí hiệu không được để trống !!',
             'ngay_nhan.required'        => 'Ngày nhận không được để trống !!',
             'don_vi_ban_hanh.required'  => 'Đơn vị ban hành không được để trống !!',
             'ngay_vb.required'          => 'Ngày văn bản không được để trống !!',
             'trich_yeu.required'        => 'Trích yếu không được để trống !!',
-            'nguoi_ky.required'         => 'Tên trạng thái không được để trống !!',
-            'ds_file.required'         => 'Cần có file đính kèm không được để trống !!',
+            'nguoi_ky.required'         => 'Tên người kí không được để trống !!',
         ]);
 
         try{

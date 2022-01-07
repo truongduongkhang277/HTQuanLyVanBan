@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BoPhan;
 use App\Models\VanBanDi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -41,6 +42,24 @@ class VanBanDiController extends Controller
          $data = VanBanDi::orderBy('created_at', 'DESC')->search()->paginate(5);
 
          return view('vanBanDi.index', compact('data'));
+    }
+
+    public function handleGet(VanBanDi $vanBanDi, $id)
+    {
+        // trỏ đến hàm scopeSearch trong model vanBanDi để rút gọn code
+        $boPhan = BoPhan::orderBy('bo_phan', 'ASC')->get();
+
+        $nguoiDung = User::orderBy('bo_phan', 'ASC')->get();
+
+        $vanBanDi = VanBanDi::find($id);
+        return view('vanBanDi.handle', compact('boPhan', 'nguoiDung', 'vanBanDi'));
+    }
+
+    public function handlePost(Request $request, $id)
+    {
+        VanBanDi::find($id)->cacNguoiDung()->attach(auth()->user()->id, ['id_nguoidung_xuly'=>$request->nguoi_dung]);
+
+        return redirect()->route('vanBanDi.index');
     }
 
     /**

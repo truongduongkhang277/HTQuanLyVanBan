@@ -91,4 +91,18 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\BoPhan', 'bo_phan');
     }
 
+    // tbl: tên bảng sinh ra của 2 model
+    // id_vanbanden : khóa ngoại của model vanbanden
+    // id_nguoidung: khóa ngoại của model user
+    public function cacVanBanDen(){
+        return $this->belongsToMany(VanBanDen::class, 'tbl_vbden_nguoidung', 'id_nguoidung', 'id_vanbanden' )->withPivot('id_nguoidung_xuly');
+    }
+
+    // tbl: tên bảng sinh ra của 2 model
+    // id_vanbanden : khóa ngoại của model vanbanden
+    // id_nguoidung: khóa ngoại của model user
+    public function cacVanBanDi(){
+        return $this->belongsToMany(VanBanDi::class, 'tbl_vbdi_nguoidung', 'id_nguoidung', 'id_vanbandi' )->withPivot('id_nguoidung_xuly');
+    }
+
 }
