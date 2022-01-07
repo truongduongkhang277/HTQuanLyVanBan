@@ -19,5 +19,7 @@ use App\Http\Controllers\NguoiDungController;
         Route::put('/update/{id}',[NguoiDungController::class, 'update'])->name('nguoiDung.update');
         // xóa tài khoản người dùng, phương thức xóa
         Route::get('/delete/{id}',[NguoiDungController::class, 'destroy'])->name('nguoiDung.delete')->middleware('can:xoa-nguoi-dung');
+        Route::get('editInfo', [NguoiDungController::class, 'editInfo'])->name('nguoiDung.editInfo');
+        Route::put('updateInfo', [NguoiDungController::class, 'updateInfo'])->name('nguoiDung.updateInfo');
     });
 ?>

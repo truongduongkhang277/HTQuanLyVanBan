@@ -88,7 +88,7 @@ class CoQuanController extends Controller
     public function update(Request $request, CoQuan $coQuan, $id)
     {
         $coQuan->find($id)->update($request->only('ten_co_quan', 'dia_chi', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('coQuan.index');
+        return redirect()->route('coQuan.index')->with('success', 'Cập nhật thành công');;
     }
 
     /**

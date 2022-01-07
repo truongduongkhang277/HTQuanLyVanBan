@@ -86,7 +86,7 @@ class TrangThaiController extends Controller
     public function update(Request $request, TrangThai $trangThai, $id)
     {
         $trangThai->find($id)->update($request->only('trang_thai', 'status', 'ghi_chu', 'updated_at'));
-        return redirect()->route('trangThai.index');
+        return redirect()->route('trangThai.index')->with('success', 'Cập nhật thành công');;
     }
 
     /**

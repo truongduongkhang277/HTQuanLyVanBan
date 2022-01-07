@@ -87,7 +87,7 @@ class DoMatController extends Controller
     public function update(Request $request, DoMat $doMat, $id)
     {
         $doMat->find($id)->update($request->only('do_mat', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('doMat.index');
+        return redirect()->route('doMat.index')->with('success', 'Cập nhật thành công');;
     }
 
     /**

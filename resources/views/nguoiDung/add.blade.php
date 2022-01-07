@@ -121,10 +121,11 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success">Lưu</button>
-                                    <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
-                                </div>
+                                
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success">Lưu</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
                             </div>
                         </form>
                     </div>

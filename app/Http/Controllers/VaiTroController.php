@@ -62,7 +62,7 @@ class VaiTroController extends Controller
 
         $vaiTro->cacQuyenTruyCap()->attach($request->quyenTruyCap_id);
 
-        return redirect()->route('vaiTro.index');
+        return redirect()->route('vaiTro.index')->with('success', 'Thêm mới thành công');;
     }
 
     /**
@@ -119,7 +119,7 @@ class VaiTroController extends Controller
 
 
         $vaiTro->find($id)->update($request->only('vai_tro', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('vaiTro.index');
+        return redirect()->route('vaiTro.index')->with('success', 'Cập nhật thành công');;
     }
 
     /**

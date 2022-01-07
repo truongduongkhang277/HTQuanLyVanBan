@@ -12,6 +12,7 @@ use App\Models\VaiTro;
 use App\Traits\StorageFileTrait;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -159,11 +160,9 @@ class NguoiDungController extends Controller
 
             $nguoiDung->cacVaiTro()->sync($request->vai_tro);
             DB::commit();
-            
-            return redirect()->route('nguoiDung.index');
+            return redirect()->route('nguoiDung.index')->with('success', 'Cập nhật thành công');;
         } catch (Exception $e) {
             DB::rollback();
-        
             return redirect()->back()->with('error', 'Cập nhật không thành công');
         }
     }
@@ -178,5 +177,26 @@ class NguoiDungController extends Controller
     {
         $nguoiDung->find($id)->delete();
         return redirect()->route('nguoiDung.index')->with('success','Xóa tài khoản thành công');
+    }
+
+    public function editInfo(Request $request){
+        return view('profile');
+    }
+
+    public function updateInfo(Request $request){
+
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email',
+            'so_dt'=>'required',
+        ]);
+
+        $user = auth()->user();
+
+        // $user->update([
+        //     'name'=>$request->name,
+        //     'email'=>$request->email,
+        //     'so_dt'=>$request->do_dt
+        // ]);
     }
 }

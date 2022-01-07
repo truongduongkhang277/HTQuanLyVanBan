@@ -87,7 +87,7 @@ class TheLoaiController extends Controller
     public function update(Request $request, TheLoai $theLoai, $id)
     {
         $theLoai->find($id)->update($request->only('ten_loai', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('theLoai.index');
+        return redirect()->route('theLoai.index')->with('success', 'Cập nhật thành công');;
     }
 
     /**

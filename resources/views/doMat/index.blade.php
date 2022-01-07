@@ -42,6 +42,11 @@
                         @endcan
                     </div>
                     <div class="col-md-12">
+                        @if (session()->has('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session()->get('success') }}
+                            </div>
+                        @endif
                         <table class="table table-hover">
                             <thead>
                                 <tr style="text-align:center">

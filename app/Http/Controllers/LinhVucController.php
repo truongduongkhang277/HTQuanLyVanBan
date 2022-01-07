@@ -87,7 +87,7 @@ class LinhVucController extends Controller
     public function update(Request $request, LinhVuc $linhVuc, $id)
     {
         $linhVuc->find($id)->update($request->only('linh_vuc', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('linhVuc.index');
+        return redirect()->route('linhVuc.index')->with('success', 'Cập nhật thành công');;
     }
 
     /**

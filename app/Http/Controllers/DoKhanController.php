@@ -88,7 +88,7 @@ class DoKhanController extends Controller
     public function update(Request $request, DoKhan $doKhan, $id)
     {
         $doKhan->find($id)->update($request->only('do_khan', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('doKhan.index');
+        return redirect()->route('doKhan.index')->with('success', 'Cập nhật thành công');;
     }
 
 

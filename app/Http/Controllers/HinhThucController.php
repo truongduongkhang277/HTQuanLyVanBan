@@ -87,7 +87,7 @@ class HinhThucController extends Controller
     public function update(Request $request, HinhThuc $hinhThuc, $id)
     {
         $hinhThuc->find($id)->update($request->only('hinh_thuc', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('hinhThuc.index');
+        return redirect()->route('hinhThuc.index')->with('success', 'Cập nhật thành công');;
     }
 
     /**

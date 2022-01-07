@@ -58,7 +58,7 @@ class QuyenTruyCapController extends Controller
             'keycode' => Str::slug($request->quyen_truy_cap, '-'),
             'trang_thai' => $request->trang_thai
         ]);
-        return redirect()->route('quyenTruyCap.index');
+        return redirect()->route('quyenTruyCap.index')->with('success', 'Thêm mới thành công');;
     }
 
     /**
@@ -109,7 +109,7 @@ class QuyenTruyCapController extends Controller
             'trang_thai' => $request->trang_thai,
             'updated_at'
         ]);
-        return redirect()->route('quyenTruyCap.index');
+        return redirect()->route('quyenTruyCap.index')->with('success', 'Cập nhật thành công');;
     }
 
     /**

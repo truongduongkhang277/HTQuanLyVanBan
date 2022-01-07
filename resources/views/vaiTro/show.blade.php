@@ -34,17 +34,17 @@
                             @csrf @method('PUT')
                             <div class="form-group">
                                 <label for="">Vai trò</label>
-                                <input type="text" class="form-control" name="vai_tro" value="{{ $chucDanh->vai_tro }}"
+                                <input type="text" class="form-control" name="vai_tro" value="{{ $vaiTro->vai_tro }}"
                                     disabled>
                             </div>
                             <div class="form-group">
                                 <label for="">Trạng thái</label>
                                 <input type="text" class="form-control" name="trang_thai" disabled
-                                    @if ($chucDanh->trang_thai == 1) value="Kích hoạt" @else value="Ngừng hoạt động" @endif>
+                                    @if ($vaiTro->trang_thai == 1) value="Kích hoạt" @else value="Ngừng hoạt động" @endif>
                             </div>
                             <div class="form-group">
                                 <label for="">Ghi chú</label>
-                                <input type="text" class="form-control" name="ghi_chu" value="{{ $chucDanh->ghi_chu }}"
+                                <input type="text" class="form-control" name="ghi_chu" value="{{ $vaiTro->ghi_chu }}"
                                     disabled>
                             </div>
                             <div class="text-center">

@@ -5,7 +5,6 @@
 @endsection
 
 @section('css')
-
 @endsection
 
 @section('content')
@@ -16,12 +15,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Profile</h1>
+                        <h1>Thông tin tài khoản</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">User Profile</li>
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Thông tin tài khoản</li>
                         </ol>
                     </div>
                 </div>
@@ -62,42 +61,73 @@
                         <div class="card">
                             <div class="card-header p-2">
                                 <ul class="nav nav-pills">
-                                    <li class="nav-item"><a class="nav-link active" href="#activity"
-                                            data-toggle="tab">Activity</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#timeline"
-                                            data-toggle="tab">Timeline</a></li>
+                                    <li class="nav-item"><a class="nav-link active" href="#info"
+                                            data-toggle="tab">Thông tin cá nhân</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#change_password"
+                                            data-toggle="tab">Đổi mật khẩu</a></li>
                                 </ul>
                             </div><!-- /.card-header -->
                             <div class="card-body">
                                 <div class="tab-content">
-                                    <div class="active tab-pane" id="activity">
-                                        <div class="form-group">
-                                            <label for="my-input">Số văn bản đi</label>
-                                            <input class="form-control" type="text" name="so_vb_di">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="my-input">Số văn bản đi</label>
-                                            <input class="form-control" type="text" name="so_vb_di">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="my-input">Số văn bản đi</label>
-                                            <input class="form-control" type="text" name="so_vb_di">
-                                        </div>
+                                    <div class="active tab-pane" id="info">
+                                        <form class="form-horizontal" method="POST"
+                                            action="{{ route('nguoiDung.updateInfo') }}" id="infoForm">
+                                            @csrf @method('PUT')                                            
+                                            @include('partials.alert')
+                                            <div class="form-group row">
+                                                <label for="my-input" class="col-sm-2 col-form-label">Họ và tên</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" name="name"
+                                                        value="{{ auth()->user()->name }}">
+                                                    <span class="text-danger error-text name_error"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="my-input" class="col-sm-2 col-form-label">Email</label>
+                                                <div class="col-sm-10"><input class="form-control" type="email"
+                                                        name="email" value="{{ auth()->user()->email }}">
+                                                    <span class="text-danger error-text email_error"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="my-input" class="col-sm-2 col-form-label">Sđt</label>
+                                                <div class="col-sm-10"><input class="form-control" type="text"
+                                                        name="so_dt" value="{{ auth()->user()->so_dt }}">
+                                                    <span class="text-danger error-text so_dt_error"></span>
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-success">Cập nhật thông tin</button>
+                                            </div>
+                                        </form>
                                     </div>
                                     <!-- /.tab-pane -->
-                                    <div class="tab-pane" id="timeline">
-                                        <div class="form-group">
-                                            <label for="my-input">Số văn bản đi</label>
-                                            <input class="form-control" type="text" name="so_vb_di">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="my-input">Số văn bản đi</label>
-                                            <input class="form-control" type="text" name="so_vb_di">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="my-input">Số văn bản đi</label>
-                                            <input class="form-control" type="text" name="so_vb_di">
-                                        </div>
+                                    <div class="tab-pane" id="change_password">
+                                        <form class="form-horizontal">
+                                            <div class="form-group row">
+                                                <label for="my-input" class="col-sm-3 col-form-label">Mật khẩu hiện
+                                                    tại</label>
+                                                <div class="col-sm-9"><input class="form-control" type="password"
+                                                        name="password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="my-input" class="col-sm-3 col-form-label">Mật khẩu mới</label>
+                                                <div class="col-sm-9"><input class="form-control" type="password"
+                                                        name="new_password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="my-input" class="col-sm-3 col-form-label">Nhập lại mật khẩu
+                                                    mới</label>
+                                                <div class="col-sm-9"><input class="form-control" type="password"
+                                                        name="confirm_password">
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-success">Cập nhật mật khẩu</button>
+                                            </div>
+                                        </form>
                                     </div>
                                     <!-- /.tab-pane -->
                                 </div>

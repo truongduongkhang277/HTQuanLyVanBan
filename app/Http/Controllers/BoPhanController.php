@@ -96,7 +96,7 @@ class BoPhanController extends Controller
     public function update(Request $request, BoPhan $boPhan, $id)
     {
         $boPhan->find($id)->update($request->only('bo_phan', 'ki_hieu', 'truong_bo_phan', 'trang_thai', 'ghi_chu', 'updated_at'));
-        return redirect()->route('boPhan.index');
+        return redirect()->route('boPhan.index')->with('success', 'Cập nhật thành công');
     }
 
     /**
