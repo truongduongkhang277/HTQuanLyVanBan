@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jan 06, 2022 at 07:18 PM
+-- Generation Time: Jan 08, 2022 at 06:07 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.4.9
 
@@ -78,6 +78,15 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('duonkhangaa@gmail.com', 'Wd8lvF1V0Dg8V5QAZFYP2qeNuQLXIVBAS6SYWfejXLv5iLL1ravytQaBH0aAZkmy', '2022-01-07 16:59:33'),
+('duonkhangaa@gmail.com', 'HkAx4kLrEQbkRPbU89C4QG9dxUjBFNBOHQBgRGoOVezjsyM98iacYHft2dIdX5kc', '2022-01-07 17:00:17'),
+('duonkhangaa@gmail.com', '7UMKvkzUcw08SXfzVWzDhEa2r7V3UTdJYu2N3nBQkPityL7EBZ9hPAf9OkjQ7GlD', '2022-01-07 17:04:10');
+
 -- --------------------------------------------------------
 
 --
@@ -127,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `tbl_bophan` (
 
 INSERT INTO `tbl_bophan` (`id`, `bo_phan`, `ki_hieu`, `truong_bo_phan`, `trang_thai`, `ghi_chu`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 'Ban giám đốc', 'BGD', 1, 1, NULL, '2021-12-17 16:46:56', '2022-01-03 20:34:38', NULL),
-(2, 'Phòng Chuyên đề', 'PCD', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
+(2, 'Phòng Chuyên đề', 'PCD', 3, 1, NULL, '2021-12-17 16:51:27', '2022-01-07 15:36:18', NULL),
 (3, 'Phòng Chương trình', 'PCT', 2, 1, NULL, '2021-12-17 16:51:27', '2022-01-03 20:34:47', NULL),
 (4, 'Phòng DV Quảng cáo', 'PDVQC', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
 (5, 'Phòng Tổ chức và Hành chính', 'PTCHC', NULL, 1, NULL, '2021-12-17 16:51:27', NULL, NULL),
@@ -392,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `tbl_nguoidung_vaitro` (
   PRIMARY KEY (`id`),
   KEY `FK_vaitro` (`id_vaitro`),
   KEY `FK_nguoidung` (`id_nguoidung`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_nguoidung_vaitro`
@@ -403,7 +412,8 @@ INSERT INTO `tbl_nguoidung_vaitro` (`id`, `id_nguoidung`, `id_vaitro`, `created_
 (7, 5, 6, NULL, NULL, NULL),
 (4, 3, 2, NULL, NULL, NULL),
 (5, 2, 3, NULL, NULL, NULL),
-(6, 4, 4, NULL, NULL, NULL);
+(6, 4, 4, NULL, NULL, NULL),
+(10, 6, 3, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -451,7 +461,7 @@ INSERT INTO `tbl_quyentruycap` (`id`, `quyen_truy_cap`, `parent_id`, `keycode`, 
 (20, 'Xóa độ khẩn', 16, 'xoa-do-khan', 1, '2022-01-04 20:49:15', '2022-01-04 20:49:15', NULL),
 (21, 'Độ mật', 0, 'do-mat', 1, '2022-01-04 20:49:28', '2022-01-04 20:49:28', NULL),
 (22, 'Danh sách độ mật', 21, 'danh-sach-do-mat', 1, '2022-01-04 20:49:42', '2022-01-04 20:49:42', NULL),
-(23, 'Sửa độ mật', 21, 'sua-do-mat', 1, '2022-01-04 20:50:44', '2022-01-04 20:50:44', NULL),
+(23, 'Thêm độ mật', 21, 'them-do-mat', 1, '2022-01-04 20:50:44', '2022-01-04 20:50:44', NULL),
 (24, 'Sửa độ mật', 21, 'sua-do-mat', 1, '2022-01-04 20:50:57', '2022-01-04 20:50:57', NULL),
 (25, 'Xóa độ mật', 21, 'xoa-do-mat', 1, '2022-01-04 20:51:12', '2022-01-04 20:51:12', NULL),
 (26, 'Hình thức', 0, 'hinh-thuc', 1, '2022-01-04 20:51:27', '2022-01-04 20:51:27', NULL),
@@ -760,15 +770,12 @@ INSERT INTO `tbl_vaitro_quyentruycap` (`id`, `id_vaitro`, `id_quyentruycap`, `cr
 (110, 4, 7, NULL, NULL, NULL),
 (111, 4, 8, NULL, NULL, NULL),
 (112, 4, 9, NULL, NULL, NULL),
-(113, 4, 10, NULL, NULL, NULL),
 (114, 4, 57, NULL, NULL, NULL),
 (115, 4, 58, NULL, NULL, NULL),
 (116, 4, 59, NULL, NULL, NULL),
-(117, 4, 60, NULL, NULL, NULL),
 (118, 4, 62, NULL, NULL, NULL),
 (119, 4, 63, NULL, NULL, NULL),
 (120, 4, 64, NULL, NULL, NULL),
-(121, 4, 65, NULL, NULL, NULL),
 (122, 5, 57, NULL, NULL, NULL),
 (153, 5, 64, NULL, NULL, NULL),
 (151, 5, 59, NULL, NULL, NULL),
@@ -813,6 +820,7 @@ CREATE TABLE IF NOT EXISTS `tbl_vanban_den` (
   `hinh_thuc_chuyen` int(11) DEFAULT NULL,
   `hinh_thuc_luu` int(11) DEFAULT NULL,
   `nv_nhan` int(11) NOT NULL,
+  `nv_xuly` int(11) DEFAULT NULL,
   `han_xu_ly` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `trang_thai` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -830,16 +838,18 @@ CREATE TABLE IF NOT EXISTS `tbl_vanban_den` (
   KEY `FK_nguoiky_vbden` (`nguoi_ky`),
   KEY `FK_chucvu_vbden` (`chuc_vu`),
   KEY `FK_hinhthucchuyen_vbden` (`hinh_thuc_chuyen`),
-  KEY `FK_hinhthucluu_vbden` (`hinh_thuc_luu`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `FK_hinhthucluu_vbden` (`hinh_thuc_luu`),
+  KEY `FK_nv_xuly_vanban` (`nv_xuly`)
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_vanban_den`
 --
 
-INSERT INTO `tbl_vanban_den` (`id`, `so_vb_den`, `ki_hieu`, `ngay_nhan`, `don_vi_ban_hanh`, `hinh_thuc`, `ngay_vb`, `trich_yeu`, `loai`, `linh_vuc`, `nguoi_ky`, `ds_file`, `file_path`, `do_mat`, `do_khan`, `chuc_vu`, `hinh_thuc_chuyen`, `hinh_thuc_luu`, `nv_nhan`, `han_xu_ly`, `trang_thai`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(3, 3, '43/2021/QĐ-UBND', '30/11/2021', 45, 1, '30/11/2021', 'Ban hành quy định lập, thẩm định và phê duyệt Kế hoạch ứng phó sự cố tràn dầu của cấp cơ sở trên địa bàn tỉnh Bạc Liêu.', 8, 1, 'Cao Xuân Thu Vân', '42-QDQPPL.signed.pdf', '/storage/vanBanDi/2/vpB92BIl7d5cXvEa2KfD.pdf', 1, 1, 4, 1, 1, 2, '10/01/2022', NULL, '2022-01-03 20:28:00', '2022-01-03 20:28:00', NULL),
-(2, 2, '44/2021/QĐ-UBND', '30/12/2021', 45, 1, '30/12/2021', 'Quy định vùng tạo nguồn cán bộ cho các dân tộc thiểu số thuộc diện tuyển sinh vào Trường phổ thông Dân tộc nội trú trên địa bàn tỉnh Bạc Liêu', 8, 3, 'Phan Thanh Duy', '44-QDQPPL.signed.pdf', '/storage/vanBanDi/2/M3Gs4OAZgOX2SkfVFKVt.pdf', 1, 1, 5, 1, 1, 2, '09/01/2022', NULL, '2022-01-03 18:13:22', '2022-01-03 18:13:22', NULL);
+INSERT INTO `tbl_vanban_den` (`id`, `so_vb_den`, `ki_hieu`, `ngay_nhan`, `don_vi_ban_hanh`, `hinh_thuc`, `ngay_vb`, `trich_yeu`, `loai`, `linh_vuc`, `nguoi_ky`, `ds_file`, `file_path`, `do_mat`, `do_khan`, `chuc_vu`, `hinh_thuc_chuyen`, `hinh_thuc_luu`, `nv_nhan`, `nv_xuly`, `han_xu_ly`, `trang_thai`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(3, 3, '43/2021/QĐ-UBND', '30/11/2021', 45, 1, '30/11/2021', 'Ban hành quy định lập, thẩm định và phê duyệt Kế hoạch ứng phó sự cố tràn dầu của cấp cơ sở trên địa bàn tỉnh Bạc Liêu.', 8, 1, 'Cao Xuân Thu Vân', '42-QDQPPL.signed.pdf', '/storage/vanBanDi/2/vpB92BIl7d5cXvEa2KfD.pdf', 1, 1, 4, 1, 1, 2, 2, '10/01/2022', NULL, '2022-01-03 20:28:00', '2022-01-03 20:28:00', NULL),
+(2, 2, '44/2021/QĐ-UBND', '30/12/2021', 45, 1, '30/12/2021', 'Quy định vùng tạo nguồn cán bộ cho các dân tộc thiểu số thuộc diện tuyển sinh vào Trường phổ thông Dân tộc nội trú trên địa bàn tỉnh Bạc Liêu', 8, 3, 'Phan Thanh Duy', '44-QDQPPL.signed.pdf', '/storage/vanBanDi/2/M3Gs4OAZgOX2SkfVFKVt.pdf', 1, 1, 5, 1, 1, 2, 5, '09/01/2022', NULL, '2022-01-03 18:13:22', '2022-01-03 18:13:22', NULL),
+(4, 4, '01/2022/QĐ-UBND', '07/01/2022', 45, 1, '04/01/2022', 'Ban hành Quy định về phân cấp Quản lý kiến trúc trên địa bàn tỉnh Bạc Liêu', 8, 3, 'Lê Tấn Cận', '01-QDQPPL.signed.pdf', '/storage/vanBanDi/1/tnZQYgmFWIgFZZOGl2EW.pdf', 1, 1, 4, 4, 1, 1, NULL, '09/01/2022', NULL, '2022-01-07 18:02:05', '2022-01-07 18:02:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -861,6 +871,7 @@ CREATE TABLE IF NOT EXISTS `tbl_vanban_di` (
   `trich_yeu` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `nguoi_ky` int(10) NOT NULL,
   `nv_phathanh` int(11) NOT NULL,
+  `nv_xuly` int(11) NOT NULL,
   `ds_file` text COLLATE utf8_unicode_ci NOT NULL,
   `file_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `chuc_vu` int(11) NOT NULL,
@@ -884,20 +895,90 @@ CREATE TABLE IF NOT EXISTS `tbl_vanban_di` (
   KEY `FK_hinhthucluu_vbdi` (`hinh_thuc_luu`),
   KEY `FK_nvphathanh_vbdi` (`nv_phathanh`),
   KEY `FK_coquangui_vbdi` (`noi_gui`),
-  KEY `nguoi_ky` (`nguoi_ky`)
+  KEY `nguoi_ky` (`nguoi_ky`),
+  KEY `FK_nv_xuly_vanban` (`nv_xuly`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_vanban_di`
 --
 
-INSERT INTO `tbl_vanban_di` (`id`, `so_vb_di`, `ki_hieu`, `ngay_gui`, `loai`, `hinh_thuc`, `linh_vuc`, `so_trang`, `so_luong`, `trich_yeu`, `nguoi_ky`, `nv_phathanh`, `ds_file`, `file_path`, `chuc_vu`, `noi_gui`, `do_khan`, `hinh_thuc_luu`, `noi_nhan`, `han_xu_ly`, `trang_thai`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '1', 'BC-1', '21/12/2021', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 10', 1, 2, '', NULL, 4, 13, 1, 1, '37', '26/12/2021', NULL, '2021-12-21 05:49:21', '2021-12-21 05:49:21', NULL),
-(2, '2', 'BC-2', '30/12/2021', 1, 1, 1, 50, 1, 'Báo cáo tiến độ thực hiện đồ án tuần 11', 2, 2, '', NULL, 5, 13, 1, 1, '14', '02/01/2022', NULL, '2021-12-29 19:04:34', '2021-12-29 19:04:34', NULL),
-(3, '3', 'BC-3', '02/01/2022', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 11', 3, 1, '', NULL, 4, 13, 1, 1, '37', '09/01/2022', NULL, '2022-01-02 18:25:24', '2022-01-02 18:25:24', NULL),
-(4, '4', 'BC-4', '02/01/2022', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 11', 1, 1, 'BÁO CÁO KẾT QUẢ THỰC HIỆN DỰ ÁN TRONG TUẦN 11.docx', '/storage/vanBanDi/1/0kmeLu3sYbMl8eFLSIBo.docx', 5, 13, 1, 1, '37', '09/01/2022', NULL, '2022-01-02 18:27:49', '2022-01-02 18:27:49', NULL),
-(5, '5', 'BC-5', '02/01/2022', 5, 1, 2, 50, 2, 'Về phòng, chống dịch Covid-19', 2, 1, '1063_CD-TTg_31072021_1-signed.pdf', '/storage/vanBanDi/1/WPhpyC5B5ckqKxeUQEZX.pdf', 5, 13, 2, 2, '33', '09/01/2022', NULL, '2022-01-02 18:35:50', '2022-01-02 18:35:50', NULL),
-(6, '6', '68/NQ-CP', '01/07/2021', 7, 1, 1, 50, 10, 'Về một số chính sách hỗ trợ người lao động và người sử dụng lao động gặp khó khăn do đại dịch COVID-19', 1, 2, '68.signed.pdf', '/storage/vanBanDi/2/6sQsFJy7rvZNtqz7jV0B.pdf', 4, 13, 2, 1, '45', '19/01/2022', NULL, '2022-01-02 21:02:48', '2022-01-02 21:02:48', NULL);
+INSERT INTO `tbl_vanban_di` (`id`, `so_vb_di`, `ki_hieu`, `ngay_gui`, `loai`, `hinh_thuc`, `linh_vuc`, `so_trang`, `so_luong`, `trich_yeu`, `nguoi_ky`, `nv_phathanh`, `nv_xuly`, `ds_file`, `file_path`, `chuc_vu`, `noi_gui`, `do_khan`, `hinh_thuc_luu`, `noi_nhan`, `han_xu_ly`, `trang_thai`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '1', 'BC-1', '21/12/2021', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 10', 1, 2, 5, '', NULL, 4, 13, 1, 1, '37', '26/12/2021', NULL, '2021-12-21 05:49:21', '2021-12-21 05:49:21', NULL),
+(2, '2', 'BC-2', '30/12/2021', 1, 1, 1, 50, 1, 'Báo cáo tiến độ thực hiện đồ án tuần 11', 2, 2, 0, '', NULL, 5, 13, 1, 1, '14', '02/01/2022', NULL, '2021-12-29 19:04:34', '2021-12-29 19:04:34', NULL),
+(3, '3', 'BC-3', '02/01/2022', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 11', 3, 1, 0, '', NULL, 4, 13, 1, 1, '37', '09/01/2022', NULL, '2022-01-02 18:25:24', '2022-01-02 18:25:24', NULL),
+(4, '4', 'BC-4', '02/01/2022', 1, 1, 1, 50, 2, 'Báo cáo tiến độ thực hiện tuần 11', 1, 1, 1, 'BÁO CÁO KẾT QUẢ THỰC HIỆN DỰ ÁN TRONG TUẦN 11.docx', '/storage/vanBanDi/1/0kmeLu3sYbMl8eFLSIBo.docx', 5, 13, 1, 1, '37', '09/01/2022', NULL, '2022-01-02 18:27:49', '2022-01-02 18:27:49', NULL),
+(5, '5', 'BC-5', '02/01/2022', 5, 1, 2, 50, 2, 'Về phòng, chống dịch Covid-19', 2, 1, 0, '1063_CD-TTg_31072021_1-signed.pdf', '/storage/vanBanDi/1/WPhpyC5B5ckqKxeUQEZX.pdf', 5, 13, 2, 2, '33', '09/01/2022', NULL, '2022-01-02 18:35:50', '2022-01-02 18:35:50', NULL),
+(6, '6', '68/NQ-CP', '01/07/2021', 7, 1, 1, 50, 10, 'Về một số chính sách hỗ trợ người lao động và người sử dụng lao động gặp khó khăn do đại dịch COVID-19', 1, 2, 0, '68.signed.pdf', '/storage/vanBanDi/2/6sQsFJy7rvZNtqz7jV0B.pdf', 4, 13, 2, 1, '45', '19/01/2022', NULL, '2022-01-02 21:02:48', '2022-01-02 21:02:48', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_vbden_nguoidung`
+--
+
+DROP TABLE IF EXISTS `tbl_vbden_nguoidung`;
+CREATE TABLE IF NOT EXISTS `tbl_vbden_nguoidung` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_vanbanden` int(11) DEFAULT NULL,
+  `id_nguoidung` int(11) DEFAULT NULL,
+  `id_nguoidung_xuly` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_vanbanden` (`id_vanbanden`),
+  KEY `FK_nguoidung` (`id_nguoidung`),
+  KEY `FK_nguoidung_xuly` (`id_nguoidung_xuly`)
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_vbden_nguoidung`
+--
+
+INSERT INTO `tbl_vbden_nguoidung` (`id`, `id_vanbanden`, `id_nguoidung`, `id_nguoidung_xuly`) VALUES
+(11, 2, 1, 3),
+(10, 3, 2, 3),
+(9, 2, 2, 1),
+(7, 3, 1, NULL),
+(8, 4, 2, NULL),
+(12, 3, 1, 1),
+(13, 3, 1, 2),
+(14, 4, 1, 6),
+(15, 2, 1, 1),
+(16, 2, 1, 2),
+(17, 3, 1, 2),
+(18, 2, 2, 1),
+(19, 2, 3, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_vbdi_nguoidung`
+--
+
+DROP TABLE IF EXISTS `tbl_vbdi_nguoidung`;
+CREATE TABLE IF NOT EXISTS `tbl_vbdi_nguoidung` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_vanbandi` int(11) DEFAULT NULL,
+  `id_nguoidung` int(11) DEFAULT NULL,
+  `id_nguoidung_xuly` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_vanbandi` (`id_vanbandi`),
+  KEY `FK_nguoidung` (`id_nguoidung`),
+  KEY `FK_nguoidung_xuly` (`id_nguoidung_xuly`)
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_vbdi_nguoidung`
+--
+
+INSERT INTO `tbl_vbdi_nguoidung` (`id`, `id_vanbandi`, `id_nguoidung`, `id_nguoidung_xuly`) VALUES
+(1, 4, 2, 3),
+(12, 1, 3, 5),
+(13, 1, 3, 5),
+(14, 1, 3, 5),
+(15, 1, 3, NULL),
+(16, 1, 3, NULL),
+(17, 1, 3, 5),
+(18, 4, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -920,6 +1001,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `anh` text COLLATE utf8_unicode_ci,
   `file_path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `bo_phan` int(11) DEFAULT NULL,
+  `vai_tro` int(11) NOT NULL,
   `trang_thai` tinyint(4) DEFAULT '0',
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -927,22 +1009,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
-  KEY `FK_bophan_nguoidung` (`bo_phan`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `FK_bophan_nguoidung` (`bo_phan`),
+  KEY `FK_vaitro` (`vai_tro`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
+-- user 2: password: 123456
+-- user 1, 3, 4, 5: password 123456789
 --
 
---
--- user 1,4,5: password 123456789, user2,3 pw: 123456
---
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `created_by`, `ngay_sinh`, `gioi_tinh`, `dia_chi`, `so_dt`, `anh`, `file_path`, `bo_phan`, `trang_thai`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Trương Dương Khang', 'duonkhangaa@gmail.com', NULL, '$2y$10$n7HThy2oC.bFqonIGkmWD.1t66YIy5dyFIyDB/bcZ1x5cVRDTlLAW', 1, '27/07/2000', 1, 'Phường Linh Đông, TP Thủ Đức, Tp Hồ Chí Minh', '0888780807', 'beauty_20200701121629.jpg', '/storage/avatar/1/A4ePlozWkaaauGcdxscG.jpg', 3, 1, 'x93phl6gPgWranl8glsZVK8ZLcGhehCTS5UZWNbY7FXxCkWuNqklJ7DUPFbD', '2021-12-17 15:54:43', '2022-01-05 19:59:10', NULL),
-(2, 'Huỳnh Hồng Hân', 'honghan1303@gmail.com', NULL, '$2y$10$2O7LXcmX4sMGPEGmOel86u66rfnaHnQo6YszYnaQmII0xlu/ENaIm', NULL, '13/03/2000', 1, 'Thị trấn Châu Hưng, Vĩnh Lợi, Bạc Liêu', '0825828346', 'IMG_20200701_115444.jpg', '/storage/avatar/2/T30qIgI7vnCyKtF0aYAn.jpg', 5, 1, NULL, '2021-12-21 05:03:25', '2022-01-05 19:58:08', NULL),
-(3, 'Dương Khang Nè', 'admin@gmail.com', NULL, '$2y$10$chby6rTA.wsxECnbMHUFIecCsa.z.r4WXFnXdaLj85e.u.WnIDe2i', 1, '16/05/1999', 1, 'Phường Linh Đông, TP Thủ Đức, Tp Hồ Chí Minh', '0123456456', '244564033_458922068769583_5284706931315874436_n.jpg', '/storage/avatar/1/WTuKjQBuND3niaEJNv05.jpg', 1, 1, NULL, '2021-12-29 18:09:48', '2022-01-05 19:57:57', NULL),
-(4, 'Test data', 'test@email.com', NULL, '$2y$10$r3/8nu5oiQYJ6OiUMCbvruU5iK3qwpPDjKgRiMnHI1x6df722NLxi', 1, '04/01/2000', 1, 'demo', '0123654789', 'IMG_20210214_210622_744.jpg', '/storage/avatar/1/jYAei3hE349pl1fO6YAE.jpg', 6, 1, NULL, '2022-01-03 22:47:15', '2022-01-05 19:58:30', NULL),
-(5, 'Test user', 'test@gmail.com', NULL, '$2y$10$kkcRMDgqyHR9EUqfp87i4e6fgpihjiX5v.VO3ITcbtkTWzHoHt0Sq', 1, '06/01/2000', 1, 'Phường Linh Đông, TP Thủ Đức, Tp Hồ Chí Minh', '0147852369', 'test.jpg', '/storage/avatar/1/WYcTbZhAlzugFgpCTMM7.jpg', 5, 1, NULL, '2022-01-05 17:03:04', '2022-01-05 20:00:55', NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `created_by`, `ngay_sinh`, `gioi_tinh`, `dia_chi`, `so_dt`, `anh`, `file_path`, `bo_phan`, `vai_tro`, `trang_thai`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Trương Dương Khang', 'duonkhangaa@gmail.com', NULL, '$2y$10$n7HThy2oC.bFqonIGkmWD.1t66YIy5dyFIyDB/bcZ1x5cVRDTlLAW', 1, '27/07/2000', 1, 'Phường Linh Đông, TP Thủ Đức, Tp Hồ Chí Minh', '0888780807', 'beauty_20200701121629.jpg', '/storage/avatar/1/A4ePlozWkaaauGcdxscG.jpg', 3, 5, 1, '7EwFmA1UXjvOpYlxizoycVI16C5BuWAUHxiUTUlOna8O6UMOp4ushKZXAkaS', '2021-12-17 15:54:43', '2022-01-05 19:59:10', NULL),
+(2, 'Huỳnh Hồng Hân', 'honghan1303@gmail.com', NULL, '$2y$10$2O7LXcmX4sMGPEGmOel86u66rfnaHnQo6YszYnaQmII0xlu/ENaIm', NULL, '13/03/2000', 1, 'Thị trấn Châu Hưng, Vĩnh Lợi, Bạc Liêu', '0825828346', 'IMG_20200701_115444.jpg', '/storage/avatar/2/T30qIgI7vnCyKtF0aYAn.jpg', 5, 3, 1, NULL, '2021-12-21 05:03:25', '2022-01-05 19:58:08', NULL),
+(3, 'Dương Khang Admin', 'admin@gmail.com', NULL, '$2y$10$VPBdWAhgnFbDwLlqchBemeQ2vasKOQQu9tZlCTlUzVyhXowtY5ZWu', 1, '16/05/1999', 1, 'Phường Linh Đông, TP Thủ Đức, Tp Hồ Chí Minh', '0123456654', 'jYAei3hE349pl1fO6YAE.jpg', '/storage/avatar/3/wwf2AA0iYmQKtnVGxfBU.jpg', 1, 2, 1, NULL, '2021-12-29 18:09:48', '2022-01-08 05:26:49', NULL),
+(4, 'Test data', 'test@email.com', NULL, '$2y$10$r3/8nu5oiQYJ6OiUMCbvruU5iK3qwpPDjKgRiMnHI1x6df722NLxi', 1, '04/01/2000', 1, 'demo', '0123654789', 'IMG_20210214_210622_744.jpg', '/storage/avatar/1/jYAei3hE349pl1fO6YAE.jpg', 6, 4, 1, NULL, '2022-01-03 22:47:15', '2022-01-05 19:58:30', NULL),
+(5, 'Tôi là Dương Khang', 'truongduongkhang277@gmail.com', NULL, '$2y$10$kkcRMDgqyHR9EUqfp87i4e6fgpihjiX5v.VO3ITcbtkTWzHoHt0Sq', 1, '06/01/2000', 1, 'Phường Linh Đông, TP Thủ Đức, Tp Hồ Chí Minh', '0147852369', 'test.jpg', '/storage/avatar/1/WYcTbZhAlzugFgpCTMM7.jpg', 5, 6, 1, NULL, '2022-01-05 17:03:04', '2022-01-08 05:26:37', NULL),
+(6, 'Văn thư demo', 'vanthudemo@gmail.com', NULL, '$2y$10$OAu4jXgyIpY1viPZSdBPJebl0rS8zWb59sG5xTgPPMvahUrS6DAU.', 3, '12/03/2000', 0, 'Thị trấn Châu Hưng, Vĩnh Lợi, Bạc Liêu', '0123654777', 'z2612263601972_88ed25aa8572fbe1c3fb586bf7802ff1.jpg', '/storage/avatar/3/M4I0IUHYjT1B4kl9vjr0.jpg', 5, 3, 1, NULL, '2022-01-07 08:21:26', '2022-01-07 08:21:26', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

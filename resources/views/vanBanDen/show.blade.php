@@ -140,6 +140,8 @@
                                         <input class="form-control" type="text" name="nv_nhan"
                                             value="{{ optional($vanBanDen->nguoiNhan)->name }}" disabled>
                                     </div>
+                                    
+                                    <embed src="{{$vanBanDen->file_path}}" frameborder="0" width="100%" height="800px">
                                 </div>
                             </div>
                             <div class="text-center">

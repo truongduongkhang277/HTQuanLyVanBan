@@ -39,7 +39,11 @@ class VanBanDiController extends Controller
     public function index()
     {
          // trỏ đến hàm scopeSearch trong model vanBanDi để rút gọn code
-         $data = VanBanDi::orderBy('created_at', 'ASC')->search()->paginate(5);
+        if(auth()->user()->vai_tro == 2 || auth()->user()->vai_tro == 3) {
+            $data = VanBanDi::orderBy('created_at', 'ASC')->search()->paginate(5);
+        } else {
+            $data = VanBanDi::where('nv_xuly', auth()->user()->id)->search()->paginate(5);
+        }
          
          return view('vanBanDi.index', compact('data'));
     }
@@ -57,9 +61,15 @@ class VanBanDiController extends Controller
 
     public function handlePost(Request $request, $id)
     {
-        VanBanDi::find($id)->cacNguoiDung()->attach(auth()->user()->id, ['id_nguoidung_xuly'=>$request->nguoi_dung]);
+        $nv_xuly = $request->input('nv_xuly');
 
+        DB::update('update tbl_vanban_di set nv_xuly = ? where id = ?',[$nv_xuly, $id]);
+        //$update = $vanBanDen->update($data);
+
+        $update = VanBanDi::find($id)->cacNguoiDung()->attach(auth()->user()->id, ['id_nguoidung_xuly'=>$request->nv_xuly]);
+        
         return redirect()->route('vanBanDi.index');
+        
     }
 
     /**

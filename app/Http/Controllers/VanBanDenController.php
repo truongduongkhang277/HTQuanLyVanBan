@@ -33,9 +33,11 @@ class VanBanDenController extends Controller
     public function index()
     {
         // trỏ đến hàm scopeSearch trong model vanBanDen để rút gọn code
-        
-        $data = VanBanDen::orderBy('created_at', 'ASC')->search()->paginate(5);
-
+        if(auth()->user()->vai_tro == 2 || auth()->user()->vai_tro == 3) {
+            $data = VanBanDen::orderBy('created_at', 'ASC')->search()->paginate(5);
+        } else {
+            $data = VanBanDen::where('nv_xuly', auth()->user()->id)->search()->paginate(5);
+        }
         return view('vanBanDen.index', compact('data'));
     }
 
@@ -52,8 +54,13 @@ class VanBanDenController extends Controller
 
     public function handlePost(Request $request, $id)
     {
-        VanBanDen::find($id)->cacNguoiDung()->attach(auth()->user()->id, ['id_nguoidung_xuly'=>$request->nguoi_dung]);
+        $nv_xuly = $request->input('nv_xuly');
 
+        DB::update('update tbl_vanban_den set nv_xuly = ? where id = ?',[$nv_xuly,$id]);
+        //$update = $vanBanDen->update($data);
+
+        $update = VanBanDen::find($id)->cacNguoiDung()->attach(auth()->user()->id, ['id_nguoidung_xuly'=>$request->nv_xuly]);
+        
         return redirect()->route('vanBanDen.index');
     }
 
@@ -140,7 +147,7 @@ class VanBanDenController extends Controller
                 'nv_nhan'           => auth()->id(),
                 'han_xu_ly'         => $request->han_xu_ly,
             ];
-    
+            
             // liên kết với file stotageFileTrait để tối ưu lưu file vào hệ thống
             $fileUpload = $this->storageTraitUpload($request, 'ds_file', 'vanBanDi');
             
@@ -148,7 +155,6 @@ class VanBanDenController extends Controller
                 $data['ds_file'] = $fileUpload['file_name'];
                 $data['file_path'] = $fileUpload['file_path'];
             }
-            
             $add = VanBanDen::create($data);           
 
             DB::commit();

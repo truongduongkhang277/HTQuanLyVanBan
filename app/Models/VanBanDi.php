@@ -100,7 +100,7 @@ class VanBanDi extends Model
     }
 
     // tbl: tên bảng sinh ra của 2 model
-    // id_vanbanden : khóa ngoại của model vanbanden
+    // id_vanbandi : khóa ngoại của model vanbandi
     // id_nguoidung: khóa ngoại của model user
     public function cacNguoiDung(){
         return $this->belongsToMany(User::class, 'tbl_vbdi_nguoidung', 'id_vanbandi', 'id_nguoidung')->withPivot('id_nguoidung_xuly');

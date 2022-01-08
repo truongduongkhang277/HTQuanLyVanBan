@@ -60,7 +60,7 @@
                     </div>
                 </form>
                 <hr/>
-                <p class="mb-1">
+                <p class="mb-1 text-center">
                     <a href="{{ route('ForgetPasswordGet') }}" class="btn btn-info">Quên mật khẩu</a>
                 </p>
             </div>

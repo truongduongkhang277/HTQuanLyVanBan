@@ -74,9 +74,8 @@
                                         <label for="">Số điện thoại</label>
                                         <input type="text" class="form-control" name="so_dt"
                                             value="{{ $nguoiDung->so_dt }}">
-                                    </div>                                    
-                                </div>
-                                <div class="col-md-6">                                    
+                                    </div>  
+                                                                   
                                     <div class="form-group">
                                         <label for="">Giới tính</label>
                                         <select class="form-control select2" name="gioi_tinh" id="input"
@@ -84,7 +83,15 @@
                                             <option selected="selected" value="1">[M] Nam</option>
                                             <option value="0"> [F] Nữ</option>
                                         </select>
-                                    </div>
+                                    </div>   
+                                    
+                                    <div class="form-group">
+                                        <label for="">Địa chỉ</label>
+                                        <input type="text" class="form-control" name="dia_chi"
+                                            value="{{ $nguoiDung->dia_chi }}">
+                                    </div>                               
+                                </div>
+                                <div class="col-md-6">     
                                     <div class="form-group">
                                         <label for="my-input">Ảnh đại diện</label>
                                         <input class="form-control-file" type="file" name="anh">
@@ -134,13 +141,6 @@
                                             <option selected="selected" value="1">Kích hoạt</option>
                                             <option value="0"> Ngừng sử dụng</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="">Địa chỉ</label>
-                                        <input type="text" class="form-control" name="dia_chi"
-                                            value="{{ $nguoiDung->dia_chi }}">
                                     </div>
                                 </div>
                             </div>

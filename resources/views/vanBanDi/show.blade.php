@@ -112,8 +112,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="my-input">File đính kèm</label>
-                                        <input class="form-control" type="text" name="ds_file"
-                                            value="{{ $vanBanDi->ds_file }}" disabled>
+                                        <input class="form-control" type="text" name="ds_file"                                            
+                                             @if(!empty($vanBanDi->file_path))                                  
+                                                value="{{ $vanBanDi->ds_file }}"
+                                            @else
+                                                value="Không có file đính kèm"
+                                            @endif disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -137,6 +141,13 @@
                                         <input class="form-control" type="text" name="han_xu_ly"
                                             value="{{ $vanBanDi->han_xu_ly }}" disabled>
                                     </div>
+                                </div>
+                                <div class="col-md-12">  
+                                    @if(!empty($vanBanDi->file_path))                                  
+                                        <embed src="{{$vanBanDi->file_path}}" frameborder="0" width="100%" height="800px">
+                                    @else
+                                        <p class="text-center">Không có file đính kèm</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="text-center">

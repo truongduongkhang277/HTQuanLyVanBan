@@ -92,6 +92,7 @@ class NguoiDungController extends Controller
                 'dia_chi'     => $request->dia_chi,
                 'trang_thai'  => $request->trang_thai,
                 'bo_phan'     => $request->bo_phan,
+                'vai_tro'     => $request->vai_tro,
                 'created_by'  => auth()->id(),
             ];
             
@@ -157,8 +158,6 @@ class NguoiDungController extends Controller
         //validate
         $request->validate([
             'name' => 'required',
-            'email' => 'required',            
-            'password' => 'required|min:6|max:50',
             'ngay_sinh' => 'required',            
             'gioi_tinh' => 'required',
             'dia_chi' => 'required',
@@ -166,8 +165,6 @@ class NguoiDungController extends Controller
             'bo_phan' => 'required',
         ], [
             'name.required'      => 'Tên người dùng không được để trống !!',
-            'email.required'     => 'Tên đăng nhập không được để trống !!',
-            'password.required'  => 'Mật khẩu không được để trống !!',
             'password.min'       => 'Mật khẩu dài tối thiểu 6 kí tự !!',
             'password.max'       => 'Mật khẩu dài tối đa 50 kí tự !!',
             'ngay_sinh.required' => 'Ngày sinh không được để trống !!',
@@ -187,6 +184,7 @@ class NguoiDungController extends Controller
                 'dia_chi'     => $request->dia_chi,
                 'trang_thai'  => $request->trang_thai,
                 'bo_phan'     => $request->bo_phan,
+                'vai_tro'     => $request->vai_tro,
             ];
             
             $fileUpload = $this->storageTraitUpload($request, 'anh', 'avatar');

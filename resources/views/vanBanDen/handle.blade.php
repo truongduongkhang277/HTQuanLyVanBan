@@ -54,13 +54,11 @@
                                 </div>
                                 <div class="col-md-8 mx-auto">
                                     <div class="form-group">
-                                        <label for="my-input">Nhân viên</label>
-                                        <select class="form-control" type="text" name="nguoi_dung" required>
+                                        <label for="my-input">Nhân viên xử lý</label>
+                                        <select class="form-control" type="text" name="nv_xuly" required>
                                             <option value="">Chọn một</option>
-                                            @foreach ($nguoiDung as $nguoi_dung)
-                                                <option value="{{ $nguoi_dung->id }}">{{ $nguoi_dung->name }}
-
-                                                </option>
+                                            @foreach ($nguoiDung as $nv_xuly)
+                                                <option value="{{ $nv_xuly->id }}">{{ $nv_xuly->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
