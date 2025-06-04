@@ -64,3 +64,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Continuous Integration
+
+This project uses GitHub Actions to automatically run the PHPUnit test suite. The workflow at `.github/workflows/phpunit.yml` sets up PHP, caches Composer dependencies, installs them, and runs `phpunit`.
